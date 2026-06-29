@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — NSN Nationwide Security Network</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#1a1a1a;color:#d1d5db;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(26,26,26,0.97);backdrop-filter:blur(12px);border-bottom:2px solid #3d4a57;height:64px;display:flex;align-items:center;padding:0 36px;gap:20px;}
+.nav-logo{color:#fff;font-size:1rem;letter-spacing:2px;font-weight:700;font-family:'Rajdhani',sans-serif;white-space:nowrap;text-decoration:none;}
+.nav-logo span{color:#ff7700;}
+.nav-links{display:flex;gap:28px;margin-left:auto;}
+.nav-links a{color:#d1d5db;text-decoration:none;font-size:0.92rem;font-weight:600;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:#ff7700;}
+.nav-btns{display:flex;gap:10px;margin-left:20px;}
+.btn-nav{background:transparent;border:1px solid #3d4a57;color:#d1d5db;padding:8px 18px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;}
+.btn-nav:hover{border-color:#ff7700;color:#ff7700;}
+.btn-nav-primary{background:#ff7700;border:2px solid #ff7700;color:#000;padding:8px 20px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;}
+.btn-nav-primary:hover{background:#e56a00;border-color:#e56a00;}
+.section-divider{height:4px;background:linear-gradient(90deg,transparent 0%,#ff7700 30%,#ff7700 70%,transparent 100%);opacity:0.6;}
+.btn{padding:14px 32px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;letter-spacing:0.5px;font-family:'Rajdhani',sans-serif;}
+.btn-sm{padding:10px 22px;font-size:0.88rem;}
+.btn-primary{background:#ff7700;border:2px solid #ff7700;color:#000;}
+.btn-primary:hover{background:#e56a00;border-color:#e56a00;}
+.btn-ghost{background:rgba(0,0,0,0.70);border:2px solid #ff7700;color:#fff;}
+.btn-ghost:hover{background:#ff7700;color:#000;}
+.btn-outline{background:transparent;border:2px solid #3d4a57;color:#d1d5db;}
+.btn-outline:hover{border-color:#ff7700;color:#ff7700;}
+.section-tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:3px;color:rgba(255,119,0,0.7);border-top:1px solid rgba(255,119,0,0.3);border-bottom:1px solid rgba(255,119,0,0.3);padding:5px 18px;margin-bottom:22px;}
+.page-header{padding:100px 24px 60px;background:#1a1a1a;border-bottom:2px solid #3d4a57;text-align:center;position:relative;}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,119,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,119,0,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.page-header-inner{position:relative;z-index:1;}
+.page-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:14px;}
+.page-header p{color:#9ca3af;font-size:1.05rem;max-width:640px;margin:0 auto;line-height:1.7;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section-pad{padding:90px 24px;}
+.card{background:#272b30;border:2px solid #3d4a57;transition:border-color 0.3s,box-shadow 0.3s;position:relative;}
+.card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.card::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.badge{display:inline-block;background:rgba(255,119,0,0.15);border:1px solid rgba(255,119,0,0.4);color:#ff7700;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.badge-green{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.4);color:#4ade80;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.badge-gray{background:rgba(61,74,87,0.4);border:1px solid #3d4a57;color:#9ca3af;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-weight:600;color:#d1d5db;margin-bottom:8px;font-size:0.95rem;}
+.form-control{width:100%;background:#272b30;border:2px solid #3d4a57;color:#fff;padding:12px 16px;font-size:0.95rem;font-family:'Rajdhani',sans-serif;transition:border-color 0.2s;outline:none;}
+.form-control:focus{border-color:#ff7700;}
+.form-control::placeholder{color:#6b7280;}
+select.form-control option{background:#272b30;color:#fff;}
+textarea.form-control{resize:vertical;min-height:120px;}
+footer{background:#111;border-top:2px solid #3d4a57;padding:60px 36px 0;}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:48px;}
+.footer-brand p{color:#6b7280;font-size:0.88rem;line-height:1.6;margin-top:12px;max-width:260px;}
+.footer-col h4{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:3px;color:#ff7700;margin-bottom:18px;}
+.footer-col a{display:block;color:#6b7280;text-decoration:none;font-size:0.9rem;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:#ff7700;}
+.footer-bottom{border-top:1px solid #3d4a57;text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:rgba(255,119,0,0.3);letter-spacing:2px;}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.grid-3,.grid-2{grid-template-columns:1fr;}.nav-links{display:none;}.footer-inner{grid-template-columns:1fr;}}
+
+/* ── ABOUT PAGE ── */
+
+/* MISSION SECTION */
+.mission-section{background:#272b30;padding:80px 24px;}
+.mission-inner{max-width:900px;margin:0 auto;}
+.mission-text{color:#d1d5db;font-size:1.1rem;line-height:1.75;margin-bottom:52px;}
+.mission-text strong{color:#fff;font-weight:700;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.stat-box{background:#1a1a1a;border:2px solid #3d4a57;border-top:3px solid #ff7700;padding:28px 20px;text-align:center;transition:border-color 0.3s,box-shadow 0.3s;}
+.stat-box:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.stat-num{font-size:2.4rem;font-weight:700;color:#ff7700;font-family:'Rajdhani',sans-serif;line-height:1;margin-bottom:8px;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;color:#6b7280;}
+
+/* HOW IT WORKS */
+.how-section{background:#1a1a1a;padding:90px 24px;}
+.how-section h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:#fff;margin-bottom:10px;text-align:center;}
+.how-section .sub{color:#9ca3af;font-size:1rem;text-align:center;margin-bottom:56px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1060px;margin:0 auto;}
+.step-card{background:#272b30;border:2px solid #3d4a57;padding:36px 28px 32px;position:relative;transition:border-color 0.3s,box-shadow 0.3s;}
+.step-card::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.step-card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.step-num{font-size:3rem;font-weight:700;color:rgba(255,119,0,0.18);font-family:'Share Tech Mono',monospace;line-height:1;margin-bottom:16px;}
+.step-icon{margin-bottom:16px;color:#ff7700;}
+.step-card h3{font-size:1.18rem;font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:0.5px;}
+.step-card p{color:#9ca3af;font-size:0.95rem;line-height:1.6;}
+.step-title-tag{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:3px;color:rgba(255,119,0,0.55);margin-bottom:8px;}
+
+/* WHY NSN */
+.why-section{background:#272b30;padding:90px 24px;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1100px;margin:0 auto;align-items:center;}
+.why-left h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:#fff;margin-bottom:32px;letter-spacing:0.5px;}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:22px;}
+.why-list li{display:flex;align-items:flex-start;gap:16px;font-size:1rem;color:#d1d5db;line-height:1.6;}
+.why-dash{flex-shrink:0;width:3px;height:48px;background:#ff7700;margin-top:2px;border-radius:2px;}
+.why-list li strong{color:#fff;display:block;margin-bottom:4px;font-size:1.05rem;}
+.why-right{position:relative;}
+.hud-block{background:#1a1a1a;border:2px solid #3d4a57;padding:28px;font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:rgba(255,119,0,0.45);letter-spacing:1.5px;line-height:2.2;position:relative;}
+.hud-block::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid #ff7700;border-left:2px solid #ff7700;}
+.hud-block::after{content:'';position:absolute;bottom:0;right:0;width:20px;height:20px;border-bottom:2px solid rgba(255,119,0,0.4);border-right:2px solid rgba(255,119,0,0.4);}
+.hud-line-orange{color:rgba(255,119,0,0.7);}
+.hud-line-bright{color:#ff7700;}
+.hud-divider{border:none;border-top:1px solid rgba(255,119,0,0.15);margin:10px 0;}
+
+/* CTA */
+.cta-section{background:#1a1a1a;padding:90px 24px;text-align:center;border-top:1px solid #3d4a57;}
+.cta-section h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:#fff;margin-bottom:14px;}
+.cta-section p{color:#9ca3af;font-size:1.05rem;max-width:500px;margin:0 auto 36px;line-height:1.6;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+@media(max-width:800px){
+  .stats-row{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .why-right{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="rfps.html">Browse RFPs</a>
+    <a href="vendors.html">Find Vendors</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-nav" onclick="window.location='signin.html'">Sign In</button>
+    <button class="btn-nav-primary" onclick="window.location='signup.html'">Sign Up</button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header" style="padding-top:110px;">
+  <div class="page-header-inner">
+    <div class="section-tag">// OUR MISSION //</div>
+    <h1>About Nationwide Security Network</h1>
+    <p>NSN is the first dedicated marketplace connecting security vendors with the clients who need them.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="mission-inner">
+    <div class="section-tag">// WHO WE ARE //</div>
+    <p class="mission-text">
+      Nationwide Security Network was founded to solve a fundamental problem in the private security industry: there is no centralized, trusted platform connecting <strong>verified security companies</strong> with the businesses, government agencies, and institutions that need them.<br><br>
+      NSN eliminates the friction of finding qualified, licensed, and insured security providers. Whether you are a property management firm seeking overnight patrol, a municipality sourcing event security, or a corporation requiring executive protection across multiple states — NSN gives you direct access to a vetted national network of security professionals.<br><br>
+      We are <strong>built by security professionals, for security professionals</strong>. Every vendor on the platform goes through a review process before being listed. Every client interaction is logged, tracked, and protected. This is not a general staffing board — it is a purpose-built command center for the security industry.
+    </p>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num">233+</div>
+        <div class="stat-label">VERIFIED VENDORS</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">50</div>
+        <div class="stat-label">STATES COVERED</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">24hr</div>
+        <div class="stat-label">AVERAGE RESPONSE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-tag">// HOW IT WORKS //</div>
+    <h2>Three Steps to the Right Security Partner</h2>
+    <p class="sub">NSN is designed for speed and precision. Get from requirement to qualified vendor in under an hour.</p>
+    <div class="steps-grid">
+
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <div class="step-title-tag">STEP ONE</div>
+        <h3>Search</h3>
+        <p>Post your requirements or search our directory of 233+ verified security vendors across all 50 states. Filter by service type, geography, license class, and company size to narrow results instantly.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="step-title-tag">STEP TWO</div>
+        <h3>Compare</h3>
+        <p>Review vendor profiles, credentials, service coverage maps, licensing documentation, and client reviews in one unified platform. No phone tag, no guesswork — everything is on the record.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.55a16 16 0 0 0 5.49 5.49l1.62-1.62a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 14.92z"/></svg>
+        </div>
+        <div class="step-title-tag">STEP THREE</div>
+        <h3>Connect</h3>
+        <p>Submit your RFP or contact vendors directly through the platform. Qualified vendors respond within 24 hours. Clients can manage all proposals, communications, and contracts in a single dashboard.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WHY NSN -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-tag">// OUR ADVANTAGES //</div>
+        <h2>Built for the Security Industry</h2>
+        <ul class="why-list">
+          <li>
+            <div class="why-dash"></div>
+            <div>
+              <strong>Verified Vendor Profiles</strong>
+              Every company is reviewed and confirmed before being listed on NSN. Licensing, insurance, and service history are validated prior to approval. No fly-by-night operators.
+            </div>
+          </li>
+          <li>
+            <div class="why-dash"></div>
+            <div>
+              <strong>RFP System</strong>
+              Post your security requirements as a formal Request for Proposal. Receive competitive bids from qualified vendors within 24 hours. Compare proposals side-by-side and select the best fit.
+            </div>
+          </li>
+          <li>
+            <div class="why-dash"></div>
+            <div>
+              <strong>Resume Board</strong>
+              Connect with experienced security professionals actively seeking new positions. Post open roles or upload your resume to be discovered by verified security companies across the country.
+            </div>
+          </li>
+          <li>
+            <div class="why-dash"></div>
+            <div>
+              <strong>Nationwide Reach</strong>
+              Coverage in all 50 states across every security specialty — armed guard, unarmed patrol, event security, executive protection, loss prevention, cyber security, and more.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-right">
+        <div class="hud-block">
+          <div class="hud-line-bright">// NSN TACTICAL OVERVIEW //</div>
+          <hr class="hud-divider">
+          <div>NETWORK STATUS: <span class="hud-line-bright">ONLINE</span></div>
+          <div>VENDOR NODES: <span class="hud-line-orange">233 ACTIVE</span></div>
+          <div>COVERAGE MAP: <span class="hud-line-orange">50 / 50 STATES</span></div>
+          <div>RFP QUEUE: <span class="hud-line-orange">OPEN</span></div>
+          <div>RESPONSE SLA: <span class="hud-line-orange">24 HOURS</span></div>
+          <hr class="hud-divider">
+          <div>SERVICES INDEXED:</div>
+          <div>&nbsp;&nbsp;ARMED GUARD ........... <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;UNARMED PATROL ......... <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;EVENT SECURITY ......... <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;EXECUTIVE PROTECT ...... <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;LOSS PREVENTION ........ <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;CYBER SECURITY ......... <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;MOBILE PATROL .......... <span class="hud-line-orange">ACTIVE</span></div>
+          <div>&nbsp;&nbsp;SURVEILLANCE/CCTV ...... <span class="hud-line-orange">ACTIVE</span></div>
+          <hr class="hud-divider">
+          <div>PLATFORM VERSION: <span class="hud-line-bright">v2.6</span></div>
+          <div>UPTIME: <span class="hud-line-orange">99.97%</span></div>
+          <div>ENCRYPTION: <span class="hud-line-orange">AES-256</span></div>
+          <hr class="hud-divider">
+          <div>// END OVERVIEW // ACCESS GRANTED //</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-tag">// JOIN THE NETWORK //</div>
+    <h2>Join the Network</h2>
+    <p>Register as a vendor to list your company, or sign up as a client to start finding verified security providers today.</p>
+    <div class="cta-btns">
+      <a href="signup.html?type=vendor" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Register as Vendor
+      </a>
+      <a href="signup.html?type=client" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Register as Client
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+      <p>Connecting security professionals with clients nationwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <a href="vendors.html">Find Vendors</a>
+      <a href="rfps.html">Browse RFPs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="post-resume.html">Post Resume</a>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#how">How It Works</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">// NSN PLATFORM v2.6 // SYSTEM ONLINE // 2026 NATIONWIDE SECURITY NETWORK //</div>
+</footer>
+
+<script>
+// ── MILITARY RADAR ENGINE — original style with azimuth bearing labels ──────
+function militaryRadar(canvasId, opts) {
+  opts = opts || {};
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var spd = opts.speed || 0.007;
+  var angle = 0;
+  var blips = [];
+  var RGB = '255,119,0';
+
+  function resize() {
+    canvas.width  = canvas.parentElement.offsetWidth  || canvas.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight || canvas.offsetHeight;
+    blips = [];
+    var W=canvas.width, H=canvas.height, cx=W/2, cy=H/2;
+    var maxR = Math.min(W,H)*0.42;
+    for (var i=0;i<12;i++) {
+      var a=Math.random()*Math.PI*2, r=maxR*(0.2+Math.random()*0.75);
+      blips.push({x:cx+Math.cos(a)*r, y:cy+Math.sin(a)*r, a:a, bright:0});
+    }
+  }
+  resize();
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  else window.addEventListener('resize', resize);
+
+  function draw() {
+    var W=canvas.width, H=canvas.height, cx=W/2, cy=H/2;
+    var maxR = Math.min(W,H)*0.44;
+    ctx.clearRect(0,0,W,H);
+    // Tactical grid
+    ctx.save(); ctx.setLineDash([2,8]); ctx.lineWidth=0.5;
+    ctx.strokeStyle='rgba('+RGB+',0.06)';
+    for (var x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for (var y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]); ctx.restore();
+    // Clip to circle
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx,cy,maxR,0,Math.PI*2); ctx.clip();
+    var ibg=ctx.createRadialGradient(cx,cy,0,cx,cy,maxR);
+    ibg.addColorStop(0,'rgba('+RGB+',0.05)'); ibg.addColorStop(1,'rgba('+RGB+',0.01)');
+    ctx.fillStyle=ibg; ctx.fillRect(0,0,W,H);
+    // Range rings
+    for (var i=1;i<=5;i++) {
+      var r=(maxR/5)*i;
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.strokeStyle='rgba('+RGB+','+(0.13-i*0.015)+')';
+      ctx.lineWidth=i===5?0.8:0.5; ctx.stroke();
+      if (i<5) { ctx.font="7px 'Share Tech Mono',monospace"; ctx.fillStyle='rgba('+RGB+',0.22)'; ctx.fillText(Math.round(r/maxR*500)+'NM', cx+r+3, cy-3); }
+    }
+    // Crosshairs
+    ctx.setLineDash([4,8]); ctx.lineWidth=0.6; ctx.strokeStyle='rgba('+RGB+',0.1)';
+    ctx.beginPath(); ctx.moveTo(cx,cy-maxR); ctx.lineTo(cx,cy+maxR); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-maxR,cy); ctx.lineTo(cx+maxR,cy); ctx.stroke();
+    ctx.setLineDash([]);
+    // Phosphor sweep trail
+    for (var t=0;t<80;t++) {
+      var ta=angle-(t*Math.PI/180);
+      ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,maxR,ta-Math.PI/180,ta); ctx.closePath();
+      ctx.fillStyle='rgba('+RGB+','+(1-t/80)*0.17+')'; ctx.fill(); ctx.restore();
+    }
+    // Sweep arm
+    ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(angle)*maxR, cy+Math.sin(angle)*maxR);
+    var sl=ctx.createLinearGradient(cx,cy, cx+Math.cos(angle)*maxR, cy+Math.sin(angle)*maxR);
+    sl.addColorStop(0,'rgba('+RGB+',0.95)'); sl.addColorStop(0.4,'rgba('+RGB+',0.5)'); sl.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.strokeStyle=sl; ctx.lineWidth=1.8; ctx.stroke(); ctx.restore();
+    // Blips
+    for (var b=0;b<blips.length;b++) {
+      var bl=blips[b];
+      var da=((bl.a-angle)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+      if (da<0.08) bl.bright=1;
+      if (bl.bright>0) {
+        var sz=3*bl.bright;
+        ctx.beginPath(); ctx.arc(bl.x,bl.y,sz,0,Math.PI*2); ctx.fillStyle='rgba('+RGB+','+bl.bright*0.9+')'; ctx.fill();
+        var bg2=ctx.createRadialGradient(bl.x,bl.y,0,bl.x,bl.y,sz*5);
+        bg2.addColorStop(0,'rgba('+RGB+','+bl.bright*0.3+')'); bg2.addColorStop(1,'rgba('+RGB+',0)');
+        ctx.fillStyle=bg2; ctx.beginPath(); ctx.arc(bl.x,bl.y,sz*5,0,Math.PI*2); ctx.fill();
+        bl.bright=Math.max(0,bl.bright-0.008);
+      }
+    }
+    ctx.restore(); // end clip
+    // Outer ring
+    ctx.beginPath(); ctx.arc(cx,cy,maxR,0,Math.PI*2); ctx.strokeStyle='rgba('+RGB+',0.38)'; ctx.lineWidth=1.5; ctx.stroke();
+    // Azimuth ticks + bearing labels 000-330
+    ctx.font="9px 'Share Tech Mono',monospace"; ctx.textAlign='center'; ctx.textBaseline='middle';
+    for (var deg=0;deg<360;deg+=10) {
+      var rad=deg*Math.PI/180-Math.PI/2, isMajor=(deg%30===0);
+      var r1=maxR+2, r2=maxR+2+(isMajor?11:5);
+      ctx.beginPath(); ctx.moveTo(cx+Math.cos(rad)*r1, cy+Math.sin(rad)*r1);
+      ctx.lineTo(cx+Math.cos(rad)*r2, cy+Math.sin(rad)*r2);
+      ctx.strokeStyle='rgba('+RGB+','+(isMajor?0.55:0.22)+')'; ctx.lineWidth=isMajor?1.1:0.6; ctx.stroke();
+      if (isMajor) { var lr=maxR+24; ctx.fillStyle='rgba('+RGB+',0.5)'; var lbl=String(deg); while(lbl.length<3)lbl='0'+lbl; ctx.fillText(lbl, cx+Math.cos(rad)*lr, cy+Math.sin(rad)*lr); }
+    }
+    ctx.textAlign='start'; ctx.textBaseline='alphabetic';
+    // Center dot
+    ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2); ctx.fillStyle='rgba('+RGB+',1)'; ctx.fill();
+    var cg=ctx.createRadialGradient(cx,cy,2,cx,cy,18); cg.addColorStop(0,'rgba('+RGB+',0.4)'); cg.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,18,0,Math.PI*2); ctx.fill();
+    angle=(angle+spd)%(Math.PI*2); requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+
+// ── CARD RADAR — mini with azimuth ticks ────────────────────────────────────
+function cardRadar(canvasId, phaseOffset) {
+  phaseOffset = phaseOffset || 0;
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d'), RGB='255,119,0', angle=phaseOffset, blips=[];
+  function resize() {
+    canvas.width=canvas.offsetWidth||canvas.parentElement.offsetWidth;
+    canvas.height=canvas.offsetHeight||canvas.parentElement.offsetHeight;
+    blips=[]; var W=canvas.width,H=canvas.height,cx=W/2,cy=H*0.38,maxR=Math.min(W,H)*0.38;
+    for(var i=0;i<6;i++){var a=Math.random()*Math.PI*2,r=maxR*(0.25+Math.random()*0.7);blips.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,a:a,bright:0});}
+  }
+  resize();
+  if(window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  function draw() {
+    var W=canvas.width,H=canvas.height,cx=W/2,cy=H*0.38,maxR=Math.min(W,H)*0.38;
+    ctx.clearRect(0,0,W,H);
+    ctx.save();ctx.setLineDash([2,6]);ctx.lineWidth=0.4;ctx.strokeStyle='rgba('+RGB+',0.04)';
+    for(var x=0;x<W;x+=24){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(var y=0;y<H;y+=24){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]);ctx.restore();
+    ctx.save();ctx.beginPath();ctx.arc(cx,cy,maxR,0,Math.PI*2);ctx.clip();
+    for(var i=1;i<=4;i++){var r=(maxR/4)*i;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='rgba('+RGB+','+(0.15-i*0.025)+')';ctx.lineWidth=0.7;ctx.stroke();}
+    ctx.setLineDash([3,6]);ctx.lineWidth=0.5;ctx.strokeStyle='rgba('+RGB+',0.1)';
+    ctx.beginPath();ctx.moveTo(cx,cy-maxR);ctx.lineTo(cx,cy+maxR);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx-maxR,cy);ctx.lineTo(cx+maxR,cy);ctx.stroke();ctx.setLineDash([]);
+    for(var t=0;t<70;t++){var ta=angle-(t*Math.PI/180);ctx.save();ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,maxR,ta-Math.PI/180,ta);ctx.closePath();ctx.fillStyle='rgba('+RGB+','+(1-t/70)*0.15+')';ctx.fill();ctx.restore();}
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(angle)*maxR,cy+Math.sin(angle)*maxR);
+    var sl=ctx.createLinearGradient(cx,cy,cx+Math.cos(angle)*maxR,cy+Math.sin(angle)*maxR);
+    sl.addColorStop(0,'rgba('+RGB+',0.9)');sl.addColorStop(0.5,'rgba('+RGB+',0.35)');sl.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.strokeStyle=sl;ctx.lineWidth=1.4;ctx.stroke();
+    for(var b=0;b<blips.length;b++){var bl=blips[b];var da=((bl.a-angle)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);if(da<0.1)bl.bright=1;if(bl.bright>0){ctx.beginPath();ctx.arc(bl.x,bl.y,2.5*bl.bright,0,Math.PI*2);ctx.fillStyle='rgba('+RGB+','+bl.bright*0.88+')';ctx.fill();bl.bright=Math.max(0,bl.bright-0.01);}}
+    ctx.restore();
+    ctx.beginPath();ctx.arc(cx,cy,maxR,0,Math.PI*2);ctx.strokeStyle='rgba('+RGB+',0.32)';ctx.lineWidth=1;ctx.stroke();
+    for(var deg=0;deg<360;deg+=15){var rad=deg*Math.PI/180-Math.PI/2,isMajor=(deg%45===0);var r1=maxR+1,r2=maxR+1+(isMajor?8:4);ctx.beginPath();ctx.moveTo(cx+Math.cos(rad)*r1,cy+Math.sin(rad)*r1);ctx.lineTo(cx+Math.cos(rad)*r2,cy+Math.sin(rad)*r2);ctx.strokeStyle='rgba('+RGB+','+(isMajor?0.5:0.2)+')';ctx.lineWidth=isMajor?1:0.6;ctx.stroke();if(isMajor&&deg%90===0){ctx.font="7px 'Share Tech Mono',monospace";ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba('+RGB+',0.38)';var lr=maxR+16;var lbl=String(deg);while(lbl.length<3)lbl='0'+lbl;ctx.fillText(lbl,cx+Math.cos(rad)*lr,cy+Math.sin(rad)*lr);ctx.textAlign='start';ctx.textBaseline='alphabetic';}}
+    ctx.beginPath();ctx.arc(cx,cy,3,0,Math.PI*2);ctx.fillStyle='rgba('+RGB+',0.9)';ctx.fill();
+    angle=(angle+0.014)%(Math.PI*2);requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+</script>
+</body>
+</html>
