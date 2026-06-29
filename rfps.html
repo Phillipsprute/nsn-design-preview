@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse RFPs — NSN Nationwide Security Network</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#1a1a1a;color:#d1d5db;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(26,26,26,0.97);backdrop-filter:blur(12px);border-bottom:2px solid #3d4a57;height:64px;display:flex;align-items:center;padding:0 36px;gap:20px;}
+.nav-logo{color:#fff;font-size:1rem;letter-spacing:2px;font-weight:700;font-family:'Rajdhani',sans-serif;white-space:nowrap;text-decoration:none;}
+.nav-logo span{color:#ff7700;}
+.nav-links{display:flex;gap:28px;margin-left:auto;}
+.nav-links a{color:#d1d5db;text-decoration:none;font-size:0.92rem;font-weight:600;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:#ff7700;}
+.nav-btns{display:flex;gap:10px;margin-left:20px;}
+.btn-nav{background:transparent;border:1px solid #3d4a57;color:#d1d5db;padding:8px 18px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-nav:hover{border-color:#ff7700;color:#ff7700;}
+.btn-nav-primary{background:#ff7700;border:2px solid #ff7700;color:#000;padding:8px 20px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-nav-primary:hover{background:#e56a00;border-color:#e56a00;}
+.section-divider{height:4px;background:linear-gradient(90deg,transparent 0%,#ff7700 30%,#ff7700 70%,transparent 100%);opacity:0.6;}
+.btn{padding:14px 32px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;letter-spacing:0.5px;font-family:'Rajdhani',sans-serif;border:none;}
+.btn-sm{padding:10px 22px;font-size:0.88rem;}
+.btn-primary{background:#ff7700;border:2px solid #ff7700;color:#000;}
+.btn-primary:hover{background:#e56a00;border-color:#e56a00;}
+.btn-ghost{background:rgba(0,0,0,0.70);border:2px solid #ff7700;color:#fff;}
+.btn-ghost:hover{background:#ff7700;color:#000;}
+.btn-outline{background:transparent;border:2px solid #3d4a57;color:#d1d5db;}
+.btn-outline:hover{border-color:#ff7700;color:#ff7700;}
+.section-tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:3px;color:rgba(255,119,0,0.7);border-top:1px solid rgba(255,119,0,0.3);border-bottom:1px solid rgba(255,119,0,0.3);padding:5px 18px;margin-bottom:22px;}
+.page-header{padding:100px 24px 60px;background:#1a1a1a;border-bottom:2px solid #3d4a57;text-align:center;position:relative;}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,119,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,119,0,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.page-header-inner{position:relative;z-index:1;}
+.page-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:14px;}
+.page-header p{color:#9ca3af;font-size:1.05rem;max-width:640px;margin:0 auto;line-height:1.7;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section-pad{padding:90px 24px;}
+.card{background:#272b30;border:2px solid #3d4a57;transition:border-color 0.3s,box-shadow 0.3s;position:relative;}
+.card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.card::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.badge{display:inline-block;background:rgba(255,119,0,0.15);border:1px solid rgba(255,119,0,0.4);color:#ff7700;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.badge-green{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.4);color:#4ade80;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.badge-gray{background:rgba(61,74,87,0.4);border:1px solid #3d4a57;color:#9ca3af;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-weight:600;color:#d1d5db;margin-bottom:8px;font-size:0.95rem;}
+.form-control{width:100%;background:#272b30;border:2px solid #3d4a57;color:#fff;padding:12px 16px;font-size:0.95rem;font-family:'Rajdhani',sans-serif;transition:border-color 0.2s;outline:none;}
+.form-control:focus{border-color:#ff7700;}
+.form-control::placeholder{color:#6b7280;}
+select.form-control option{background:#272b30;color:#fff;}
+textarea.form-control{resize:vertical;min-height:120px;}
+footer{background:#111;border-top:2px solid #3d4a57;padding:60px 36px 0;}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:48px;}
+.footer-brand p{color:#6b7280;font-size:0.88rem;line-height:1.6;margin-top:12px;max-width:260px;}
+.footer-col h4{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:3px;color:#ff7700;margin-bottom:18px;}
+.footer-col a{display:block;color:#6b7280;text-decoration:none;font-size:0.9rem;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:#ff7700;}
+.footer-bottom{border-top:1px solid #3d4a57;text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:rgba(255,119,0,0.3);letter-spacing:2px;}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.grid-3,.grid-2{grid-template-columns:1fr;}.nav-links{display:none;}.footer-inner{grid-template-columns:1fr;}}
+
+/* PAGE SPECIFIC */
+.filter-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:32px;padding:20px;background:#272b30;border:2px solid #3d4a57;position:relative;}
+.filter-bar::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.filter-bar .form-control{width:auto;flex:1;min-width:140px;background:#1a1a1a;}
+.filter-bar .form-control.search-input{flex:2;min-width:200px;}
+.results-count{font-family:'Share Tech Mono',monospace;font-size:0.72rem;letter-spacing:2px;color:rgba(255,119,0,0.7);margin-bottom:20px;}
+.rfp-list{display:flex;flex-direction:column;gap:16px;}
+.rfp-card{background:#272b30;border:2px solid #3d4a57;padding:28px 32px;display:flex;align-items:flex-start;gap:32px;transition:border-color 0.3s,box-shadow 0.3s;position:relative;}
+.rfp-card::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.rfp-card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.rfp-card.closed{opacity:0.65;}
+.rfp-info{flex:1;}
+.rfp-title{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:0.3px;}
+.rfp-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.rfp-desc{color:#9ca3af;font-size:0.95rem;line-height:1.65;margin-bottom:16px;}
+.rfp-meta{display:flex;gap:20px;flex-wrap:wrap;font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:1px;color:#6b7280;}
+.rfp-meta span{color:#9ca3af;}
+.rfp-meta strong{color:#ff7700;}
+.rfp-actions{display:flex;flex-direction:column;gap:10px;min-width:150px;align-items:stretch;}
+.rfp-actions .btn{justify-content:center;}
+.pagination{display:flex;gap:8px;justify-content:center;align-items:center;padding:40px 0;}
+.page-btn{background:transparent;border:2px solid #3d4a57;color:#d1d5db;padding:10px 18px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.page-btn:hover,.page-btn.active{border-color:#ff7700;color:#ff7700;}
+.cta-section{background:#272b30;border-top:2px solid #3d4a57;padding:80px 24px;text-align:center;position:relative;}
+.cta-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,119,0,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,119,0,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.cta-section h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#fff;margin-bottom:14px;position:relative;z-index:1;}
+.cta-section p{color:#9ca3af;font-size:1rem;margin-bottom:32px;position:relative;z-index:1;}
+.cta-section .btn{position:relative;z-index:1;}
+@media(max-width:700px){.rfp-card{flex-direction:column;}.rfp-actions{flex-direction:row;min-width:auto;}.filter-bar{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+  <div class="nav-links">
+    <a href="vendors.html">Find Vendors</a>
+    <a href="rfps.html" class="active">Browse RFPs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="post-resume.html">Post Resume</a>
+  </div>
+  <div class="nav-btns">
+    <a href="signin.html" class="btn-nav">Sign In</a>
+    <a href="signup.html" class="btn-nav-primary">Join NSN</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="section-tag">// REQUEST FOR PROPOSALS //</div>
+    <h1>Browse Active RFPs</h1>
+    <p>Security service requests from verified clients across all 50 states. Bid on projects that match your capabilities.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div style="background:#1a1a1a;padding:60px 24px;">
+  <div class="container">
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <select class="form-control" style="max-width:160px;">
+        <option value="">All States</option>
+        <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+        <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+        <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+        <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+        <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+        <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+        <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+        <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+        <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+        <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+        <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+        <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+        <option>Wisconsin</option><option>Wyoming</option>
+      </select>
+      <select class="form-control" style="max-width:200px;">
+        <option value="">All Service Types</option>
+        <option>Armed Guard</option>
+        <option>Unarmed Guard</option>
+        <option>Executive Protection</option>
+        <option>Event Security</option>
+        <option>Mobile Patrol</option>
+        <option>Investigations</option>
+        <option>Consulting</option>
+        <option>Loss Prevention</option>
+        <option>Cyber Security</option>
+        <option>Emergency Response</option>
+      </select>
+      <select class="form-control" style="max-width:150px;">
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+        <option value="all">All Status</option>
+      </select>
+      <input type="text" class="form-control search-input" placeholder="Search RFPs by keyword...">
+      <button class="btn btn-primary btn-sm">Apply Filters</button>
+    </div>
+
+    <div class="results-count">// 47 ACTIVE RFPs // UPDATED: TODAY //</div>
+
+    <div class="rfp-list">
+
+      <!-- RFP 1 -->
+      <div class="rfp-card">
+        <div class="rfp-info">
+          <div class="rfp-title">Corporate Campus Security — 3 Buildings</div>
+          <div class="rfp-badges">
+            <span class="badge-green">OPEN</span>
+            <span class="badge">PORTLAND, OR</span>
+            <span class="badge-gray">ARMED GUARD</span>
+          </div>
+          <p class="rfp-desc">Seeking experienced armed security provider for 3-building corporate campus in downtown Portland. Must have Oregon PPO license and minimum 5 years commercial experience.</p>
+          <div class="rfp-meta">
+            <div>POSTED <span>Jun 20, 2026</span></div>
+            <div>DEADLINE <span>Jul 15, 2026</span></div>
+            <div>BUDGET <strong>$15,000 – $25,000/mo</strong></div>
+          </div>
+        </div>
+        <div class="rfp-actions">
+          <a href="signin.html" class="btn btn-primary btn-sm">View Details</a>
+          <a href="signin.html" class="btn btn-outline btn-sm">Save RFP</a>
+        </div>
+      </div>
+
+      <!-- RFP 2 -->
+      <div class="rfp-card">
+        <div class="rfp-info">
+          <div class="rfp-title">Healthcare Facility Security — 24/7 Coverage</div>
+          <div class="rfp-badges">
+            <span class="badge-green">OPEN</span>
+            <span class="badge">HOUSTON, TX</span>
+            <span class="badge-gray">UNARMED GUARD</span>
+          </div>
+          <p class="rfp-desc">Regional hospital network requires unarmed security personnel for 24/7 lobby, parking, and patient floor coverage across 2 facilities.</p>
+          <div class="rfp-meta">
+            <div>POSTED <span>Jun 18, 2026</span></div>
+            <div>DEADLINE <span>Jul 10, 2026</span></div>
+            <div>BUDGET <strong>$8,000 – $12,000/mo</strong></div>
+          </div>
+        </div>
+        <div class="rfp-actions">
+          <a href="signin.html" class="btn btn-primary btn-sm">View Details</a>
+          <a href="signin.html" class="btn btn-outline btn-sm">Save RFP</a>
+        </div>
+      </div>
+
+      <!-- RFP 3 -->
+      <div class="rfp-card">
+        <div class="rfp-info">
+          <div class="rfp-title">Executive Protection — C-Suite Travel</div>
+          <div class="rfp-badges">
+            <span class="badge-green">OPEN</span>
+            <span class="badge">NEW YORK, NY</span>
+            <span class="badge-gray">EXECUTIVE PROTECTION</span>
+          </div>
+          <p class="rfp-desc">Fortune 500 company seeking executive protection team for domestic and international C-suite travel. Minimum 10 years experience required.</p>
+          <div class="rfp-meta">
+            <div>POSTED <span>Jun 17, 2026</span></div>
+            <div>DEADLINE <span>Jul 5, 2026</span></div>
+            <div>BUDGET <strong>$20,000 – $40,000/mo</strong></div>
+          </div>
+        </div>
+        <div class="rfp-actions">
+          <a href="signin.html" class="btn btn-primary btn-sm">View Details</a>
+          <a href="signin.html" class="btn btn-outline btn-sm">Save RFP</a>
+        </div>
+      </div>
+
+      <!-- RFP 4 -->
+      <div class="rfp-card">
+        <div class="rfp-info">
+          <div class="rfp-title">Retail Loss Prevention — 12 Locations</div>
+          <div class="rfp-badges">
+            <span class="badge-green">OPEN</span>
+            <span class="badge">CHICAGO, IL</span>
+            <span class="badge-gray">LOSS PREVENTION</span>
+          </div>
+          <p class="rfp-desc">National retail brand seeking loss prevention specialists across 12 Chicago-area locations. Experience with CCTV systems required.</p>
+          <div class="rfp-meta">
+            <div>POSTED <span>Jun 15, 2026</span></div>
+            <div>DEADLINE <span>Jul 20, 2026</span></div>
+            <div>BUDGET <strong>$30,000 – $50,000/mo</strong></div>
+          </div>
+        </div>
+        <div class="rfp-actions">
+          <a href="signin.html" class="btn btn-primary btn-sm">View Details</a>
+          <a href="signin.html" class="btn btn-outline btn-sm">Save RFP</a>
+        </div>
+      </div>
+
+      <!-- RFP 5 -->
+      <div class="rfp-card">
+        <div class="rfp-info">
+          <div class="rfp-title">Event Security — Annual Conference</div>
+          <div class="rfp-badges">
+            <span class="badge-green">OPEN</span>
+            <span class="badge">LAS VEGAS, NV</span>
+            <span class="badge-gray">EVENT SECURITY</span>
+          </div>
+          <p class="rfp-desc">Annual tech conference with 8,000 attendees requires crowd management, access control, and VIP escort team for 4-day event.</p>
+          <div class="rfp-meta">
+            <div>POSTED <span>Jun 12, 2026</span></div>
+            <div>DEADLINE <span>Jun 30, 2026</span></div>
+            <div>BUDGET <strong>$45,000 flat</strong></div>
+          </div>
+        </div>
+        <div class="rfp-actions">
+          <a href="signin.html" class="btn btn-primary btn-sm">View Details</a>
+          <a href="signin.html" class="btn btn-outline btn-sm">Save RFP</a>
+        </div>
+      </div>
+
+      <!-- RFP 6 -->
+      <div class="rfp-card closed">
+        <div class="rfp-info">
+          <div class="rfp-title">Warehouse Security — Night Shift</div>
+          <div class="rfp-badges">
+            <span class="badge-gray">CLOSED</span>
+            <span class="badge">ATLANTA, GA</span>
+            <span class="badge-gray">MOBILE PATROL</span>
+          </div>
+          <p class="rfp-desc">Distribution warehouse requiring overnight mobile patrol and perimeter monitoring. Bids closed.</p>
+          <div class="rfp-meta">
+            <div>POSTED <span>Jun 1, 2026</span></div>
+            <div>DEADLINE <span>Jun 20, 2026</span></div>
+            <div>BUDGET <strong>$6,000 – $9,000/mo</strong></div>
+          </div>
+        </div>
+        <div class="rfp-actions">
+          <a href="signin.html" class="btn btn-outline btn-sm">View Details</a>
+          <span class="badge-gray" style="text-align:center;padding:10px;">BIDDING CLOSED</span>
+        </div>
+      </div>
+
+    </div><!-- end rfp-list -->
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <a href="#" class="page-btn">&#8592; Prev</a>
+      <a href="#" class="page-btn active">1</a>
+      <a href="#" class="page-btn">2</a>
+      <a href="#" class="page-btn">3</a>
+      <a href="#" class="page-btn">Next &#8594;</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Have a Security Requirement?</h2>
+  <p>Post your RFP and reach 233+ verified vendors. Free to post.</p>
+  <a href="submit-rfp.html" class="btn btn-primary">Submit Your RFP</a>
+</div>
+
+<div class="section-divider"></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+      <p>Connecting security professionals with clients nationwide.</p>
+    </div>
+    <div class="footer-col"><h4>PLATFORM</h4><a href="vendors.html">Find Vendors</a><a href="rfps.html">Browse RFPs</a><a href="pricing.html">Pricing</a><a href="post-resume.html">Post Resume</a></div>
+    <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About</a><a href="about.html#how">How It Works</a><a href="#">Contact</a></div>
+    <div class="footer-col"><h4>LEGAL</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+  <div class="footer-bottom">// NSN PLATFORM v2.6 // SYSTEM ONLINE // 2026 NATIONWIDE SECURITY NETWORK //</div>
+</footer>
+
+<script>
+// ── MILITARY RADAR ENGINE — original style with azimuth bearing labels ──────
+function militaryRadar(canvasId, opts) {
+  opts = opts || {};
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var spd = opts.speed || 0.007;
+  var angle = 0;
+  var blips = [];
+  var RGB = '255,119,0';
+
+  function resize() {
+    canvas.width  = canvas.parentElement.offsetWidth  || canvas.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight || canvas.offsetHeight;
+    blips = [];
+    var W=canvas.width, H=canvas.height, cx=W/2, cy=H/2;
+    var maxR = Math.min(W,H)*0.42;
+    for (var i=0;i<12;i++) {
+      var a=Math.random()*Math.PI*2, r=maxR*(0.2+Math.random()*0.75);
+      blips.push({x:cx+Math.cos(a)*r, y:cy+Math.sin(a)*r, a:a, bright:0});
+    }
+  }
+  resize();
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  else window.addEventListener('resize', resize);
+
+  function draw() {
+    var W=canvas.width, H=canvas.height, cx=W/2, cy=H/2;
+    var maxR = Math.min(W,H)*0.44;
+    ctx.clearRect(0,0,W,H);
+    // Tactical grid
+    ctx.save(); ctx.setLineDash([2,8]); ctx.lineWidth=0.5;
+    ctx.strokeStyle='rgba('+RGB+',0.06)';
+    for (var x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for (var y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]); ctx.restore();
+    // Clip to circle
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx,cy,maxR,0,Math.PI*2); ctx.clip();
+    var ibg=ctx.createRadialGradient(cx,cy,0,cx,cy,maxR);
+    ibg.addColorStop(0,'rgba('+RGB+',0.05)'); ibg.addColorStop(1,'rgba('+RGB+',0.01)');
+    ctx.fillStyle=ibg; ctx.fillRect(0,0,W,H);
+    // Range rings
+    for (var i=1;i<=5;i++) {
+      var r=(maxR/5)*i;
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.strokeStyle='rgba('+RGB+','+(0.13-i*0.015)+')';
+      ctx.lineWidth=i===5?0.8:0.5; ctx.stroke();
+      if (i<5) { ctx.font="7px 'Share Tech Mono',monospace"; ctx.fillStyle='rgba('+RGB+',0.22)'; ctx.fillText(Math.round(r/maxR*500)+'NM', cx+r+3, cy-3); }
+    }
+    // Crosshairs
+    ctx.setLineDash([4,8]); ctx.lineWidth=0.6; ctx.strokeStyle='rgba('+RGB+',0.1)';
+    ctx.beginPath(); ctx.moveTo(cx,cy-maxR); ctx.lineTo(cx,cy+maxR); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-maxR,cy); ctx.lineTo(cx+maxR,cy); ctx.stroke();
+    ctx.setLineDash([]);
+    // Phosphor sweep trail
+    for (var t=0;t<80;t++) {
+      var ta=angle-(t*Math.PI/180);
+      ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,maxR,ta-Math.PI/180,ta); ctx.closePath();
+      ctx.fillStyle='rgba('+RGB+','+(1-t/80)*0.17+')'; ctx.fill(); ctx.restore();
+    }
+    // Sweep arm
+    ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(angle)*maxR, cy+Math.sin(angle)*maxR);
+    var sl=ctx.createLinearGradient(cx,cy, cx+Math.cos(angle)*maxR, cy+Math.sin(angle)*maxR);
+    sl.addColorStop(0,'rgba('+RGB+',0.95)'); sl.addColorStop(0.4,'rgba('+RGB+',0.5)'); sl.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.strokeStyle=sl; ctx.lineWidth=1.8; ctx.stroke(); ctx.restore();
+    // Blips
+    for (var b=0;b<blips.length;b++) {
+      var bl=blips[b];
+      var da=((bl.a-angle)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+      if (da<0.08) bl.bright=1;
+      if (bl.bright>0) {
+        var sz=3*bl.bright;
+        ctx.beginPath(); ctx.arc(bl.x,bl.y,sz,0,Math.PI*2); ctx.fillStyle='rgba('+RGB+','+bl.bright*0.9+')'; ctx.fill();
+        var bg2=ctx.createRadialGradient(bl.x,bl.y,0,bl.x,bl.y,sz*5);
+        bg2.addColorStop(0,'rgba('+RGB+','+bl.bright*0.3+')'); bg2.addColorStop(1,'rgba('+RGB+',0)');
+        ctx.fillStyle=bg2; ctx.beginPath(); ctx.arc(bl.x,bl.y,sz*5,0,Math.PI*2); ctx.fill();
+        bl.bright=Math.max(0,bl.bright-0.008);
+      }
+    }
+    ctx.restore(); // end clip
+    // Outer ring
+    ctx.beginPath(); ctx.arc(cx,cy,maxR,0,Math.PI*2); ctx.strokeStyle='rgba('+RGB+',0.38)'; ctx.lineWidth=1.5; ctx.stroke();
+    // Azimuth ticks + bearing labels 000-330
+    ctx.font="9px 'Share Tech Mono',monospace"; ctx.textAlign='center'; ctx.textBaseline='middle';
+    for (var deg=0;deg<360;deg+=10) {
+      var rad=deg*Math.PI/180-Math.PI/2, isMajor=(deg%30===0);
+      var r1=maxR+2, r2=maxR+2+(isMajor?11:5);
+      ctx.beginPath(); ctx.moveTo(cx+Math.cos(rad)*r1, cy+Math.sin(rad)*r1);
+      ctx.lineTo(cx+Math.cos(rad)*r2, cy+Math.sin(rad)*r2);
+      ctx.strokeStyle='rgba('+RGB+','+(isMajor?0.55:0.22)+')'; ctx.lineWidth=isMajor?1.1:0.6; ctx.stroke();
+      if (isMajor) { var lr=maxR+24; ctx.fillStyle='rgba('+RGB+',0.5)'; var lbl=String(deg); while(lbl.length<3)lbl='0'+lbl; ctx.fillText(lbl, cx+Math.cos(rad)*lr, cy+Math.sin(rad)*lr); }
+    }
+    ctx.textAlign='start'; ctx.textBaseline='alphabetic';
+    // Center dot
+    ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2); ctx.fillStyle='rgba('+RGB+',1)'; ctx.fill();
+    var cg=ctx.createRadialGradient(cx,cy,2,cx,cy,18); cg.addColorStop(0,'rgba('+RGB+',0.4)'); cg.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,18,0,Math.PI*2); ctx.fill();
+    angle=(angle+spd)%(Math.PI*2); requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+
+// ── CARD RADAR — mini with azimuth ticks ────────────────────────────────────
+function cardRadar(canvasId, phaseOffset) {
+  phaseOffset = phaseOffset || 0;
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d'), RGB='255,119,0', angle=phaseOffset, blips=[];
+  function resize() {
+    canvas.width=canvas.offsetWidth||canvas.parentElement.offsetWidth;
+    canvas.height=canvas.offsetHeight||canvas.parentElement.offsetHeight;
+    blips=[]; var W=canvas.width,H=canvas.height,cx=W/2,cy=H*0.38,maxR=Math.min(W,H)*0.38;
+    for(var i=0;i<6;i++){var a=Math.random()*Math.PI*2,r=maxR*(0.25+Math.random()*0.7);blips.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,a:a,bright:0});}
+  }
+  resize();
+  if(window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  function draw() {
+    var W=canvas.width,H=canvas.height,cx=W/2,cy=H*0.38,maxR=Math.min(W,H)*0.38;
+    ctx.clearRect(0,0,W,H);
+    ctx.save();ctx.setLineDash([2,6]);ctx.lineWidth=0.4;ctx.strokeStyle='rgba('+RGB+',0.04)';
+    for(var x=0;x<W;x+=24){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(var y=0;y<H;y+=24){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]);ctx.restore();
+    ctx.save();ctx.beginPath();ctx.arc(cx,cy,maxR,0,Math.PI*2);ctx.clip();
+    for(var i=1;i<=4;i++){var r=(maxR/4)*i;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='rgba('+RGB+','+(0.15-i*0.025)+')';ctx.lineWidth=0.7;ctx.stroke();}
+    ctx.setLineDash([3,6]);ctx.lineWidth=0.5;ctx.strokeStyle='rgba('+RGB+',0.1)';
+    ctx.beginPath();ctx.moveTo(cx,cy-maxR);ctx.lineTo(cx,cy+maxR);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx-maxR,cy);ctx.lineTo(cx+maxR,cy);ctx.stroke();ctx.setLineDash([]);
+    for(var t=0;t<70;t++){var ta=angle-(t*Math.PI/180);ctx.save();ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,maxR,ta-Math.PI/180,ta);ctx.closePath();ctx.fillStyle='rgba('+RGB+','+(1-t/70)*0.15+')';ctx.fill();ctx.restore();}
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(angle)*maxR,cy+Math.sin(angle)*maxR);
+    var sl=ctx.createLinearGradient(cx,cy,cx+Math.cos(angle)*maxR,cy+Math.sin(angle)*maxR);
+    sl.addColorStop(0,'rgba('+RGB+',0.9)');sl.addColorStop(0.5,'rgba('+RGB+',0.35)');sl.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.strokeStyle=sl;ctx.lineWidth=1.4;ctx.stroke();
+    for(var b=0;b<blips.length;b++){var bl=blips[b];var da=((bl.a-angle)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);if(da<0.1)bl.bright=1;if(bl.bright>0){ctx.beginPath();ctx.arc(bl.x,bl.y,2.5*bl.bright,0,Math.PI*2);ctx.fillStyle='rgba('+RGB+','+bl.bright*0.88+')';ctx.fill();bl.bright=Math.max(0,bl.bright-0.01);}}
+    ctx.restore();
+    ctx.beginPath();ctx.arc(cx,cy,maxR,0,Math.PI*2);ctx.strokeStyle='rgba('+RGB+',0.32)';ctx.lineWidth=1;ctx.stroke();
+    for(var deg=0;deg<360;deg+=15){var rad=deg*Math.PI/180-Math.PI/2,isMajor=(deg%45===0);var r1=maxR+1,r2=maxR+1+(isMajor?8:4);ctx.beginPath();ctx.moveTo(cx+Math.cos(rad)*r1,cy+Math.sin(rad)*r1);ctx.lineTo(cx+Math.cos(rad)*r2,cy+Math.sin(rad)*r2);ctx.strokeStyle='rgba('+RGB+','+(isMajor?0.5:0.2)+')';ctx.lineWidth=isMajor?1:0.6;ctx.stroke();if(isMajor&&deg%90===0){ctx.font="7px 'Share Tech Mono',monospace";ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba('+RGB+',0.38)';var lr=maxR+16;var lbl=String(deg);while(lbl.length<3)lbl='0'+lbl;ctx.fillText(lbl,cx+Math.cos(rad)*lr,cy+Math.sin(rad)*lr);ctx.textAlign='start';ctx.textBaseline='alphabetic';}}
+    ctx.beginPath();ctx.arc(cx,cy,3,0,Math.PI*2);ctx.fillStyle='rgba('+RGB+',0.9)';ctx.fill();
+    angle=(angle+0.014)%(Math.PI*2);requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+</script>
+</body>
+</html>
