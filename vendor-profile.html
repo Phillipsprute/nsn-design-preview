@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allied Universal — Vendor Profile — NSN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#1a1a1a;color:#d1d5db;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(26,26,26,0.97);backdrop-filter:blur(12px);border-bottom:2px solid #3d4a57;height:64px;display:flex;align-items:center;padding:0 36px;gap:20px;}
+.nav-logo{color:#fff;font-size:1rem;letter-spacing:2px;font-weight:700;font-family:'Rajdhani',sans-serif;white-space:nowrap;text-decoration:none;}
+.nav-logo span{color:#ff7700;}
+.nav-links{display:flex;gap:28px;margin-left:auto;}
+.nav-links a{color:#d1d5db;text-decoration:none;font-size:0.92rem;font-weight:600;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:#ff7700;}
+.nav-btns{display:flex;gap:10px;margin-left:20px;}
+.btn-nav{background:transparent;border:1px solid #3d4a57;color:#d1d5db;padding:8px 18px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;}
+.btn-nav:hover{border-color:#ff7700;color:#ff7700;}
+.btn-nav-primary{background:#ff7700;border:2px solid #ff7700;color:#000;padding:8px 20px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;transition:all 0.2s;}
+.btn-nav-primary:hover{background:#e56a00;border-color:#e56a00;}
+.section-divider{height:4px;background:linear-gradient(90deg,transparent 0%,#ff7700 30%,#ff7700 70%,transparent 100%);opacity:0.6;}
+.btn{padding:14px 32px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;letter-spacing:0.5px;font-family:'Rajdhani',sans-serif;}
+.btn-sm{padding:10px 22px;font-size:0.88rem;}
+.btn-primary{background:#ff7700;border:2px solid #ff7700;color:#000;}
+.btn-primary:hover{background:#e56a00;border-color:#e56a00;}
+.btn-ghost{background:rgba(0,0,0,0.70);border:2px solid #ff7700;color:#fff;}
+.btn-ghost:hover{background:#ff7700;color:#000;}
+.btn-outline{background:transparent;border:2px solid #3d4a57;color:#d1d5db;}
+.btn-outline:hover{border-color:#ff7700;color:#ff7700;}
+.section-tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:3px;color:rgba(255,119,0,0.7);border-top:1px solid rgba(255,119,0,0.3);border-bottom:1px solid rgba(255,119,0,0.3);padding:5px 18px;margin-bottom:22px;}
+.page-header{padding:100px 24px 60px;background:#1a1a1a;border-bottom:2px solid #3d4a57;text-align:center;position:relative;}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,119,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,119,0,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.page-header-inner{position:relative;z-index:1;}
+.page-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:14px;}
+.page-header p{color:#9ca3af;font-size:1.05rem;max-width:640px;margin:0 auto;line-height:1.7;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section-pad{padding:90px 24px;}
+.card{background:#272b30;border:2px solid #3d4a57;transition:border-color 0.3s,box-shadow 0.3s;position:relative;}
+.card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.card::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.badge{display:inline-block;background:rgba(255,119,0,0.15);border:1px solid rgba(255,119,0,0.4);color:#ff7700;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.badge-green{display:inline-block;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.4);color:#4ade80;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.badge-gray{display:inline-block;background:rgba(61,74,87,0.4);border:1px solid #3d4a57;color:#9ca3af;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;padding:3px 10px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-weight:600;color:#d1d5db;margin-bottom:8px;font-size:0.95rem;}
+.form-control{width:100%;background:#272b30;border:2px solid #3d4a57;color:#fff;padding:12px 16px;font-size:0.95rem;font-family:'Rajdhani',sans-serif;transition:border-color 0.2s;outline:none;}
+.form-control:focus{border-color:#ff7700;}
+.form-control::placeholder{color:#6b7280;}
+select.form-control option{background:#272b30;color:#fff;}
+textarea.form-control{resize:vertical;min-height:120px;}
+footer{background:#111;border-top:2px solid #3d4a57;padding:60px 36px 0;}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:48px;}
+.footer-brand p{color:#6b7280;font-size:0.88rem;line-height:1.6;margin-top:12px;max-width:260px;}
+.footer-col h4{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:3px;color:#ff7700;margin-bottom:18px;}
+.footer-col a{display:block;color:#6b7280;text-decoration:none;font-size:0.9rem;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:#ff7700;}
+.footer-bottom{border-top:1px solid #3d4a57;text-align:center;padding:16px;font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:rgba(255,119,0,0.3);letter-spacing:2px;}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.profile-layout{flex-direction:column;}.profile-sidebar{width:100%;}.profile-header-inner{flex-direction:column;gap:20px;}.profile-actions{flex-direction:row;}}
+@media(max-width:600px){.grid-3,.grid-2{grid-template-columns:1fr;}.nav-links{display:none;}.footer-inner{grid-template-columns:1fr;}.profile-actions{flex-wrap:wrap;}.hud-row{flex-wrap:wrap;gap:8px;}}
+
+/* Profile-specific styles */
+.profile-header-section{padding:84px 24px 0;background:#1a1a1a;border-bottom:2px solid #3d4a57;position:relative;}
+.profile-header-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,119,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,119,0,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.profile-header-inner-wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:40px 0 48px;}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:2px;color:#6b7280;margin-bottom:28px;}
+.breadcrumb a{color:#6b7280;text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:#ff7700;}
+.breadcrumb span{color:#ff7700;}
+.profile-header-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;}
+.profile-left{display:flex;align-items:flex-start;gap:24px;flex:1;}
+.company-logo-box{width:80px;height:80px;border:2px solid #ff7700;background:#1a1a1a;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+.company-logo-box::before{content:'';position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-top:2px solid rgba(255,119,0,0.4);border-left:2px solid rgba(255,119,0,0.4);}
+.company-logo-text{font-family:'Share Tech Mono',monospace;font-size:1.4rem;font-weight:700;color:#ff7700;letter-spacing:2px;}
+.company-info{flex:1;}
+.company-info h1{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:14px;}
+.company-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center;}
+.company-rating{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.rating-stars-lg{color:#ff7700;font-size:1rem;letter-spacing:2px;}
+.rating-text{font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:#ff7700;}
+.rating-reviews{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:#6b7280;margin-left:4px;}
+.hud-row{display:flex;align-items:center;gap:0;flex-wrap:wrap;}
+.hud-item{font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:1.5px;color:#9ca3af;padding:8px 16px;border:1px solid #3d4a57;background:rgba(61,74,87,0.2);}
+.hud-item strong{color:#ff7700;}
+.hud-item:not(:last-child){border-right:none;}
+.profile-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-start;flex-shrink:0;}
+
+/* Main 2-col layout */
+.profile-layout{display:flex;gap:32px;align-items:flex-start;max-width:1200px;margin:0 auto;padding:60px 24px;}
+.profile-content{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px;}
+.profile-sidebar{width:320px;flex-shrink:0;display:flex;flex-direction:column;gap:24px;}
+
+.content-card{background:#272b30;border:2px solid #3d4a57;padding:32px;position:relative;transition:border-color 0.3s;}
+.content-card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.08);}
+.content-card::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.content-card::after{content:'';position:absolute;bottom:0;right:0;width:20px;height:20px;border-bottom:2px solid rgba(255,119,0,0.2);border-right:2px solid rgba(255,119,0,0.2);}
+.card-title{font-family:'Share Tech Mono',monospace;font-size:0.72rem;letter-spacing:3px;color:#ff7700;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #3d4a57;}
+.card-body p{font-size:1rem;color:#9ca3af;line-height:1.75;}
+
+.services-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.service-chip{background:rgba(61,74,87,0.4);border:1px solid #3d4a57;color:#d1d5db;font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:1.5px;padding:6px 12px;transition:border-color 0.2s,color 0.2s;}
+.service-chip:hover{border-color:#ff7700;color:#ff7700;}
+
+.coverage-headline{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;}
+.state-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.state-tag{background:rgba(255,119,0,0.08);border:1px solid rgba(255,119,0,0.2);color:rgba(255,119,0,0.8);font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:1px;padding:4px 8px;}
+
+.reviews-list{display:flex;flex-direction:column;gap:16px;}
+.review-card{background:#1a1a1a;border:1px solid #3d4a57;padding:20px;position:relative;}
+.review-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#ff7700;}
+.review-text{font-size:0.95rem;color:#d1d5db;line-height:1.65;margin-bottom:12px;font-style:italic;}
+.review-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.review-author{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:1.5px;color:#6b7280;}
+.review-score{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:#ff7700;font-weight:700;}
+.review-stars{color:#ff7700;font-size:0.75rem;letter-spacing:1px;}
+
+/* Sidebar cards */
+.sidebar-card{background:#272b30;border:2px solid #3d4a57;padding:24px;position:relative;transition:border-color 0.3s;}
+.sidebar-card::before{content:'';position:absolute;top:0;left:0;width:16px;height:16px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+.contact-card{border-color:#ff7700;}
+.contact-card::before{border-top-color:#ff7700;border-left-color:#ff7700;}
+.sidebar-card-title{font-family:'Share Tech Mono',monospace;font-size:0.7rem;letter-spacing:3px;color:#ff7700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #3d4a57;}
+.stats-list{display:flex;flex-direction:column;gap:0;}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(61,74,87,0.5);}
+.stat-row:last-child{border-bottom:none;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:1.5px;color:#6b7280;}
+.stat-value{font-weight:700;color:#fff;font-size:0.95rem;}
+.similar-list{display:flex;flex-direction:column;gap:0;}
+.similar-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(61,74,87,0.5);text-decoration:none;transition:opacity 0.2s;}
+.similar-item:last-child{border-bottom:none;}
+.similar-item:hover .similar-name{color:#ff7700;}
+.similar-name{font-weight:700;color:#d1d5db;font-size:0.95rem;transition:color 0.2s;}
+.similar-loc{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:1px;color:#6b7280;}
+.similar-arrow{color:#ff7700;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="rfps.html">Browse RFPs</a>
+    <a href="vendors.html">Find Vendors</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-nav" onclick="window.location='signin.html'">Sign In</button>
+    <button class="btn-nav-primary" onclick="window.location='signup.html'">Sign Up</button>
+  </div>
+</nav>
+
+<!-- PROFILE HEADER -->
+<div class="profile-header-section">
+  <div class="profile-header-inner-wrap">
+    <div class="breadcrumb">
+      <a href="vendors.html">Find Vendors</a>
+      &nbsp;&nbsp;
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><polyline points="9 18 15 12 9 6"/></svg>
+      &nbsp;&nbsp;
+      <span>Allied Universal</span>
+    </div>
+
+    <div class="profile-header-inner">
+      <div class="profile-left">
+        <div class="company-logo-box">
+          <span class="company-logo-text">AU</span>
+        </div>
+        <div class="company-info">
+          <h1>Allied Universal</h1>
+          <div class="company-badges">
+            <span class="badge-green">VERIFIED</span>
+            <span class="badge">Portland, OR</span>
+            <span class="badge-gray">EST. 1957</span>
+          </div>
+          <div class="company-rating">
+            <span class="rating-stars-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="rating-text">4.8 / 5.0</span>
+            <span class="rating-reviews">— 24 reviews</span>
+          </div>
+          <div class="hud-row">
+            <div class="hud-item"><strong>EMPLOYEES:</strong> 300,000+</div>
+            <div class="hud-item"><strong>STATES:</strong> 50</div>
+            <div class="hud-item"><strong>RESPONSE:</strong> 4HR AVG</div>
+            <div class="hud-item"><strong>STATUS:</strong> <span style="color:#4ade80;">ACTIVE</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <a href="#contact-form" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.63 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Contact Now
+        </a>
+        <a href="#contact-form" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Request Quote
+        </a>
+        <button class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          Save Vendor
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- MAIN PROFILE CONTENT -->
+<div class="profile-layout">
+
+  <!-- LEFT CONTENT -->
+  <div class="profile-content">
+
+    <!-- About -->
+    <div class="content-card">
+      <div class="card-title">// COMPANY OVERVIEW //</div>
+      <div class="card-body">
+        <p>Allied Universal is one of North America's largest security providers, delivering end-to-end security solutions. With over 300,000 security professionals, the company serves clients across commercial real estate, healthcare, retail, government, education, and more. Their integrated approach combines physical security with advanced technology platforms to create layered, responsive protection tailored to each client's unique risk profile.</p>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="content-card">
+      <div class="card-title">// SERVICES OFFERED //</div>
+      <div class="card-body">
+        <div class="services-grid">
+          <span class="service-chip">ARMED GUARD SERVICES</span>
+          <span class="service-chip">UNARMED GUARD SERVICES</span>
+          <span class="service-chip">MOBILE PATROL</span>
+          <span class="service-chip">EVENT SECURITY</span>
+          <span class="service-chip">EXECUTIVE PROTECTION</span>
+          <span class="service-chip">LOSS PREVENTION</span>
+          <span class="service-chip">EMERGENCY RESPONSE</span>
+          <span class="service-chip">TECHNOLOGY INTEGRATION</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coverage -->
+    <div class="content-card">
+      <div class="card-title">// COVERAGE AREA //</div>
+      <div class="card-body">
+        <p class="coverage-headline">Nationwide — All 50 States</p>
+        <div class="state-tags">
+          <span class="state-tag">CA</span>
+          <span class="state-tag">TX</span>
+          <span class="state-tag">FL</span>
+          <span class="state-tag">NY</span>
+          <span class="state-tag">IL</span>
+          <span class="state-tag">PA</span>
+          <span class="state-tag">OH</span>
+          <span class="state-tag">GA</span>
+          <span class="state-tag">NC</span>
+          <span class="state-tag">WA</span>
+          <span class="state-tag">AZ</span>
+          <span class="state-tag">OR</span>
+          <span class="state-tag">CO</span>
+          <span class="state-tag">MI</span>
+          <span class="state-tag">+ 36 MORE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="content-card">
+      <div class="card-title">// CLIENT REVIEWS //</div>
+      <div class="card-body">
+        <div class="reviews-list">
+
+          <div class="review-card">
+            <p class="review-text">"Professional and responsive team. Guards arrived on time and maintained a visible presence throughout our corporate event."</p>
+            <div class="review-meta">
+              <div>
+                <div class="review-author">Corporate Client &nbsp;/&nbsp; Seattle, WA</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="review-score">5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <p class="review-text">"Allied Universal handled our retail loss prevention needs with minimal disruption to daily operations. Highly recommend."</p>
+            <div class="review-meta">
+              <div>
+                <div class="review-author">Retail Manager &nbsp;/&nbsp; Denver, CO</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="review-score">4.5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <p class="review-text">"Strong communication and well-trained personnel. Minor delays in initial deployment but resolved quickly."</p>
+            <div class="review-meta">
+              <div>
+                <div class="review-author">Property Manager &nbsp;/&nbsp; Phoenix, AZ</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="review-score">4.0</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /profile-content -->
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="profile-sidebar">
+
+    <!-- Quick Contact -->
+    <div class="sidebar-card contact-card" id="contact-form">
+      <div class="sidebar-card-title">CONTACT THIS VENDOR</div>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" class="form-control" placeholder="John Smith" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" class="form-control" placeholder="you@company.com" />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" class="form-control" placeholder="+1 (555) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea class="form-control" placeholder="Describe your security needs..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send Inquiry
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">COMPANY STATS</div>
+      <div class="stats-list">
+        <div class="stat-row">
+          <span class="stat-label">EMPLOYEES</span>
+          <span class="stat-value">300,000+</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">FOUNDED</span>
+          <span class="stat-value">1957</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">HQ</span>
+          <span class="stat-value">Irvine, CA</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">STATES</span>
+          <span class="stat-value">50</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Similar Vendors -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">SIMILAR VENDORS</div>
+      <div class="similar-list">
+        <a href="vendors.html" class="similar-item">
+          <div>
+            <div class="similar-name">Securitas USA</div>
+            <div class="similar-loc">New York, NY</div>
+          </div>
+          <svg class="similar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="vendors.html" class="similar-item">
+          <div>
+            <div class="similar-name">Pinkerton</div>
+            <div class="similar-loc">Chicago, IL</div>
+          </div>
+          <svg class="similar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="vendors.html" class="similar-item">
+          <div>
+            <div class="similar-name">G4S Secure Solutions</div>
+            <div class="similar-loc">Dallas, TX</div>
+          </div>
+          <svg class="similar-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /profile-sidebar -->
+
+</div><!-- /profile-layout -->
+
+<div class="section-divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+      <p>Connecting security professionals with clients nationwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>PLATFORM</h4>
+      <a href="vendors.html">Find Vendors</a>
+      <a href="rfps.html">Browse RFPs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="post-resume.html">Post Resume</a>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About</a>
+      <a href="about.html#how">How It Works</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">// NSN PLATFORM v2.6 // SYSTEM ONLINE // 2026 NATIONWIDE SECURITY NETWORK //</div>
+</footer>
+
+<script>
+// ── MILITARY RADAR ENGINE — original style with azimuth bearing labels ──────
+function militaryRadar(canvasId, opts) {
+  opts = opts || {};
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var spd = opts.speed || 0.007;
+  var angle = 0;
+  var blips = [];
+  var RGB = '255,119,0';
+
+  function resize() {
+    canvas.width  = canvas.parentElement.offsetWidth  || canvas.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight || canvas.offsetHeight;
+    blips = [];
+    var W=canvas.width, H=canvas.height, cx=W/2, cy=H/2;
+    var maxR = Math.min(W,H)*0.42;
+    for (var i=0;i<12;i++) {
+      var a=Math.random()*Math.PI*2, r=maxR*(0.2+Math.random()*0.75);
+      blips.push({x:cx+Math.cos(a)*r, y:cy+Math.sin(a)*r, a:a, bright:0});
+    }
+  }
+  resize();
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  else window.addEventListener('resize', resize);
+
+  function draw() {
+    var W=canvas.width, H=canvas.height, cx=W/2, cy=H/2;
+    var maxR = Math.min(W,H)*0.44;
+    ctx.clearRect(0,0,W,H);
+    // Tactical grid
+    ctx.save(); ctx.setLineDash([2,8]); ctx.lineWidth=0.5;
+    ctx.strokeStyle='rgba('+RGB+',0.06)';
+    for (var x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for (var y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]); ctx.restore();
+    // Clip to circle
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx,cy,maxR,0,Math.PI*2); ctx.clip();
+    var ibg=ctx.createRadialGradient(cx,cy,0,cx,cy,maxR);
+    ibg.addColorStop(0,'rgba('+RGB+',0.05)'); ibg.addColorStop(1,'rgba('+RGB+',0.01)');
+    ctx.fillStyle=ibg; ctx.fillRect(0,0,W,H);
+    // Range rings
+    for (var i=1;i<=5;i++) {
+      var r=(maxR/5)*i;
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.strokeStyle='rgba('+RGB+','+(0.13-i*0.015)+')';
+      ctx.lineWidth=i===5?0.8:0.5; ctx.stroke();
+      if (i<5) { ctx.font="7px 'Share Tech Mono',monospace"; ctx.fillStyle='rgba('+RGB+',0.22)'; ctx.fillText(Math.round(r/maxR*500)+'NM', cx+r+3, cy-3); }
+    }
+    // Crosshairs
+    ctx.setLineDash([4,8]); ctx.lineWidth=0.6; ctx.strokeStyle='rgba('+RGB+',0.1)';
+    ctx.beginPath(); ctx.moveTo(cx,cy-maxR); ctx.lineTo(cx,cy+maxR); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-maxR,cy); ctx.lineTo(cx+maxR,cy); ctx.stroke();
+    ctx.setLineDash([]);
+    // Phosphor sweep trail
+    for (var t=0;t<80;t++) {
+      var ta=angle-(t*Math.PI/180);
+      ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,maxR,ta-Math.PI/180,ta); ctx.closePath();
+      ctx.fillStyle='rgba('+RGB+','+(1-t/80)*0.17+')'; ctx.fill(); ctx.restore();
+    }
+    // Sweep arm
+    ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(angle)*maxR, cy+Math.sin(angle)*maxR);
+    var sl=ctx.createLinearGradient(cx,cy, cx+Math.cos(angle)*maxR, cy+Math.sin(angle)*maxR);
+    sl.addColorStop(0,'rgba('+RGB+',0.95)'); sl.addColorStop(0.4,'rgba('+RGB+',0.5)'); sl.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.strokeStyle=sl; ctx.lineWidth=1.8; ctx.stroke(); ctx.restore();
+    // Blips
+    for (var b=0;b<blips.length;b++) {
+      var bl=blips[b];
+      var da=((bl.a-angle)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+      if (da<0.08) bl.bright=1;
+      if (bl.bright>0) {
+        var sz=3*bl.bright;
+        ctx.beginPath(); ctx.arc(bl.x,bl.y,sz,0,Math.PI*2); ctx.fillStyle='rgba('+RGB+','+bl.bright*0.9+')'; ctx.fill();
+        var bg2=ctx.createRadialGradient(bl.x,bl.y,0,bl.x,bl.y,sz*5);
+        bg2.addColorStop(0,'rgba('+RGB+','+bl.bright*0.3+')'); bg2.addColorStop(1,'rgba('+RGB+',0)');
+        ctx.fillStyle=bg2; ctx.beginPath(); ctx.arc(bl.x,bl.y,sz*5,0,Math.PI*2); ctx.fill();
+        bl.bright=Math.max(0,bl.bright-0.008);
+      }
+    }
+    ctx.restore(); // end clip
+    // Outer ring
+    ctx.beginPath(); ctx.arc(cx,cy,maxR,0,Math.PI*2); ctx.strokeStyle='rgba('+RGB+',0.38)'; ctx.lineWidth=1.5; ctx.stroke();
+    // Azimuth ticks + bearing labels 000-330
+    ctx.font="9px 'Share Tech Mono',monospace"; ctx.textAlign='center'; ctx.textBaseline='middle';
+    for (var deg=0;deg<360;deg+=10) {
+      var rad=deg*Math.PI/180-Math.PI/2, isMajor=(deg%30===0);
+      var r1=maxR+2, r2=maxR+2+(isMajor?11:5);
+      ctx.beginPath(); ctx.moveTo(cx+Math.cos(rad)*r1, cy+Math.sin(rad)*r1);
+      ctx.lineTo(cx+Math.cos(rad)*r2, cy+Math.sin(rad)*r2);
+      ctx.strokeStyle='rgba('+RGB+','+(isMajor?0.55:0.22)+')'; ctx.lineWidth=isMajor?1.1:0.6; ctx.stroke();
+      if (isMajor) { var lr=maxR+24; ctx.fillStyle='rgba('+RGB+',0.5)'; var lbl=String(deg); while(lbl.length<3)lbl='0'+lbl; ctx.fillText(lbl, cx+Math.cos(rad)*lr, cy+Math.sin(rad)*lr); }
+    }
+    ctx.textAlign='start'; ctx.textBaseline='alphabetic';
+    // Center dot
+    ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2); ctx.fillStyle='rgba('+RGB+',1)'; ctx.fill();
+    var cg=ctx.createRadialGradient(cx,cy,2,cx,cy,18); cg.addColorStop(0,'rgba('+RGB+',0.4)'); cg.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,18,0,Math.PI*2); ctx.fill();
+    angle=(angle+spd)%(Math.PI*2); requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+
+// ── CARD RADAR — mini with azimuth ticks ────────────────────────────────────
+function cardRadar(canvasId, phaseOffset) {
+  phaseOffset = phaseOffset || 0;
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d'), RGB='255,119,0', angle=phaseOffset, blips=[];
+  function resize() {
+    canvas.width=canvas.offsetWidth||canvas.parentElement.offsetWidth;
+    canvas.height=canvas.offsetHeight||canvas.parentElement.offsetHeight;
+    blips=[]; var W=canvas.width,H=canvas.height,cx=W/2,cy=H*0.38,maxR=Math.min(W,H)*0.38;
+    for(var i=0;i<6;i++){var a=Math.random()*Math.PI*2,r=maxR*(0.25+Math.random()*0.7);blips.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,a:a,bright:0});}
+  }
+  resize();
+  if(window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  function draw() {
+    var W=canvas.width,H=canvas.height,cx=W/2,cy=H*0.38,maxR=Math.min(W,H)*0.38;
+    ctx.clearRect(0,0,W,H);
+    ctx.save();ctx.setLineDash([2,6]);ctx.lineWidth=0.4;ctx.strokeStyle='rgba('+RGB+',0.04)';
+    for(var x=0;x<W;x+=24){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(var y=0;y<H;y+=24){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]);ctx.restore();
+    ctx.save();ctx.beginPath();ctx.arc(cx,cy,maxR,0,Math.PI*2);ctx.clip();
+    for(var i=1;i<=4;i++){var r=(maxR/4)*i;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='rgba('+RGB+','+(0.15-i*0.025)+')';ctx.lineWidth=0.7;ctx.stroke();}
+    ctx.setLineDash([3,6]);ctx.lineWidth=0.5;ctx.strokeStyle='rgba('+RGB+',0.1)';
+    ctx.beginPath();ctx.moveTo(cx,cy-maxR);ctx.lineTo(cx,cy+maxR);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx-maxR,cy);ctx.lineTo(cx+maxR,cy);ctx.stroke();ctx.setLineDash([]);
+    for(var t=0;t<70;t++){var ta=angle-(t*Math.PI/180);ctx.save();ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,maxR,ta-Math.PI/180,ta);ctx.closePath();ctx.fillStyle='rgba('+RGB+','+(1-t/70)*0.15+')';ctx.fill();ctx.restore();}
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(angle)*maxR,cy+Math.sin(angle)*maxR);
+    var sl=ctx.createLinearGradient(cx,cy,cx+Math.cos(angle)*maxR,cy+Math.sin(angle)*maxR);
+    sl.addColorStop(0,'rgba('+RGB+',0.9)');sl.addColorStop(0.5,'rgba('+RGB+',0.35)');sl.addColorStop(1,'rgba('+RGB+',0)');
+    ctx.strokeStyle=sl;ctx.lineWidth=1.4;ctx.stroke();
+    for(var b=0;b<blips.length;b++){var bl=blips[b];var da=((bl.a-angle)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);if(da<0.1)bl.bright=1;if(bl.bright>0){ctx.beginPath();ctx.arc(bl.x,bl.y,2.5*bl.bright,0,Math.PI*2);ctx.fillStyle='rgba('+RGB+','+bl.bright*0.88+')';ctx.fill();bl.bright=Math.max(0,bl.bright-0.01);}}
+    ctx.restore();
+    ctx.beginPath();ctx.arc(cx,cy,maxR,0,Math.PI*2);ctx.strokeStyle='rgba('+RGB+',0.32)';ctx.lineWidth=1;ctx.stroke();
+    for(var deg=0;deg<360;deg+=15){var rad=deg*Math.PI/180-Math.PI/2,isMajor=(deg%45===0);var r1=maxR+1,r2=maxR+1+(isMajor?8:4);ctx.beginPath();ctx.moveTo(cx+Math.cos(rad)*r1,cy+Math.sin(rad)*r1);ctx.lineTo(cx+Math.cos(rad)*r2,cy+Math.sin(rad)*r2);ctx.strokeStyle='rgba('+RGB+','+(isMajor?0.5:0.2)+')';ctx.lineWidth=isMajor?1:0.6;ctx.stroke();if(isMajor&&deg%90===0){ctx.font="7px 'Share Tech Mono',monospace";ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba('+RGB+',0.38)';var lr=maxR+16;var lbl=String(deg);while(lbl.length<3)lbl='0'+lbl;ctx.fillText(lbl,cx+Math.cos(rad)*lr,cy+Math.sin(rad)*lr);ctx.textAlign='start';ctx.textBaseline='alphabetic';}}
+    ctx.beginPath();ctx.arc(cx,cy,3,0,Math.PI*2);ctx.fillStyle='rgba('+RGB+',0.9)';ctx.fill();
+    angle=(angle+0.014)%(Math.PI*2);requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+</script>
+</body>
+</html>
