@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSN Full Site Audit + SEO Plan | June 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f1117; color: #e2e8f0; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; }
+  .top-bar { background: #f97316; padding: 12px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .top-bar h1 { color: #fff; font-size: 18px; font-weight: 700; }
+  .top-bar span { color: #fff; font-size: 13px; opacity: 0.9; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .toc { background: #1e2130; border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin-bottom: 40px; }
+  .toc h2 { color: #f97316; font-size: 16px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .toc a { color: #94a3b8; text-decoration: none; display: block; padding: 4px 0; font-size: 14px; }
+  .toc a:hover { color: #f97316; }
+  .section { margin-bottom: 48px; }
+  h2.section-title { color: #f97316; font-size: 22px; font-weight: 700; border-bottom: 2px solid #f97316; padding-bottom: 8px; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+  h3 { color: #fbbf24; font-size: 17px; margin: 24px 0 10px; }
+  h4 { color: #94a3b8; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 8px; }
+  p { color: #cbd5e1; margin-bottom: 12px; font-size: 15px; }
+  .card { background: #1e2130; border: 1px solid #2d3748; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .card.critical { border-left: 4px solid #ef4444; }
+  .card.warn { border-left: 4px solid #f59e0b; }
+  .card.good { border-left: 4px solid #10b981; }
+  .issue-num { background: #ef4444; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; margin-right: 10px; flex-shrink: 0; }
+  .issue-header { display: flex; align-items: center; margin-bottom: 8px; }
+  .issue-title { color: #f87171; font-weight: 700; font-size: 15px; }
+  .fix-label { background: #10b981; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-right: 6px; text-transform: uppercase; }
+  .old-copy { background: #2d1a1a; border: 1px solid #7f1d1d; border-radius: 8px; padding: 16px; margin: 10px 0; }
+  .new-copy { background: #1a2e1a; border: 1px solid #14532d; border-radius: 8px; padding: 16px; margin: 10px 0; }
+  .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .old-copy .label { color: #ef4444; }
+  .new-copy .label { color: #10b981; }
+  .old-copy p, .new-copy p { font-size: 14px; }
+  .old-copy p { color: #fca5a5; }
+  .new-copy p { color: #86efac; }
+  .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .seo-card { background: #1e2130; border: 1px solid #2d3748; border-radius: 10px; padding: 20px; }
+  .seo-card h3 { color: #f97316; font-size: 15px; margin: 0 0 12px; }
+  .url-example { background: #0f1117; border: 1px solid #374151; border-radius: 6px; padding: 10px; font-family: monospace; font-size: 13px; color: #a3e635; margin: 8px 0; }
+  .priority-list { counter-reset: priority; }
+  .priority-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1e2130; }
+  .priority-item:last-child { border-bottom: none; }
+  .priority-num { background: #f97316; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; }
+  .priority-num.high { background: #ef4444; }
+  .priority-num.med { background: #f59e0b; }
+  .priority-num.low { background: #3b82f6; }
+  .priority-text { color: #cbd5e1; font-size: 14px; }
+  .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
+  .price-card { background: #1e2130; border: 1px solid #2d3748; border-radius: 10px; padding: 20px; text-align: center; }
+  .price-card.featured { border: 2px solid #f97316; }
+  .price-card h3 { color: #f97316; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .price-amount { font-size: 28px; font-weight: 800; color: #fff; }
+  .price-sub { font-size: 12px; color: #94a3b8; }
+  .price-list { list-style: none; text-align: left; margin-top: 12px; }
+  .price-list li { font-size: 12px; color: #94a3b8; padding: 4px 0; border-bottom: 1px solid #2d3748; }
+  .price-list li::before { content: "✓ "; color: #10b981; }
+  .nav-box { background: #1e2130; border: 1px solid #2d3748; border-radius: 8px; padding: 16px; margin: 10px 0; }
+  .nav-item { display: inline-block; background: #2d3748; border-radius: 4px; padding: 6px 14px; margin: 4px; font-size: 13px; color: #e2e8f0; }
+  .nav-item.remove { background: #7f1d1d; color: #fca5a5; text-decoration: line-through; }
+  .nav-item.new { background: #14532d; color: #86efac; }
+  .dev-list { counter-reset: devlist; }
+  .dev-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #1e2130; }
+  .dev-num { background: #3b82f6; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .dev-text { color: #cbd5e1; font-size: 14px; }
+  .dev-text strong { color: #fff; display: block; margin-bottom: 4px; }
+  .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .state-badge { background: #1e2130; border: 1px solid #2d3748; border-radius: 6px; padding: 8px 10px; text-align: center; font-size: 12px; color: #94a3b8; }
+  .state-badge.high { border-color: #ef4444; color: #fca5a5; }
+  .state-badge.med { border-color: #f59e0b; color: #fcd34d; }
+  @media (max-width: 768px) { .price-grid, .seo-grid { grid-template-columns: 1fr; } .state-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>NSN Full Site Audit + Copy Rewrites + SEO Strategy</h1>
+  <span>Generated by Hermes Agent | June 2026</span>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <a href="#part1">Part 1 — Critical Issues (Fix First)</a>
+    <a href="#part2">Part 2 — Copy Rewrites (Page by Page)</a>
+    <a href="#part3">Part 3 — Navigation Restructure</a>
+    <a href="#part4">Part 4 — Pricing Update</a>
+    <a href="#part5">Part 5 — SEO Landing Page Strategy (50 States)</a>
+    <a href="#part6">Part 6 — Developer Checklist</a>
+    <a href="#part7">Part 7 — What Hermes Builds Next</a>
+  </div>
+
+  <!-- PART 1 -->
+  <div class="section" id="part1">
+    <h2 class="section-title">Part 1 — Critical Issues (Fix Before Marketing)</h2>
+
+    <div class="card critical">
+      <div class="issue-header"><span class="issue-num">1</span><span class="issue-title">Contact Page Has No Real Contact Info</span></div>
+      <p>Every field shows dashes — no phone, no email, no address, no hours. Kills trust on first visit.</p>
+      <p><span class="fix-label">Fix</span> Add a real NSN email, a Google Voice business number, hours (Mon-Fri 9AM-6PM CT), and a HQ city (Nashville, TN is fine).</p>
+    </div>
+
+    <div class="card critical">
+      <div class="issue-header"><span class="issue-num">2</span><span class="issue-title">Featured Vendors Show 0 Reviews</span></div>
+      <p>Homepage vendor cards display "★★★★★ (0)" — looks fake and untrustworthy to any serious buyer.</p>
+      <p><span class="fix-label">Fix</span> Hide star display until a vendor has at least 1 review. Replace with "New Member" badge.</p>
+    </div>
+
+    <div class="card critical">
+      <div class="issue-header"><span class="issue-num">3</span><span class="issue-title">Crime Analytics Listed as Key Feature — Not Live</span></div>
+      <p>It's in the nav, on the homepage, on the How It Works page — all "coming soon." Clients click it and hit a dead end.</p>
+      <p><span class="fix-label">Fix</span> Remove from primary navigation. Add a "Coming Q3 2026 — Join Waitlist" page so it builds a list instead of disappointing visitors.</p>
+    </div>
+
+    <div class="card critical">
+      <div class="issue-header"><span class="issue-num">4</span><span class="issue-title">Job Board Features in Main Nav Confuse Buyers</span></div>
+      <p>"Post Resume" and "Search Resumes" are visible in the primary nav. Clients who want to hire a security company see job board links and get confused about what NSN even does.</p>
+      <p><span class="fix-label">Fix</span> Move to a "For Professionals" dropdown. Main nav should be buyer/vendor focused only.</p>
+    </div>
+
+    <div class="card warn">
+      <div class="issue-header"><span class="issue-num">5</span><span class="issue-title">Page Titles Are Duplicated</span></div>
+      <p>"How It Works | Nationwide Security Network | Nationwide Security Network" — doubles the brand name. Bad for SEO.</p>
+      <p><span class="fix-label">Fix</span> Fix meta title template — should be "Page Name | Nationwide Security Network"</p>
+    </div>
+
+    <div class="card warn">
+      <div class="issue-header"><span class="issue-num">6</span><span class="issue-title">Search Bar Placeholder Text is Truncated</span></div>
+      <p>Shows "Search vendors, privat..." — gets cut off. Looks sloppy.</p>
+      <p><span class="fix-label">Fix</span> Change to "Search by location, service type, or vendor name..."</p>
+    </div>
+
+    <div class="card warn">
+      <div class="issue-header"><span class="issue-num">7</span><span class="issue-title">Pricing is Too Low — Signals Cheap Directory</span></div>
+      <p>$55-$100/mo is well below market. Security companies pay $149-$299/mo on comparable platforms. Low price = low perceived quality.</p>
+      <p><span class="fix-label">Fix</span> See Part 4 — Pricing Update.</p>
+    </div>
+
+    <div class="card warn">
+      <div class="issue-header"><span class="issue-num">8</span><span class="issue-title">Zero Social Proof Anywhere on Site</span></div>
+      <p>No logos, no testimonials, no client counts, no "trusted by" section. Every serious B2B platform has this.</p>
+      <p><span class="fix-label">Fix</span> Add stats bar on homepage: "1,000+ Vendors Listed | 50 States Covered | Free for Clients" and add 2-3 vendor testimonials.</p>
+    </div>
+
+    <div class="card warn">
+      <div class="issue-header"><span class="issue-num">9</span><span class="issue-title">Footer is Bare — Missing Key Links</span></div>
+      <p>No social links, no blog, no state pages, no service category pages, no resources section.</p>
+      <p><span class="fix-label">Fix</span> Expand footer to include: Resources, Browse by State, Browse by Service, LinkedIn, Blog (even if empty now).</p>
+    </div>
+
+    <div class="card warn">
+      <div class="issue-header"><span class="issue-num">10</span><span class="issue-title">"Smart Matching" Nav Link Goes Nowhere Useful</span></div>
+      <p>It's a feature, not a page destination. Clicking it leaves visitors confused.</p>
+      <p><span class="fix-label">Fix</span> Remove from main nav. Fold it into How It Works and the About page as a described feature.</p>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="section" id="part2">
+    <h2 class="section-title">Part 2 — Copy Rewrites</h2>
+
+    <h3>Homepage — Hero Section</h3>
+    <div class="old-copy">
+      <div class="label">Current</div>
+      <p><strong>H1:</strong> "Find Verified Security Providers Nationwide"</p>
+      <p><strong>Subhead:</strong> "NSN helps clients discover vetted security companies, compare services, browse RFP opportunities, and connect with professionals across the U.S."</p>
+    </div>
+    <div class="new-copy">
+      <div class="label">Rewrite</div>
+      <p><strong>H1:</strong> "The #1 Marketplace for Hiring Verified Security Companies"</p>
+      <p><strong>Subhead:</strong> "Search 1,000+ vetted security vendors by location, service type, and specialty. Compare quotes, post RFPs, and connect with the right provider — in minutes, not weeks."</p>
+      <p><strong>CTAs:</strong> "Search Security Vendors" (primary) | "Post a Free RFP" (secondary) | Remove "Post Resume" from hero</p>
+    </div>
+
+    <h3>Homepage — Join Section</h3>
+    <div class="old-copy">
+      <div class="label">Current</div>
+      <p>"Whether you're a security company looking to win new business or an organization seeking qualified protection services, NSN gives you a single place to connect."</p>
+      <p>Buttons: "Register as Vendor" | "Register as Client"</p>
+    </div>
+    <div class="new-copy">
+      <div class="label">Rewrite</div>
+      <p><strong>Heading:</strong> "Two Ways to Use NSN"</p>
+      <p><strong>CLIENT CARD:</strong> "I Need to Hire Security" — Find vetted vendors fast. Post an RFP and get competing quotes. Compare profiles, licenses, insurance, and reviews — all in one place. Free forever. → "Find Vendors Now"</p>
+      <p><strong>VENDOR CARD:</strong> "I'm a Security Company" — Get discovered by enterprise clients, property managers, hospitals, and more. Claim your free listing today. Upgrade for priority placement when you're ready. → "Claim Your Free Profile"</p>
+    </div>
+
+    <h3>Homepage — Why Choose NSN (Feature Cards)</h3>
+    <div class="new-copy">
+      <div class="label">Rewrite All 3 Cards</div>
+      <p><strong>Card 1:</strong> "Find the Right Vendor in 60 Seconds" — Filter by state, city, service type, license type, and company size. No cold calls. No LinkedIn searches. No guessing. Just results.</p>
+      <p><strong>Card 2:</strong> "Compare Vendors Side by Side" — View licenses, insurance status, service areas, specialties, and client reviews in one place. Make confident decisions backed by real data.</p>
+      <p><strong>Card 3:</strong> "Post an RFP, Get Competing Bids" — Describe your project once. Qualified vendors come to you with proposals. Save 10+ hours per security hire. Free for all clients.</p>
+      <p style="color:#f59e0b; margin-top:10px;"><strong>Note:</strong> Remove Crime Analytics card from homepage — it's not live. Add it back when the feature launches.</p>
+    </div>
+
+    <h3>Homepage — RFP Section</h3>
+    <div class="new-copy">
+      <div class="label">Rewrite</div>
+      <p><strong>Heading:</strong> "Skip the Cold Calls. Post One RFP."</p>
+      <p><strong>Body:</strong> "Tell us your security need — location, service type, headcount, start date. We put it in front of vendors who can actually do the job. You pick the best fit."</p>
+      <p><strong>CTAs:</strong> "Post Your RFP Free" | "See an Example RFP"</p>
+    </div>
+
+    <h3>Homepage — Bottom CTA</h3>
+    <div class="new-copy">
+      <div class="label">Rewrite</div>
+      <p><strong>Heading:</strong> "Your Next Security Partner is Already on NSN"</p>
+      <p><strong>Body:</strong> "Whether you need armed guards, access control, mobile patrol, or executive protection — find licensed vendors in your state, today."</p>
+      <p><strong>CTAs:</strong> "Search Vendors Near Me" | "Post a Free RFP"</p>
+    </div>
+
+    <h3>How It Works Page</h3>
+    <div class="new-copy">
+      <div class="label">Rewrite</div>
+      <p><strong>H1:</strong> "Find the Right Security Vendor in 4 Simple Steps"</p>
+      <p><strong>Client Steps:</strong> 1. Search by Location & Service | 2. Compare Vendor Profiles | 3. Post a Free RFP | 4. Connect & Hire</p>
+      <p><strong>Vendor Steps:</strong> 1. Claim or Create Your Free Profile | 2. Get NSN Verified | 3. Receive Qualified Inquiries</p>
+      <p><strong>Why NSN Cards:</strong> "Built for This Industry" | "Only Verified Providers" | "Real Reviews. Real Results."</p>
+    </div>
+
+    <h3>About Page — Mission & Vision</h3>
+    <div class="old-copy">
+      <div class="label">Current Mission (too corporate)</div>
+      <p>"To transform how organizations find and connect with security professionals by leveraging advanced AI technology, comprehensive data analysis, and rigorous verification processes that ensure optimal matches for every client's unique security needs."</p>
+    </div>
+    <div class="new-copy">
+      <div class="label">Rewrite Mission</div>
+      <p>"NSN exists to end the inefficiency of hiring security. For too long, businesses have relied on cold calls, referrals, and Google searches to find vendors. We built the marketplace the security industry always needed — a single, transparent place where verified vendors get found and clients make confident hires."</p>
+    </div>
+    <div class="new-copy">
+      <div class="label">Rewrite Vision</div>
+      <p>"A future where any business in America can find the right security partner in under an hour — with confidence in their credentials, track record, and fit."</p>
+    </div>
+
+    <h3>About Page — Add Stats Bar</h3>
+    <div class="new-copy">
+      <div class="label">Add This Section</div>
+      <p>1,000+ Vendors Listed | All 50 States Covered | 15+ Service Categories | Free for Clients, Always</p>
+    </div>
+
+    <h3>About Page — Industries (expand from 8 to 10)</h3>
+    <div class="new-copy">
+      <div class="label">Add These 2 Industries</div>
+      <p>9. Hotels & Hospitality</p>
+      <p>10. Residential Communities & HOAs</p>
+    </div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="section" id="part3">
+    <h2 class="section-title">Part 3 — Navigation Restructure</h2>
+
+    <h3>Current Nav (Confusing)</h3>
+    <div class="nav-box">
+      <span class="nav-item">Home</span>
+      <span class="nav-item remove">Browse RFPs</span>
+      <span class="nav-item remove">Post Resume</span>
+      <span class="nav-item remove">Search Resumes</span>
+      <span class="nav-item remove">Smart Matching</span>
+      <span class="nav-item remove">More ▼</span>
+      <span class="nav-item">Sign In</span>
+      <span class="nav-item">Sign Up</span>
+    </div>
+
+    <h3>Recommended Nav (Clean)</h3>
+    <div class="nav-box">
+      <span class="nav-item">Home</span>
+      <span class="nav-item new">Find Vendors</span>
+      <span class="nav-item new">Post an RFP</span>
+      <span class="nav-item">How It Works</span>
+      <span class="nav-item">Pricing</span>
+      <span class="nav-item new">For Vendors ▼</span>
+      <span class="nav-item">Sign In</span>
+      <span class="nav-item" style="background:#f97316; color:#fff;">Sign Up</span>
+    </div>
+
+    <p style="color:#94a3b8; font-size:13px; margin-top:12px;">"For Vendors" dropdown contains: Claim Your Profile | Vendor Pricing | Vendor Tools | Post Resume | Search Resumes</p>
+  </div>
+
+  <!-- PART 4 -->
+  <div class="section" id="part4">
+    <h2 class="section-title">Part 4 — Pricing Update</h2>
+    <p>Current pricing ($55-$100/mo) is well below market and signals low quality. Recommended new structure:</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Free</h3>
+        <div class="price-amount">$0</div>
+        <div class="price-sub">During launch phase</div>
+        <ul class="price-list">
+          <li>Basic profile listing</li>
+          <li>Appear in search results</li>
+          <li>Contact form enabled</li>
+          <li>2 service categories</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <h3>Professional</h3>
+        <div class="price-amount">$149<span style="font-size:16px;">/mo</span></div>
+        <div class="price-sub">or $1,199/yr (save $589)</div>
+        <ul class="price-list">
+          <li>NSN Verified badge</li>
+          <li>5 service categories</li>
+          <li>Priority local placement</li>
+          <li>RFP access in your state</li>
+          <li>Review collection tools</li>
+          <li>Analytics dashboard</li>
+          <li>Email support</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Premium Nationwide</h3>
+        <div class="price-amount">$299<span style="font-size:16px;">/mo</span></div>
+        <div class="price-sub">or $2,399/yr (save $1,189)</div>
+        <ul class="price-list">
+          <li>Everything in Professional</li>
+          <li>Featured in all 50 states</li>
+          <li>Dedicated account manager</li>
+          <li>Co-marketing in client emails</li>
+          <li>Competitor exclusivity per city</li>
+          <li>24/7 phone support</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Enterprise</h3>
+        <div class="price-amount" style="font-size:20px;">Custom</div>
+        <div class="price-sub">Contact for pricing</div>
+        <ul class="price-list">
+          <li>White-label RFP portal</li>
+          <li>API access</li>
+          <li>Custom analytics</li>
+          <li>Volume licensing</li>
+          <li>10+ location management</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px; border-left: 4px solid #f97316;">
+      <h3 style="margin-top:0;">Founding Member Offer Banner (Add to Pricing Page)</h3>
+      <p>"Lock in 50% off Professional for life. Founding member pricing ends [DATE]."</p>
+      <p style="color:#10b981;">$74.50/mo instead of $149. Available to first 500 vendors who claim their profile. Add countdown timer.</p>
+    </div>
+  </div>
+
+  <!-- PART 5 -->
+  <div class="section" id="part5">
+    <h2 class="section-title">Part 5 — SEO Landing Page Strategy</h2>
+
+    <p>State landing pages are the #1 long-term organic moat. "Security companies in [state]" searches get 8,000-45,000 searches/month depending on the state. This is free traffic that converts directly into client signups. Hermes writes all the content — developer just needs the URL structure in place.</p>
+
+    <div class="seo-grid">
+      <div class="seo-card">
+        <h3>50 State Pages</h3>
+        <div class="url-example">/security-companies/texas<br>/security-companies/california<br>/security-companies/new-york<br>/security-companies/florida</div>
+        <p style="font-size:13px; color:#94a3b8;">Pre-filtered vendor search for each state. Includes state-specific intro, service categories, featured vendors, RFP CTA, and FAQ block.</p>
+      </div>
+      <div class="seo-card">
+        <h3>10 Service Pages</h3>
+        <div class="url-example">/services/armed-security-guards<br>/services/mobile-patrol<br>/services/executive-protection<br>/services/event-security</div>
+        <p style="font-size:13px; color:#94a3b8;">Service-specific pages with filtered vendor results, what to look for, how to hire, and average costs.</p>
+      </div>
+      <div class="seo-card">
+        <h3>50 City Pages (Phase 2)</h3>
+        <div class="url-example">/security-companies/texas/houston<br>/security-companies/texas/dallas<br>/security-companies/california/los-angeles</div>
+        <p style="font-size:13px; color:#94a3b8;">Hyper-local pages targeting "security guard companies in Houston" type searches. Build after state pages rank.</p>
+      </div>
+      <div class="seo-card">
+        <h3>Service+State Combos (Phase 3)</h3>
+        <div class="url-example">/services/armed-guards/texas<br>/services/executive-protection/california<br>/services/event-security/florida</div>
+        <p style="font-size:13px; color:#94a3b8;">High-intent combo pages. Someone searching "armed guards Texas" is ready to buy. Build top 50 combos.</p>
+      </div>
+    </div>
+
+    <h3>State Page Template Structure</h3>
+    <div class="card">
+      <p><strong style="color:#fff;">Each state page includes:</strong></p>
+      <p>1. H1: "Security Companies in [State] | NSN"</p>
+      <p>2. State-specific 3-sentence intro paragraph (mentions key industries, cities, market context)</p>
+      <p>3. Pre-filtered vendor search widget for that state</p>
+      <p>4. Stats bar: "[X] Vendors in [State] | 15 Service Types | Free for Clients"</p>
+      <p>5. Top 6 service categories with icons (tailored to state)</p>
+      <p>6. 3 featured vendors from that state (dynamically pulled)</p>
+      <p>7. "Post a Free RFP to [State] Vendors" CTA section</p>
+      <p>8. 5-question FAQ block (state-specific SEO — licensing, costs, common services)</p>
+      <p>9. Neighboring states sidebar links (cross-links for SEO juice)</p>
+    </div>
+
+    <h3>State Build Priority Order</h3>
+    <p style="font-size:13px; color:#94a3b8; margin-bottom:12px;">High = build first. Med = build in Month 2. Low = complete by Month 3.</p>
+    <div class="state-grid">
+      <div class="state-badge high">Texas</div>
+      <div class="state-badge high">California</div>
+      <div class="state-badge high">Florida</div>
+      <div class="state-badge high">New York</div>
+      <div class="state-badge high">Illinois</div>
+      <div class="state-badge high">Georgia</div>
+      <div class="state-badge high">Ohio</div>
+      <div class="state-badge high">Pennsylvania</div>
+      <div class="state-badge high">N. Carolina</div>
+      <div class="state-badge high">Arizona</div>
+      <div class="state-badge med">Tennessee</div>
+      <div class="state-badge med">Nevada</div>
+      <div class="state-badge med">Colorado</div>
+      <div class="state-badge med">Michigan</div>
+      <div class="state-badge med">Virginia</div>
+      <div class="state-badge med">Washington</div>
+      <div class="state-badge med">New Jersey</div>
+      <div class="state-badge med">Massachusetts</div>
+      <div class="state-badge med">Maryland</div>
+      <div class="state-badge med">Minnesota</div>
+      <div class="state-badge">Indiana</div>
+      <div class="state-badge">Wisconsin</div>
+      <div class="state-badge">Missouri</div>
+      <div class="state-badge">Alabama</div>
+      <div class="state-badge">S. Carolina</div>
+      <div class="state-badge">Louisiana</div>
+      <div class="state-badge">Kentucky</div>
+      <div class="state-badge">Oregon</div>
+      <div class="state-badge">Oklahoma</div>
+      <div class="state-badge">Utah</div>
+      <div class="state-badge">Connecticut</div>
+      <div class="state-badge">Iowa</div>
+      <div class="state-badge">Mississippi</div>
+      <div class="state-badge">Arkansas</div>
+      <div class="state-badge">Kansas</div>
+      <div class="state-badge">Nevada</div>
+      <div class="state-badge">New Mexico</div>
+      <div class="state-badge">Nebraska</div>
+      <div class="state-badge">Idaho</div>
+      <div class="state-badge">Hawaii</div>
+      <div class="state-badge">New Hampshire</div>
+      <div class="state-badge">Maine</div>
+      <div class="state-badge">Rhode Island</div>
+      <div class="state-badge">Montana</div>
+      <div class="state-badge">Delaware</div>
+      <div class="state-badge">South Dakota</div>
+      <div class="state-badge">North Dakota</div>
+      <div class="state-badge">Alaska</div>
+      <div class="state-badge">Vermont</div>
+      <div class="state-badge">Wyoming</div>
+    </div>
+  </div>
+
+  <!-- PART 6 -->
+  <div class="section" id="part6">
+    <h2 class="section-title">Part 6 — Developer Checklist</h2>
+    <p>Send this section directly to your developer. Priority order top to bottom.</p>
+
+    <div class="dev-list">
+      <div class="dev-item"><span class="dev-num" style="background:#ef4444;">1</span><div class="dev-text"><strong>Fix Contact Page — Add Real Info</strong>Real NSN email, phone (Google Voice ok), HQ city, business hours. All fields currently show dashes.</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#ef4444;">2</span><div class="dev-text"><strong>Remove 0-Star Ratings from Vendor Cards</strong>Hide star display when review count = 0. Show "New Member" badge instead.</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#ef4444;">3</span><div class="dev-text"><strong>Fix Duplicate Meta Titles</strong>"Page | NSN | NSN" → should be "Page | Nationwide Security Network" only.</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#ef4444;">4</span><div class="dev-text"><strong>Restructure Navigation</strong>Remove Post Resume, Search Resumes, Smart Matching from main nav. Add "For Vendors" dropdown. Primary nav: Home | Find Vendors | Post an RFP | How It Works | Pricing | For Vendors ▼ | Sign In | Sign Up</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#f59e0b;">5</span><div class="dev-text"><strong>Update Homepage Copy</strong>New hero H1, subhead, section headings, and feature card copy as specified in Part 2.</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#f59e0b;">6</span><div class="dev-text"><strong>Update About, How It Works, Pricing Pages</strong>New mission/vision copy, pricing tiers ($0/$149/$299/Custom), founding member banner with countdown.</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#f59e0b;">7</span><div class="dev-text"><strong>Fix Search Bar Placeholder</strong>"Search vendors, services..." → "Search by location, service type, or vendor name..."</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#3b82f6;">8</span><div class="dev-text"><strong>Build 50 State SEO Landing Pages</strong>URL: /security-companies/[state-slug]. Pre-filter vendor search to that state. Template provided by Hermes (coming). Build high-priority states first (TX, CA, FL, NY, IL, GA, OH, PA, NC, AZ).</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#3b82f6;">9</span><div class="dev-text"><strong>Build 10 Service Category Pages</strong>URL: /services/[service-slug]. Armed guards, unarmed guards, mobile patrol, executive protection, event security, access control, surveillance, loss prevention, private investigations, cybersecurity.</div></div>
+      <div class="dev-item"><span class="dev-num" style="background:#3b82f6;">10</span><div class="dev-text"><strong>Expand Footer</strong>Add: Browse by State, Browse by Service, LinkedIn link, Resources section, Blog placeholder.</div></div>
+    </div>
+  </div>
+
+  <!-- PART 7 -->
+  <div class="section" id="part7">
+    <h2 class="section-title">Part 7 — What Hermes Builds Next</h2>
+
+    <div class="card good">
+      <p>Once developer confirms the URL structure is in place and templates are ready, Hermes will deliver — all at once, in a single batch file:</p>
+      <p style="margin-top:12px;"><strong style="color:#10b981;">All 50 State Page Copy Blocks</strong> — complete ready-to-drop-in content for every state page including intro paragraphs, service categories, FAQ blocks, and CTA sections.</p>
+      <p><strong style="color:#10b981;">All 10 Service Category Page Copy Blocks</strong> — complete content for each service page.</p>
+      <p><strong style="color:#10b981;">Full Homepage Copy Document</strong> — clean final copy for all sections, formatted for developer handoff.</p>
+      <p><strong style="color:#10b981;">Vendor Email Outreach Sequences</strong> — 4-email campaign for each seeded vendor to claim their profile.</p>
+      <p><strong style="color:#10b981;">5 Buyer Lead Magnets</strong> — RFP Template, 47-Point Vendor Checklist, Cost Calculator, State Licensing Guide, Incident Report Template.</p>
+      <p style="margin-top:12px; color:#f59e0b; font-size:13px;">You don't write any of this. Just get confirmation from the dev that the URL template structure is live, and Hermes delivers everything.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding: 32px 0; color:#4b5563; font-size:13px; border-top: 1px solid #1e2130; margin-top:40px;">
+    NSN Full Site Audit + SEO Plan | Generated by Hermes Agent | June 2026<br>
+    File saved to: C:\Users\pspru\Desktop\NSN\NSN_AUDIT_AND_SEO_PLAN.html
+  </div>
+
+</div>
+</body>
+</html>
