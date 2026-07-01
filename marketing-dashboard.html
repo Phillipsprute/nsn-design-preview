@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSN Marketing Campaign — Command Center</title>
+<style>
+:root {
+  --bg: #0a0e1a; --card: #111827; --card2: #1a2235; --border: #1e2d45;
+  --accent: #f97316; --blue: #3b82f6; --green: #22c55e; --yellow: #eab308;
+  --red: #ef4444; --purple: #a855f7; --text: #e2e8f0; --muted: #64748b;
+  --input: #0d1525;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; font-size: 14px; min-height: 100vh; }
+
+.header { background: linear-gradient(135deg,#0f172a,#1e3a5f); border-bottom: 2px solid var(--accent); padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.header-left { display: flex; align-items: center; gap: 14px; }
+.logo { width: 42px; height: 42px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.header h1 { font-size: 19px; font-weight: 700; color: #fff; }
+.header-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.header-badge { background: #14532d; color: #4ade80; border: 1px solid var(--green); border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; }
+
+/* PHASE BAR */
+.phases { display: flex; margin: 20px 28px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.phase { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid var(--border); background: var(--card); }
+.phase:last-child { border-right: none; }
+.phase.done { background: #0d2010; border-top: 3px solid var(--green); }
+.phase.active { background: linear-gradient(135deg,#1e3a5f,#0f172a); border-top: 3px solid var(--accent); }
+.phase.upcoming { border-top: 3px solid var(--border); opacity: 0.5; }
+.phase-num { font-size: 16px; font-weight: 800; }
+.phase-name { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
+.phase-dates { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+/* APPROVAL SUMMARY */
+.summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin: 20px 28px; }
+.scard { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+.scard-val { font-size: 28px; font-weight: 800; }
+.scard-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* NAV TABS */
+.nav { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 28px 0; margin-top: 6px; margin-bottom: 0; }
+.ntab { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); cursor: pointer; font-size: 12px; font-weight: 600; color: var(--muted); background: var(--card2); transition: all 0.2s; white-space: nowrap; }
+.ntab:hover { border-color: var(--accent); color: var(--text); }
+.ntab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* CONTENT */
+.content { padding: 20px 28px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* CAMPAIGN CARDS */
+.channel-intro { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+.channel-intro strong { color: var(--text); }
+.ccard { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
+.ccard.approved { border-color: var(--green); }
+.ccard.rejected { border-color: var(--red); opacity: 0.6; }
+.ccard-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+.ccard-title { font-size: 14px; font-weight: 700; color: #fff; }
+.ccard-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.subj-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.subj-line { background: var(--input); border: 1px solid #1e3a5f; border-radius: 6px; padding: 8px 12px; font-size: 13px; color: var(--blue); font-weight: 600; margin-bottom: 10px; }
+.email-body { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 14px; font-size: 12px; color: var(--text); line-height: 1.9; white-space: pre-wrap; margin-bottom: 12px; max-height: 200px; overflow-y: auto; font-family: inherit; }
+.card-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.btn { padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
+.btn-approve { background: var(--green); color: #000; }
+.btn-approve:hover { background: #16a34a; color: #fff; }
+.btn-reject { background: #1a1a2e; border: 1px solid var(--red); color: var(--red); }
+.btn-reject:hover { background: var(--red); color: #fff; }
+.btn-copy { background: var(--card); border: 1px solid var(--border); color: var(--muted); }
+.btn-copy:hover { border-color: var(--blue); color: var(--blue); }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+.b-draft { background: #1e1e3a; color: #93c5fd; }
+.b-approved { background: #14532d; color: #4ade80; border: 1px solid var(--green); }
+.b-rejected { background: #2a0a0a; color: #f87171; }
+.b-phase { background: #1e2d45; color: var(--muted); font-size: 10px; }
+.status-label { font-size: 11px; font-weight: 700; margin-left: 6px; }
+
+/* SEO */
+.seo-card { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+.seo-title { color: #4ade80; font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+.seo-url { color: var(--blue); font-size: 11px; margin-bottom: 8px; }
+.seo-desc { color: var(--text); font-size: 12px; margin-bottom: 10px; line-height: 1.6; }
+.seo-body { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 11px; color: var(--muted); line-height: 1.8; white-space: pre-wrap; max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
+
+/* MAGNETS */
+.magnet-card { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+.magnet-icon { font-size: 30px; margin-bottom: 8px; }
+.magnet-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.magnet-why { font-size: 12px; color: var(--accent); margin-bottom: 8px; font-style: italic; }
+.magnet-outline { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 11px; color: var(--text); line-height: 1.9; white-space: pre-wrap; max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
+
+/* SOCIAL */
+.plat-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+.plat-li { background: #0a3d62; color: #60a5fa; }
+.plat-fb { background: #1e3a6e; color: #93c5fd; }
+.plat-x { background: #1a1a1a; color: #e2e8f0; border: 1px solid #333; }
+.post-body { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 12px; color: var(--text); line-height: 1.8; white-space: pre-wrap; margin-bottom: 10px; }
+
+/* MISC */
+.section-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.section-sub { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:800px){ .grid-2{grid-template-columns:1fr;} .summary{grid-template-columns:1fr 1fr;} .phases{flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">🛡️</div>
+    <div>
+      <h1>NSN Marketing Campaign Center</h1>
+      <div class="header-sub">Review, approve, and track every campaign angle before anything goes live</div>
+    </div>
+  </div>
+  <div class="header-badge">⏸ NOTHING SENT — APPROVAL PENDING</div>
+</div>
+
+<!-- PHASE TIMELINE -->
+<div class="phases">
+  <div class="phase active">
+    <div class="phase-num" style="color:var(--accent)">1</div>
+    <div class="phase-name">Foundation</div>
+    <div class="phase-dates">Now — Month 2</div>
+  </div>
+  <div class="phase upcoming">
+    <div class="phase-num">2</div>
+    <div class="phase-name">Vendor Recruit</div>
+    <div class="phase-dates">Month 2 — 4</div>
+  </div>
+  <div class="phase upcoming">
+    <div class="phase-num">3</div>
+    <div class="phase-name">Client Traffic</div>
+    <div class="phase-dates">Month 3 — 6</div>
+  </div>
+  <div class="phase upcoming">
+    <div class="phase-num">4</div>
+    <div class="phase-name">Sub Launch</div>
+    <div class="phase-dates">Month 6+</div>
+  </div>
+</div>
+
+<!-- SUMMARY STATS -->
+<div class="summary">
+  <div class="scard"><div class="scard-val" id="cnt-total" style="color:var(--text)">0</div><div class="scard-label">Total Assets</div></div>
+  <div class="scard"><div class="scard-val" id="cnt-approved" style="color:var(--green)">0</div><div class="scard-label">Approved</div></div>
+  <div class="scard"><div class="scard-val" id="cnt-pending" style="color:var(--yellow)">0</div><div class="scard-label">Pending Review</div></div>
+  <div class="scard"><div class="scard-val" id="cnt-rejected" style="color:var(--red)">0</div><div class="scard-label">Rejected / Edit</div></div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav">
+  <div class="ntab active" onclick="showPanel('vendor-email')">📧 Vendor Emails</div>
+  <div class="ntab" onclick="showPanel('linkedin')">💼 LinkedIn Outreach</div>
+  <div class="ntab" onclick="showPanel('client-email')">🏢 Client Emails</div>
+  <div class="ntab" onclick="showPanel('seo')">🔍 SEO Pages</div>
+  <div class="ntab" onclick="showPanel('magnets')">📎 Lead Magnets</div>
+  <div class="ntab" onclick="showPanel('social')">📱 Social Posts</div>
+</div>
+
+<div class="content">
+
+<!-- ==================== VENDOR EMAILS ==================== -->
+<div class="panel active" id="panel-vendor-email">
+  <div class="section-title">Vendor Email Sequence — Claim Your Free Listing</div>
+  <div class="section-sub">4-email sequence sent after a vendor is seeded. Goal: get them to claim their free profile on NSN. Nothing sends until you approve each email.</div>
+
+  <div class="channel-intro">
+    <strong>Strategy:</strong> The vendor is already on the platform before we email them. We tell them their listing is live, invite them to claim it for free, and create urgency with a Founding Member offer. This is the Clutch.co playbook — it works because there's zero friction. They're not starting from scratch, they're just verifying what's already there.
+    <br><br>
+    <strong>Timing:</strong> Email 1 on seed day → Email 2 on Day 5 → Email 3 on Day 12 → Email 4 on Day 18
+  </div>
+
+  <!-- EMAIL 1 -->
+  <div class="ccard" id="ve1">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Email 1 — Your Listing Is Live</div>
+        <div class="ccard-meta">Sent: Day 0 (same day vendor is seeded) &nbsp;|&nbsp; <span class="badge b-phase">Phase 1</span></div>
+      </div>
+      <span class="badge b-draft" id="ve1-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">{{Company Name}} is now listed on Nationwide Security Network — claim your free profile</div>
+    <div class="email-body">Hi {{First Name}},
+
+I wanted to give you a quick heads-up — {{Company Name}} is now featured on Nationwide Security Network (NSN), a new B2B marketplace connecting security vendors with corporate clients across the country.
+
+Your profile is already live at:
+nsn-platform.com/vendors/{{profile-slug}}
+
+Right now the profile shows your basic information pulled from public records. When you claim it (free), you can:
+
+  → Add photos, service details, and specializations
+  → Get discovered by corporate buyers searching in {{City}}
+  → Respond to RFPs posted by companies needing security services
+  → Collect verified client reviews
+
+We are in our Founding Member phase — vendors who claim their listing in the next 30 days lock in 50% off when paid tiers launch later this year. No credit card, no commitment right now.
+
+Claim your free profile here:
+nsn-platform.com/claim/{{token}}
+
+Takes about 5 minutes.
+
+— The NSN Team
+support@nsn-platform.com</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ve1','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ve1','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ve1')">Copy Email</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 2 -->
+  <div class="ccard" id="ve2">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Email 2 — Gentle Follow-Up</div>
+        <div class="ccard-meta">Sent: Day 5 if no response &nbsp;|&nbsp; <span class="badge b-phase">Phase 1</span></div>
+      </div>
+      <span class="badge b-draft" id="ve2-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">Quick follow-up — {{Company Name}} profile on NSN</div>
+    <div class="email-body">Hi {{First Name}},
+
+Just circling back on my note from last week.
+
+{{Company Name}} has a live profile on NSN and I wanted to make sure you saw it before it gets buried under the other vendors we are adding in {{City}}.
+
+Corporate buyers are already browsing the platform — a complete profile with photos and service details gets 4-6x more profile views than a basic listing.
+
+If claiming is not the right fit right now, no problem at all — just let me know and I will stop following up.
+
+If you do want to grab the free Founding Member listing before the window closes:
+nsn-platform.com/claim/{{token}}
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ve2','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ve2','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ve2')">Copy Email</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 3 -->
+  <div class="ccard" id="ve3">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Email 3 — Value + Social Proof</div>
+        <div class="ccard-meta">Sent: Day 12 if no response &nbsp;|&nbsp; <span class="badge b-phase">Phase 1</span></div>
+      </div>
+      <span class="badge b-draft" id="ve3-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">The math behind one NSN lead for a security company</div>
+    <div class="email-body">Hi {{First Name}},
+
+One more note and then I will leave you alone.
+
+I wanted to share something quick. The average commercial security contract in the US is worth $60,000 — $120,000 per year. NSN's free Founding Member listing takes 5 minutes to claim.
+
+One lead that converts pays for years of any subscription we ever charge.
+
+Other security vendors in {{City}} have already claimed their profiles. Once we hit our cap in your category, we move to a paid waitlist for new listings.
+
+Your free claim link (expires in 6 days):
+nsn-platform.com/claim/{{token}}
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ve3','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ve3','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ve3')">Copy Email</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 4 -->
+  <div class="ccard" id="ve4">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Email 4 — The Breakup</div>
+        <div class="ccard-meta">Sent: Day 18 if no response — final email &nbsp;|&nbsp; <span class="badge b-phase">Phase 1</span></div>
+      </div>
+      <span class="badge b-draft" id="ve4-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">Last email from us — {{Company Name}}</div>
+    <div class="email-body">Hi {{First Name}},
+
+This is the last email I will send.
+
+I am going to open up {{Company Name}}'s Founding Member spot to the next security vendor on our waitlist in {{City}} if I do not hear back by Friday.
+
+If the timing is not right — totally fine. We will keep your basic listing live. You can always claim it later at the standard rate.
+
+But if you want to lock in free Founding Member status (50% off subscriptions for life when we launch paid tiers):
+nsn-platform.com/claim/{{token}}
+
+Either way, best of luck with the business.
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ve4','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ve4','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ve4')">Copy Email</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LINKEDIN ==================== -->
+<div class="panel" id="panel-linkedin">
+  <div class="section-title">LinkedIn Outreach — Vendor Side</div>
+  <div class="section-sub">3-message sequence targeting security company owners and VP BizDev. I build the prospect list, pre-write every message, and you copy-paste. LinkedIn blocks automated sends so this requires your 5 minutes per batch.</div>
+
+  <div class="channel-intro">
+    <strong>Target profile:</strong> Owner / President / VP Business Development at security firms with 5–200 employees. Company size sweet spot — big enough to have budget, small enough to not already have a full marketing team. Search filter: "security" industry + these titles + 2nd connections.<br><br>
+    <strong>Volume:</strong> 20–25 connection requests per day (LinkedIn's safe limit). I will pre-build batches of 20 with personalized messages ready to paste.
+  </div>
+
+  <!-- LI 1 -->
+  <div class="ccard" id="li1">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Connection Request Note</div>
+        <div class="ccard-meta">Sent with connection request — 300 character limit &nbsp;|&nbsp; <span class="badge b-phase">Phase 2</span></div>
+      </div>
+      <span class="badge b-draft" id="li1-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-li">LinkedIn</div>
+    <div class="email-body">Hi {{First Name}} — I'm building a national B2B marketplace specifically for security vendors. Early members are getting free founding listings + priority placement. Thought {{Company Name}} would be a great fit. Happy to share more if interested.</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('li1','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('li1','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('li1')">Copy</button>
+    </div>
+  </div>
+
+  <!-- LI 2 -->
+  <div class="ccard" id="li2">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Message 1 — After Connection Accepts</div>
+        <div class="ccard-meta">Send within 24 hours of connect accepted &nbsp;|&nbsp; <span class="badge b-phase">Phase 2</span></div>
+      </div>
+      <span class="badge b-draft" id="li2-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-li">LinkedIn</div>
+    <div class="email-body">Thanks for connecting, {{First Name}}.
+
+Quick background — I'm launching Nationwide Security Network, a marketplace where corporate buyers (facilities directors, risk managers, HR teams) search for and vet security vendors by city, service type, and specialty.
+
+We're in the founding member phase right now — free listings, no subscription required. Vendors who join early get:
+  • 50% off when paid tiers launch
+  • Priority placement in search results
+  • "Founding Member" badge on their profile
+
+Takes about 5 minutes to set up. Would it make sense to get {{Company Name}} listed?
+
+Here's what the vendor profile looks like: nsn-platform.com/vendor-example</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('li2','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('li2','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('li2')">Copy</button>
+    </div>
+  </div>
+
+  <!-- LI 3 -->
+  <div class="ccard" id="li3">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Message 2 — Follow-Up (No Reply)</div>
+        <div class="ccard-meta">Send Day 7 if no reply &nbsp;|&nbsp; <span class="badge b-phase">Phase 2</span></div>
+      </div>
+      <span class="badge b-draft" id="li3-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-li">LinkedIn</div>
+    <div class="email-body">Hey {{First Name}} — just bumping this up in case it got buried.
+
+Short version: corporate clients are already using NSN to find vendors in {{City}}. A complete profile takes 5 minutes and it's free right now.
+
+If it's not a fit, no worries at all — just let me know and I'll stop following up. But if you want to grab a founding member spot before we cap the category: nsn-platform.com/claim
+
+Either way, good luck with everything.</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('li3','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('li3','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('li3')">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CLIENT EMAILS ==================== -->
+<div class="panel" id="panel-client-email">
+  <div class="section-title">Client / Buyer Email Outreach</div>
+  <div class="section-sub">Cold outreach to corporate buyers — facilities directors, risk managers, HR directors at mid-large companies. Goal is to drive them to NSN to search for vendors. These run parallel to vendor outreach starting Month 3.</div>
+
+  <div class="channel-intro">
+    <strong>Targets:</strong> Director of Facilities, Director of Security, VP Operations, HR Director, Risk Manager at companies with 200–5,000 employees in industries with known security needs: healthcare, commercial real estate, financial services, manufacturing, hospitality.<br><br>
+    <strong>List source:</strong> I pull leads from LinkedIn Sales Navigator + public company directories. I build the list, you approve before any sends.
+  </div>
+
+  <!-- CLIENT EMAIL 1 -->
+  <div class="ccard" id="ce1">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Client Email 1 — Initial Outreach</div>
+        <div class="ccard-meta">Cold outreach to corporate buyers &nbsp;|&nbsp; <span class="badge b-phase">Phase 3</span></div>
+      </div>
+      <span class="badge b-draft" id="ce1-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">Finding vetted security vendors in {{City}} just got easier</div>
+    <div class="email-body">Hi {{First Name}},
+
+If your team ever needs to find, vet, or compare security vendors — whether for your facility, events, or corporate risk programs — I wanted to make sure you knew about NSN.
+
+Nationwide Security Network is a free B2B platform where you can:
+
+  → Search 500+ verified security vendors by city, service type, and specialty
+  → Compare armed guards, mobile patrol, executive protection, cybersecurity, and more
+  → Post RFPs and receive proposals directly from vetted vendors
+  → Read verified reviews from other corporate clients
+
+No subscription, no cost to buyers. It is completely free for your team.
+
+Search vendors in {{City}} now:
+nsn-platform.com/search?location={{city-slug}}
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ce1','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ce1','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ce1')">Copy Email</button>
+    </div>
+  </div>
+
+  <!-- CLIENT EMAIL 2 -->
+  <div class="ccard" id="ce2">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Client Email 2 — Lead Magnet Offer</div>
+        <div class="ccard-meta">Sent Day 5 if no response &nbsp;|&nbsp; <span class="badge b-phase">Phase 3</span></div>
+      </div>
+      <span class="badge b-draft" id="ce2-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">Free download: Security Vendor RFP Template (used by 200+ companies)</div>
+    <div class="email-body">Hi {{First Name}},
+
+Regardless of whether NSN is the right fit for you right now, I wanted to send over something useful.
+
+We put together a free Security Vendor RFP Template that covers everything your team needs to scope and evaluate security proposals — from guard services and access control to investigations and executive protection.
+
+Download it free here:
+nsn-platform.com/resources/rfp-template
+
+No form, no email required. Just a direct download.
+
+If you ever need to find security vendors in {{City}}, NSN has 500+ vetted vendors searchable by service type:
+nsn-platform.com/search
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ce2','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ce2','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ce2')">Copy Email</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SEO PAGES ==================== -->
+<div class="panel" id="panel-seo">
+  <div class="section-title">SEO City + Service Pages</div>
+  <div class="section-sub">250 pages targeting "[city] security companies" searches on Google. These are written and handed to your developer to publish. Long-term organic traffic — compounds over time, free forever once live.</div>
+
+  <div class="channel-intro">
+    <strong>Formula:</strong> One page per city-service combo. Each page targets a real search term, shows relevant vendors from NSN, and has a call to action to search or post an RFP. When enough of these rank on Google, corporate buyers find NSN without any ad spend.<br><br>
+    <strong>Volume:</strong> 50 cities x 5 core service types = 250 pages. I write all of them. Your developer adds them. Here are 3 examples.
+  </div>
+
+  <!-- SEO 1 -->
+  <div class="seo-card" id="seo1">
+    <div class="ccard-header">
+      <div>
+        <div class="seo-title">Security Companies in Nashville, TN</div>
+        <div class="seo-url">nsn-platform.com/security-companies/nashville-tn</div>
+        <div class="seo-desc">Meta: Find top-rated security companies in Nashville, TN. Compare armed guards, mobile patrol, event security, and executive protection vendors. Get free quotes on NSN.</div>
+      </div>
+      <span class="badge b-draft" id="seo1-badge">Draft</span>
+    </div>
+    <div class="seo-body">H1: Security Companies in Nashville, TN
+
+Nashville businesses rely on professional security services to protect employees, assets, and facilities. Whether you need armed security guards for a corporate campus, mobile patrol for a commercial property, or executive protection for company leadership, NSN connects you with vetted Nashville security vendors in minutes.
+
+HOW TO FIND THE RIGHT SECURITY COMPANY IN NASHVILLE
+
+Step 1: Define your security need
+Armed vs unarmed guards, mobile vs stationary, short-term event vs long-term contract.
+
+Step 2: Check licensing
+All security companies operating in Tennessee must hold a valid Private Protective Services license issued by the Tennessee Department of Commerce & Insurance.
+
+Step 3: Compare and get quotes
+Use NSN to search Nashville vendors by service type, read verified reviews, and request proposals directly from multiple vendors.
+
+TOP SECURITY SERVICES IN NASHVILLE
+• Armed Security Guards — licensed officers for high-risk environments
+• Unarmed Security — visible deterrence for commercial and retail
+• Mobile Patrol — vehicle-based patrol for large properties
+• Event Security — crowd management, access control, VIP protection
+• Executive Protection — personal security for corporate leadership
+
+[NSN VENDOR GRID — Nashville vendors auto-populated here]
+
+FREQUENTLY ASKED QUESTIONS
+Q: How much does a security guard cost in Nashville?
+A: Unarmed guard rates in Nashville typically range $18-28/hour. Armed guards run $25-40/hour depending on licensing level and contract length.
+
+Q: Do I need a contract?
+A: Most Nashville security firms offer both short-term and long-term contracts. Event coverage can be arranged with as little as 2 weeks notice.
+
+[SEARCH NASHVILLE VENDORS — CTA BUTTON]</div>
+    <div class="card-actions" style="margin-top:10px">
+      <button class="btn btn-approve" onclick="setStatus('seo1','approved')">✓ Approve Page</button>
+      <button class="btn btn-reject" onclick="setStatus('seo1','rejected')">✗ Needs Edit</button>
+    </div>
+  </div>
+
+  <!-- SEO 2 -->
+  <div class="seo-card" id="seo2">
+    <div class="ccard-header">
+      <div>
+        <div class="seo-title">Armed Security Guard Companies in Houston, TX</div>
+        <div class="seo-url">nsn-platform.com/armed-security/houston-tx</div>
+        <div class="seo-desc">Meta: Compare licensed armed security guard companies in Houston, TX. Verified vendors, real reviews, free RFP tool. Find the right partner on NSN.</div>
+      </div>
+      <span class="badge b-draft" id="seo2-badge">Draft</span>
+    </div>
+    <div class="seo-body">H1: Armed Security Guard Companies in Houston, TX
+
+Houston's size and density make armed security a common requirement for corporate campuses, healthcare facilities, financial institutions, and high-value retail. NSN lists licensed armed security guard companies across the greater Houston metro with verified credentials and client reviews.
+
+TEXAS ARMED SECURITY LICENSING
+Armed security guards in Texas must hold a valid Level III or Level IV security license issued by the Texas Department of Public Safety. All companies listed on NSN in this category have provided license verification.
+
+WHAT TO ASK ARMED SECURITY VENDORS IN HOUSTON
+1. What level of DPS license do your officers carry?
+2. What is your officer-to-supervisor ratio on large contracts?
+3. How do you handle officer no-shows or callouts?
+4. What does your incident reporting process look like?
+5. Do you carry a minimum of $1M general liability?
+
+HOUSTON ARMED SECURITY PRICING (2026)
+Level III guard: $28-38/hour
+Level IV guard: $35-50/hour
+Armed mobile patrol: $45-65/hour
+Armed executive protection: $75-150/hour
+
+[NSN VENDOR GRID — Houston armed security vendors]
+
+[POST AN RFP — GET PROPOSALS FROM 3+ VENDORS — CTA BUTTON]</div>
+    <div class="card-actions" style="margin-top:10px">
+      <button class="btn btn-approve" onclick="setStatus('seo2','approved')">✓ Approve Page</button>
+      <button class="btn btn-reject" onclick="setStatus('seo2','rejected')">✗ Needs Edit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEAD MAGNETS ==================== -->
+<div class="panel" id="panel-magnets">
+  <div class="section-title">Buyer Lead Magnets</div>
+  <div class="section-sub">Free downloads for corporate buyers. Gated with an email form to build the buyer list. I write all content — your developer adds the download pages. These become permanent traffic and list-building assets.</div>
+
+  <div class="channel-intro">
+    <strong>Why this works:</strong> Corporate buyers searching for security vendors trust platforms that give them useful tools first. A free RFP template or evaluation checklist positions NSN as the expert resource — not just another directory. Every download is a buyer lead you can market to when subscriptions launch.
+  </div>
+
+  <div class="magnet-card" id="mag1">
+    <div class="ccard-header">
+      <div>
+        <div class="magnet-icon">📋</div>
+        <div class="magnet-title">Security Vendor RFP Template</div>
+        <div class="magnet-why">"The single most-downloaded resource in the security procurement space"</div>
+      </div>
+      <span class="badge b-draft" id="mag1-badge">Draft</span>
+    </div>
+    <div class="magnet-outline">OUTLINE — Security Vendor RFP Template
+
+Section 1: Company Overview & Scope
+  - Your organization details
+  - Number of locations, employees, facilities
+  - Current security arrangement (if any)
+  - RFP timeline and decision date
+
+Section 2: Scope of Work
+  - Service type (armed/unarmed/patrol/event/investigations)
+  - Hours of coverage (days/hours/holidays)
+  - Post locations and duties
+  - Special requirements (armed, bilingual, clearance)
+
+Section 3: Vendor Qualifications Required
+  - State licensing requirements
+  - Insurance minimums ($1M GL, workers comp)
+  - Years in operation minimum
+  - Reference requirements (3 comparable contracts)
+
+Section 4: Proposal Format
+  - Pricing breakdown (hourly rates by officer level)
+  - Supervisor structure
+  - Training program description
+  - Technology and reporting tools
+  - Transition plan
+
+Section 5: Evaluation Criteria
+  - How proposals will be scored (weighted matrix)
+  - Interview/site visit process
+  - Award timeline
+
+Section 6: Terms & Conditions
+  - Contract length expectations
+  - Termination provisions
+  - Performance standards and SLAs</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('mag1','approved')">✓ Approve — Build This</button>
+      <button class="btn btn-reject" onclick="setStatus('mag1','rejected')">✗ Skip</button>
+    </div>
+  </div>
+
+  <div class="magnet-card" id="mag2">
+    <div class="ccard-header">
+      <div>
+        <div class="magnet-icon">✅</div>
+        <div class="magnet-title">47-Point Security Vendor Evaluation Checklist</div>
+        <div class="magnet-why">"Makes buyers feel confident — and makes NSN the trusted advisor"</div>
+      </div>
+      <span class="badge b-draft" id="mag2-badge">Draft</span>
+    </div>
+    <div class="magnet-outline">OUTLINE — 47-Point Security Vendor Evaluation Checklist
+
+LICENSING & COMPLIANCE (9 points)
+  ☐ Valid state security license on file
+  ☐ License covers all services being provided
+  ☐ License expiration date verified
+  ☐ Background check policy documented
+  ☐ Drug testing policy in place
+  ☐ Officers meet state training hour requirements
+  ☐ Supervisors hold required certification level
+  ☐ Company registered and in good standing
+  ☐ No open regulatory violations or complaints
+
+INSURANCE (6 points)
+  ☐ General liability minimum $1M per occurrence
+  ☐ Workers compensation current
+  ☐ Umbrella/excess policy confirmed
+  ☐ You are named as additional insured
+  ☐ Certificate of insurance received
+  ☐ Bonding confirmed (if required)
+
+OPERATIONS (12 points)
+  ☐ 24/7 dispatch/operations center
+  ☐ Officer callout/no-show replacement policy
+  ☐ Incident reporting format and turnaround
+  ☐ Supervisor visit frequency
+  ☐ Communication protocols defined
+  ☐ Post orders process explained
+  ☐ Technology platform (reporting app, GPS)
+  ☐ Uniform and appearance standards
+  ☐ Vehicle condition (if mobile patrol)
+  ☐ Equipment provided vs officer-supplied
+  ☐ Escalation chain documented
+  ☐ Contract transition plan
+
+REFERENCES & TRACK RECORD (8 points)
+  ☐ 3 references from comparable contracts
+  ☐ References checked and positive
+  ☐ Years in operation (minimum 3 recommended)
+  ☐ Local market presence verified
+  ☐ No major lawsuits or settlements (search court records)
+  ☐ BBB or complaint history checked
+  ☐ Online reviews reviewed
+  ☐ NSN profile claimed and complete
+
+PRICING & CONTRACT (12 points)
+  ☐ Hourly rates competitive for market
+  ☐ Bill rate vs pay rate spread reasonable
+  ☐ Overtime policy clear
+  ☐ Holiday rate disclosed
+  ☐ Contract length options available
+  ☐ Termination clause reviewed by counsel
+  ☐ Rate increase provisions documented
+  ☐ Invoice format and payment terms agreed
+  ☐ Scope change process defined
+  ☐ Performance penalty clauses reviewed
+  ☐ Auto-renewal terms understood
+  ☐ Final contract signed by authorized signer</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('mag2','approved')">✓ Approve — Build This</button>
+      <button class="btn btn-reject" onclick="setStatus('mag2','rejected')">✗ Skip</button>
+    </div>
+  </div>
+
+  <div class="magnet-card" id="mag3">
+    <div class="ccard-header">
+      <div>
+        <div class="magnet-icon">💰</div>
+        <div class="magnet-title">Security Cost Guide 2026 — What It Really Costs by Service Type</div>
+        <div class="magnet-why">"Buyers search 'how much does security cost' 10,000+ times/month — this owns that search"</div>
+      </div>
+      <span class="badge b-draft" id="mag3-badge">Draft</span>
+    </div>
+    <div class="magnet-outline">OUTLINE — Security Cost Guide 2026
+
+Introduction: Why Security Pricing Is So Confusing
+  - Bill rate vs pay rate explained
+  - Why two companies can quote the same post at 40% different prices
+  - What actually drives cost
+
+Section 1: Guard Services Pricing
+  - Unarmed security guard: $18-28/hr (national avg $22)
+  - Armed security guard: $25-42/hr
+  - Off-duty police officer: $55-85/hr
+  - Supervisor/account manager: included vs billed separately
+  - Regional cost variation (CA/NY 20-35% higher)
+
+Section 2: Mobile Patrol Pricing
+  - Per-pass pricing: $15-35/pass depending on market
+  - Dedicated mobile patrol: $28-45/hr
+  - GPS-verified patrol reports: what to expect
+
+Section 3: Event Security Pricing
+  - 4-hour minimums standard
+  - Crowd management: $22-35/hr unarmed
+  - VIP protection detail: $65-150/hr
+  - Access control/bag check: $18-25/hr
+
+Section 4: Specialty Services
+  - Executive protection: $75-200/hr (domestic)
+  - K-9 unit: $55-90/hr
+  - Fire watch: $25-40/hr
+  - Cybersecurity assessments: $150-350/hr
+  - Background screening: $25-200/check depending on depth
+
+Section 5: Contract vs Hourly
+  - Cost savings for annual contracts (typically 8-15% discount)
+  - Minimum hours requirements
+  - What to negotiate
+
+Section 6: How to Use NSN to Get Competitive Bids
+  - Post an RFP, receive 3+ proposals
+  - Compare vendors side by side
+  - Link to search</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('mag3','approved')">✓ Approve — Build This</button>
+      <button class="btn btn-reject" onclick="setStatus('mag3','rejected')">✗ Skip</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SOCIAL ==================== -->
+<div class="panel" id="panel-social">
+  <div class="section-title">Social Media — Organic Posts</div>
+  <div class="section-sub">Posts for LinkedIn, Facebook, and X targeting both vendors and buyers. Consistent posting builds brand awareness and drives inbound. These are for NSN's company accounts. Approve what you want to run.</div>
+
+  <div class="channel-intro">
+    <strong>Strategy:</strong> Mix 3 types of content — value posts (security industry tips), platform announcements (new vendors added, new cities covered), and social proof (client/vendor spotlights). Post 3-4x/week on LinkedIn, 2-3x on Facebook, 1-2x on X. Never spam, always lead with value.
+  </div>
+
+  <div class="ccard" id="sp1">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Vendor Spotlight Template</div>
+        <div class="ccard-meta">Post weekly once vendors are claimed — builds social proof &nbsp;|&nbsp; <span class="badge b-phase">Phase 2</span></div>
+      </div>
+      <span class="badge b-draft" id="sp1-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-li">LinkedIn</div>
+    <div class="post-body">🔒 Vendor Spotlight — {{Company Name}}, {{City}} {{State}}
+
+{{Company Name}} has been providing {{service type}} services to corporate clients in {{region}} for {{X}} years.
+
+What sets them apart:
+→ {{differentiator 1}}
+→ {{differentiator 2}}
+→ {{differentiator 3}}
+
+If your organization needs {{service type}} in {{City}}, {{Company Name}} is now accepting new clients on NSN.
+
+🔍 View their full profile and request a quote:
+nsn-platform.com/vendors/{{slug}}
+
+— — —
+Follow NSN for weekly vendor spotlights from across the country.
+#SecurityIndustry #NSN #{{City}}Security #CorporateSecurity</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('sp1','approved')">✓ Approve Template</button>
+      <button class="btn btn-reject" onclick="setStatus('sp1','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('sp1')">Copy</button>
+    </div>
+  </div>
+
+  <div class="ccard" id="sp2">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Value Post — Security Buyer Tip</div>
+        <div class="ccard-meta">2x/week — builds authority for NSN brand &nbsp;|&nbsp; <span class="badge b-phase">Phase 1</span></div>
+      </div>
+      <span class="badge b-draft" id="sp2-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-li">LinkedIn</div>
+    <div class="post-body">Most companies overpay for security contracts by 15-30%.
+
+Not because the vendor is dishonest. Because the buyer does not know what questions to ask.
+
+3 questions that will save your company money on the next security contract:
+
+1. "What is your bill rate vs your officer pay rate?"
+A healthy spread is 40-55%. Anything over 65% — ask why.
+
+2. "What is your supervisor ratio?"
+1 supervisor per 10-15 officers is standard. Fewer = less oversight.
+
+3. "What does your callout/no-show policy look like?"
+How fast do they fill a vacant post? Who is liable if coverage fails?
+
+Getting 3 competitive bids is even simpler now — NSN lets you post one RFP and receive proposals from multiple vetted vendors in your city.
+
+Free for corporate buyers: nsn-platform.com
+
+#SecurityManagement #FacilitiesManagement #CorporateSecurity #NSN</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('sp2','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('sp2','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('sp2')">Copy</button>
+    </div>
+  </div>
+
+  <div class="ccard" id="sp3">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Platform Growth Announcement</div>
+        <div class="ccard-meta">Post when milestone hit — 100 vendors, 500 vendors, new state, etc. &nbsp;|&nbsp; <span class="badge b-phase">Phase 2</span></div>
+      </div>
+      <span class="badge b-draft" id="sp3-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-fb">Facebook</div>
+    <div class="plat-tag plat-li" style="margin-left:6px">LinkedIn</div>
+    <div class="post-body">Big milestone for NSN 🛡️
+
+We just hit {{X}} verified security vendors on the platform — covering {{N}} states and {{M}} service categories.
+
+If you are a corporate buyer looking for security vendors, that means more options, more competition for your contract, and better prices for you.
+
+If you are a security company looking for new clients, there are corporate buyers in your city searching on NSN right now.
+
+Free for buyers. Founding member listings still available for vendors.
+
+nsn-platform.com
+
+#NationwideSecurityNetwork #SecurityIndustry #VendorMarketplace</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('sp3','approved')">✓ Approve Template</button>
+      <button class="btn btn-reject" onclick="setStatus('sp3','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('sp3')">Copy</button>
+    </div>
+  </div>
+
+  <div class="ccard" id="sp4">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Vendor Recruitment Post</div>
+        <div class="ccard-meta">Target: security company owners see this organically &nbsp;|&nbsp; <span class="badge b-phase">Phase 2</span></div>
+      </div>
+      <span class="badge b-draft" id="sp4-badge">Draft</span>
+    </div>
+    <div class="plat-tag plat-fb">Facebook Groups</div>
+    <div class="post-body">Question for security company owners —
+
+How do you currently get new corporate clients?
+
+Referrals? Cold calling? Google Ads?
+
+I ask because we built NSN specifically to solve the discovery problem for security vendors. Corporate buyers (facilities managers, HR directors, risk teams) use the platform to find and vet vendors by city and service type.
+
+Free listing for now. Founding member pricing locks in when we launch paid tiers.
+
+Anyone want to check it out? Happy to set up a profile for you.
+
+nsn-platform.com/vendors/join</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('sp4','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('sp4','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('sp4')">Copy</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<script>
+// APPROVAL STATE — stored in localStorage
+const ITEMS = ['ve1','ve2','ve3','ve4','li1','li2','li3','ce1','ce2','seo1','seo2','mag1','mag2','mag3','sp1','sp2','sp3','sp4'];
+let state = JSON.parse(localStorage.getItem('nsn_campaign_state') || '{}');
+
+function saveState() { localStorage.setItem('nsn_campaign_state', JSON.stringify(state)); }
+
+function setStatus(id, status) {
+  state[id] = status;
+  saveState();
+  renderStatuses();
+  updateCounts();
+}
+
+function renderStatuses() {
+  ITEMS.forEach(id => {
+    const s = state[id] || 'draft';
+    const badge = document.getElementById(id + '-badge');
+    const card = document.getElementById(id);
+    if (!badge || !card) return;
+    if (s === 'approved') {
+      badge.className = 'badge b-approved'; badge.textContent = '✓ Approved';
+      card.classList.add('approved'); card.classList.remove('rejected');
+    } else if (s === 'rejected') {
+      badge.className = 'badge b-rejected'; badge.textContent = '✗ Needs Edit';
+      card.classList.add('rejected'); card.classList.remove('approved');
+    } else {
+      badge.className = 'badge b-draft'; badge.textContent = 'Draft';
+      card.classList.remove('approved','rejected');
+    }
+  });
+}
+
+function updateCounts() {
+  const approved = ITEMS.filter(id => state[id] === 'approved').length;
+  const rejected = ITEMS.filter(id => state[id] === 'rejected').length;
+  const pending = ITEMS.length - approved - rejected;
+  document.getElementById('cnt-total').textContent = ITEMS.length;
+  document.getElementById('cnt-approved').textContent = approved;
+  document.getElementById('cnt-pending').textContent = pending;
+  document.getElementById('cnt-rejected').textContent = rejected;
+  // update header badge
+  const hb = document.querySelector('.header-badge');
+  if (approved === ITEMS.length) {
+    hb.style.background = '#14532d'; hb.style.color = '#4ade80';
+    hb.textContent = '✓ ALL APPROVED — READY TO LAUNCH';
+  } else if (approved > 0) {
+    hb.style.background = '#1e3a0d'; hb.style.color = '#86efac';
+    hb.textContent = approved + ' / ' + ITEMS.length + ' APPROVED';
+  }
+}
+
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ntab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.email-body, .post-body, .seo-body, .magnet-outline');
+  if (!body) return;
+  navigator.clipboard.writeText(body.textContent.trim()).then(() => {
+    const btn = card.querySelector('.btn-copy');
+    if (btn) { const orig = btn.textContent; btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = orig, 1500); }
+  });
+}
+
+// INIT
+renderStatuses();
+updateCounts();
+</script>
+</body>
+</html>
