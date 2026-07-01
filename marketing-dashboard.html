@@ -3,106 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NSN Marketing Campaign — Command Center</title>
+<title>NSN Marketing Command Center — Updated June 2026</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
 :root {
-  --bg: #0a0e1a; --card: #111827; --card2: #1a2235; --border: #1e2d45;
-  --accent: #f97316; --blue: #3b82f6; --green: #22c55e; --yellow: #eab308;
-  --red: #ef4444; --purple: #a855f7; --text: #e2e8f0; --muted: #64748b;
-  --input: #0d1525;
+  --bg:#0d1117; --card:#161b22; --card2:#1a2030; --border:#30363d;
+  --orange:#ff7700; --green:#4ade80; --blue:#60a5fa; --yellow:#facc15;
+  --red:#f87171; --purple:#c084fc; --text:#e6edf3; --muted:#7d8590;
+  --input:#0d1117;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; font-size: 14px; min-height: 100vh; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;min-height:100vh;}
 
-.header { background: linear-gradient(135deg,#0f172a,#1e3a5f); border-bottom: 2px solid var(--accent); padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-.header-left { display: flex; align-items: center; gap: 14px; }
-.logo { width: 42px; height: 42px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-.header h1 { font-size: 19px; font-weight: 700; color: #fff; }
-.header-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.header-badge { background: #14532d; color: #4ade80; border: 1px solid var(--green); border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; }
+/* HEADER */
+.header{background:linear-gradient(135deg,#0d1117,#1a1a1a);border-bottom:3px solid var(--orange);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.header-left{display:flex;align-items:center;gap:14px;}
+.logo{width:44px;height:44px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:12px;font-weight:700;color:#000;letter-spacing:1px;}
+.header h1{font-size:20px;font-weight:700;color:#fff;font-family:'Rajdhani',sans-serif;letter-spacing:1px;}
+.header-sub{font-size:11px;color:var(--muted);margin-top:2px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+.header-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.hbadge{padding:4px 12px;border-radius:3px;font-size:10px;font-weight:700;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+.hbadge-live{background:rgba(74,222,128,0.15);color:var(--green);border:1px solid rgba(74,222,128,0.4);}
+.hbadge-seo{background:rgba(255,119,0,0.15);color:var(--orange);border:1px solid rgba(255,119,0,0.4);}
+.hbadge-launch{background:rgba(96,165,250,0.15);color:var(--blue);border:1px solid rgba(96,165,250,0.4);}
 
 /* PHASE BAR */
-.phases { display: flex; margin: 20px 28px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-.phase { flex: 1; padding: 12px 8px; text-align: center; border-right: 1px solid var(--border); background: var(--card); }
-.phase:last-child { border-right: none; }
-.phase.done { background: #0d2010; border-top: 3px solid var(--green); }
-.phase.active { background: linear-gradient(135deg,#1e3a5f,#0f172a); border-top: 3px solid var(--accent); }
-.phase.upcoming { border-top: 3px solid var(--border); opacity: 0.5; }
-.phase-num { font-size: 16px; font-weight: 800; }
-.phase-name { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
-.phase-dates { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.phases{display:flex;margin:20px 28px 0;border:1px solid var(--border);overflow:hidden;}
+.phase{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--border);background:var(--card);}
+.phase:last-child{border-right:none;}
+.phase.done{background:#0d2010;border-top:3px solid var(--green);}
+.phase.active{background:linear-gradient(135deg,#1a1000,#1a1a1a);border-top:3px solid var(--orange);}
+.phase.upcoming{border-top:3px solid var(--border);opacity:0.4;}
+.phase-num{font-size:18px;font-weight:800;font-family:'Share Tech Mono',monospace;}
+.phase.done .phase-num{color:var(--green);}
+.phase.active .phase-num{color:var(--orange);}
+.phase.upcoming .phase-num{color:var(--muted);}
+.phase-name{font-size:10px;color:var(--muted);margin-top:3px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+.phase-dates{font-size:10px;color:var(--muted);margin-top:2px;font-family:'Share Tech Mono',monospace;}
 
-/* APPROVAL SUMMARY */
-.summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin: 20px 28px; }
-.scard { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
-.scard-val { font-size: 28px; font-weight: 800; }
-.scard-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+/* SUMMARY CARDS */
+.summary{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:20px 28px;}
+.scard{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center;position:relative;}
+.scard::before{content:'';position:absolute;top:0;left:0;width:18px;height:18px;border-top:2px solid rgba(255,119,0,0.4);border-left:2px solid rgba(255,119,0,0.4);}
+.scard-val{font-size:30px;font-weight:800;color:var(--orange);font-family:'Share Tech Mono',monospace;}
+.scard-label{font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:1px;}
 
-/* NAV TABS */
-.nav { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 28px 0; margin-top: 6px; margin-bottom: 0; }
-.ntab { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); cursor: pointer; font-size: 12px; font-weight: 600; color: var(--muted); background: var(--card2); transition: all 0.2s; white-space: nowrap; }
-.ntab:hover { border-color: var(--accent); color: var(--text); }
-.ntab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+/* STATUS ROW */
+.status-row{margin:0 28px 0;display:flex;gap:10px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--border);}
+.status-item{display:flex;align-items:center;gap:6px;font-size:11px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+.dot{width:7px;height:7px;border-radius:50%;}
+.dot-green{background:var(--green);}
+.dot-orange{background:var(--orange);}
+.dot-blue{background:var(--blue);}
+.dot-gray{background:var(--muted);}
+
+/* TABS */
+.nav{display:flex;gap:6px;flex-wrap:wrap;padding:0 28px 0;margin-top:16px;}
+.ntab{padding:8px 18px;border:1px solid var(--border);cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);background:var(--card2);transition:all 0.2s;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;text-transform:uppercase;}
+.ntab:hover{border-color:var(--orange);color:var(--text);}
+.ntab.active{background:var(--orange);color:#000;border-color:var(--orange);}
 
 /* CONTENT */
-.content { padding: 20px 28px; }
-.panel { display: none; }
-.panel.active { display: block; }
+.content{padding:20px 28px;}
+.panel{display:none;}
+.panel.active{display:block;}
 
-/* CAMPAIGN CARDS */
-.channel-intro { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 13px; color: var(--muted); line-height: 1.8; }
-.channel-intro strong { color: var(--text); }
-.ccard { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
-.ccard.approved { border-color: var(--green); }
-.ccard.rejected { border-color: var(--red); opacity: 0.6; }
-.ccard-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-.ccard-title { font-size: 14px; font-weight: 700; color: #fff; }
-.ccard-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.subj-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.subj-line { background: var(--input); border: 1px solid #1e3a5f; border-radius: 6px; padding: 8px 12px; font-size: 13px; color: var(--blue); font-weight: 600; margin-bottom: 10px; }
-.email-body { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 14px; font-size: 12px; color: var(--text); line-height: 1.9; white-space: pre-wrap; margin-bottom: 12px; max-height: 200px; overflow-y: auto; font-family: inherit; }
-.card-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.btn { padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
-.btn-approve { background: var(--green); color: #000; }
-.btn-approve:hover { background: #16a34a; color: #fff; }
-.btn-reject { background: #1a1a2e; border: 1px solid var(--red); color: var(--red); }
-.btn-reject:hover { background: var(--red); color: #fff; }
-.btn-copy { background: var(--card); border: 1px solid var(--border); color: var(--muted); }
-.btn-copy:hover { border-color: var(--blue); color: var(--blue); }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; }
-.b-draft { background: #1e1e3a; color: #93c5fd; }
-.b-approved { background: #14532d; color: #4ade80; border: 1px solid var(--green); }
-.b-rejected { background: #2a0a0a; color: #f87171; }
-.b-phase { background: #1e2d45; color: var(--muted); font-size: 10px; }
-.status-label { font-size: 11px; font-weight: 700; margin-left: 6px; }
+/* SECTION TAGS */
+.stag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(255,119,0,0.7);border-top:1px solid rgba(255,119,0,0.3);border-bottom:1px solid rgba(255,119,0,0.3);padding:4px 14px;margin-bottom:16px;}
 
-/* SEO */
-.seo-card { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
-.seo-title { color: #4ade80; font-size: 17px; font-weight: 700; margin-bottom: 3px; }
-.seo-url { color: var(--blue); font-size: 11px; margin-bottom: 8px; }
-.seo-desc { color: var(--text); font-size: 12px; margin-bottom: 10px; line-height: 1.6; }
-.seo-body { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 11px; color: var(--muted); line-height: 1.8; white-space: pre-wrap; max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
+/* CARDS */
+.ccard{background:var(--card2);border:1px solid var(--border);padding:18px;margin-bottom:14px;position:relative;}
+.ccard::before{content:'';position:absolute;top:0;left:0;width:16px;height:16px;border-top:1px solid rgba(255,119,0,0.35);border-left:1px solid rgba(255,119,0,0.35);}
+.ccard.done{border-color:var(--green);}
+.ccard.active-item{border-color:var(--orange);}
+.ccard-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.ccard-title{font-size:14px;font-weight:700;color:#fff;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;}
+.ccard-meta{font-size:11px;color:var(--muted);margin-top:3px;font-family:'Share Tech Mono',monospace;}
+.channel-intro{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--orange);padding:14px 18px;margin-bottom:18px;font-size:13px;color:var(--muted);line-height:1.8;}
+.channel-intro strong{color:var(--text);}
+.subj-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;font-family:'Share Tech Mono',monospace;}
+.subj-line{background:var(--input);border:1px solid #1e3a5f;padding:8px 12px;font-size:13px;color:var(--blue);font-weight:600;margin-bottom:10px;}
+.email-body{background:var(--input);border:1px solid var(--border);padding:14px;font-size:12px;color:var(--text);line-height:1.9;white-space:pre-wrap;margin-bottom:12px;max-height:200px;overflow-y:auto;font-family:'Rajdhani',sans-serif;}
+.card-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.btn{padding:7px 14px;border:none;cursor:pointer;font-size:12px;font-weight:700;transition:all 0.2s;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;}
+.btn-approve{background:var(--green);color:#000;}
+.btn-reject{background:var(--card);border:1px solid var(--red);color:var(--red);}
+.btn-copy{background:var(--card);border:1px solid var(--border);color:var(--muted);}
+.btn-copy:hover{border-color:var(--blue);color:var(--blue);}
+.badge{display:inline-block;padding:3px 10px;font-size:10px;font-weight:700;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+.b-draft{background:#1e1e3a;color:#93c5fd;}
+.b-live{background:rgba(74,222,128,0.15);color:var(--green);border:1px solid rgba(74,222,128,0.4);}
+.b-ready{background:rgba(255,119,0,0.15);color:var(--orange);border:1px solid rgba(255,119,0,0.4);}
+.b-hold{background:rgba(125,133,144,0.2);color:var(--muted);border:1px solid var(--border);}
+.b-phase{background:#1e2d45;color:var(--muted);font-size:10px;}
 
-/* MAGNETS */
-.magnet-card { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
-.magnet-icon { font-size: 30px; margin-bottom: 8px; }
-.magnet-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.magnet-why { font-size: 12px; color: var(--accent); margin-bottom: 8px; font-style: italic; }
-.magnet-outline { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 11px; color: var(--text); line-height: 1.9; white-space: pre-wrap; max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
+/* SEO CARDS */
+.seo-card{background:var(--card2);border:1px solid var(--border);padding:16px;margin-bottom:14px;}
+.seo-title{color:var(--green);font-size:16px;font-weight:700;margin-bottom:3px;font-family:'Rajdhani',sans-serif;}
+.seo-url{color:var(--blue);font-size:11px;margin-bottom:8px;font-family:'Share Tech Mono',monospace;}
+.seo-desc{color:var(--text);font-size:12px;margin-bottom:10px;line-height:1.6;}
+.seo-body{background:var(--input);border:1px solid var(--border);padding:12px;font-size:11px;color:var(--muted);line-height:1.8;white-space:pre-wrap;max-height:180px;overflow-y:auto;margin-bottom:10px;font-family:'Rajdhani',sans-serif;}
+.seo-status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.seo-stat{background:var(--card);border:1px solid var(--border);padding:10px 16px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;text-align:center;}
+.seo-stat span{display:block;font-size:18px;font-weight:800;color:var(--orange);margin-bottom:2px;}
 
-/* SOCIAL */
-.plat-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
-.plat-li { background: #0a3d62; color: #60a5fa; }
-.plat-fb { background: #1e3a6e; color: #93c5fd; }
-.plat-x { background: #1a1a1a; color: #e2e8f0; border: 1px solid #333; }
-.post-body { background: var(--input); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 12px; color: var(--text); line-height: 1.8; white-space: pre-wrap; margin-bottom: 10px; }
+/* MAGNET + SOCIAL */
+.magnet-card{background:var(--card2);border:1px solid var(--border);padding:16px;margin-bottom:14px;}
+.magnet-icon{font-size:28px;margin-bottom:8px;}
+.magnet-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Rajdhani',sans-serif;}
+.magnet-why{font-size:12px;color:var(--orange);margin-bottom:8px;font-style:italic;}
+.magnet-outline{background:var(--input);border:1px solid var(--border);padding:12px;font-size:11px;color:var(--text);line-height:1.9;white-space:pre-wrap;max-height:180px;overflow-y:auto;margin-bottom:10px;}
+.plat-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:3px 8px;display:inline-block;margin-bottom:8px;font-family:'Share Tech Mono',monospace;}
+.plat-li{background:#0a3d62;color:#60a5fa;}
+.plat-x{background:#1a1a1a;color:#e2e8f0;border:1px solid #333;}
+.post-body{background:var(--input);border:1px solid var(--border);padding:12px;font-size:12px;color:var(--text);line-height:1.8;white-space:pre-wrap;margin-bottom:10px;}
 
-/* MISC */
-.section-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-.section-sub { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
-.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media(max-width:800px){ .grid-2{grid-template-columns:1fr;} .summary{grid-template-columns:1fr 1fr;} .phases{flex-wrap:wrap;} }
+/* LAUNCH CHECKLIST */
+.checklist-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.checklist-item:last-child{border-bottom:none;}
+.check-box{width:20px;height:20px;border:2px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.check-box.checked{background:var(--orange);border-color:var(--orange);color:#000;font-weight:700;font-size:11px;}
+.check-text{font-size:13px;color:var(--text);line-height:1.5;}
+.check-text.done-text{color:var(--muted);text-decoration:line-through;}
+.check-meta{font-size:11px;color:var(--muted);margin-top:2px;font-family:'Share Tech Mono',monospace;}
+.priority-badge{font-size:10px;padding:2px 8px;font-weight:700;font-family:'Share Tech Mono',monospace;}
+.p-critical{background:rgba(248,113,113,0.15);color:var(--red);border:1px solid rgba(248,113,113,0.4);}
+.p-high{background:rgba(255,119,0,0.15);color:var(--orange);border:1px solid rgba(255,119,0,0.4);}
+.p-medium{background:rgba(250,204,21,0.15);color:var(--yellow);border:1px solid rgba(250,204,21,0.4);}
+.p-low{background:rgba(96,165,250,0.15);color:var(--blue);border:1px solid rgba(96,165,250,0.4);}
+
+/* PR STATUS */
+.pr-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);margin-bottom:6px;background:var(--card);}
+.pr-row.merged{border-left:3px solid var(--green);}
+.pr-row.open{border-left:3px solid var(--orange);}
+.pr-num{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);width:44px;flex-shrink:0;}
+.pr-title{font-size:13px;color:var(--text);flex:1;font-family:'Rajdhani',sans-serif;}
+.pr-status{font-size:10px;font-family:'Share Tech Mono',monospace;padding:2px 8px;letter-spacing:1px;}
+.pr-merged{background:rgba(74,222,128,0.15);color:var(--green);border:1px solid rgba(74,222,128,0.4);}
+.pr-open{background:rgba(255,119,0,0.15);color:var(--orange);border:1px solid rgba(255,119,0,0.4);}
+
+.section-title{font-size:17px;font-weight:700;margin-bottom:4px;font-family:'Rajdhani',sans-serif;letter-spacing:1px;color:#fff;}
+.section-sub{font-size:12px;color:var(--muted);margin-bottom:18px;font-family:'Share Tech Mono',monospace;}
+.divider{border:none;border-top:1px solid var(--border);margin:20px 0;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr;}.summary{grid-template-columns:1fr 1fr 1fr;}.phases{flex-wrap:wrap;}}
+@media(max-width:600px){.summary{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -110,61 +155,399 @@ body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-
 <!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <div class="logo">🛡️</div>
+    <div class="logo">NSN</div>
     <div>
-      <h1>NSN Marketing Campaign Center</h1>
-      <div class="header-sub">Review, approve, and track every campaign angle before anything goes live</div>
+      <h1>NSN Marketing Command Center</h1>
+      <div class="header-sub">// UPDATED JUNE 29 2026 // HUD THEME LIVE // SEO READY FOR LAUNCH //</div>
     </div>
   </div>
-  <div class="header-badge">⏸ NOTHING SENT — APPROVAL PENDING</div>
+  <div class="header-badges">
+    <div class="hbadge hbadge-live">SITE: LIVE</div>
+    <div class="hbadge hbadge-seo">SEO: PRE-LAUNCH</div>
+    <div class="hbadge hbadge-launch">LAUNCH: PENDING DOMAIN</div>
+  </div>
 </div>
 
-<!-- PHASE TIMELINE -->
+<!-- PHASE BAR -->
 <div class="phases">
-  <div class="phase active">
-    <div class="phase-num" style="color:var(--accent)">1</div>
-    <div class="phase-name">Foundation</div>
-    <div class="phase-dates">Now — Month 2</div>
+  <div class="phase done">
+    <div class="phase-num">1</div>
+    <div class="phase-name">Platform Build</div>
+    <div class="phase-dates">COMPLETE</div>
   </div>
-  <div class="phase upcoming">
+  <div class="phase done">
     <div class="phase-num">2</div>
-    <div class="phase-name">Vendor Recruit</div>
-    <div class="phase-dates">Month 2 — 4</div>
+    <div class="phase-name">HUD Redesign</div>
+    <div class="phase-dates">COMPLETE</div>
   </div>
-  <div class="phase upcoming">
+  <div class="phase done">
     <div class="phase-num">3</div>
-    <div class="phase-name">Client Traffic</div>
-    <div class="phase-dates">Month 3 — 6</div>
+    <div class="phase-name">SEO Infrastructure</div>
+    <div class="phase-dates">BUILT / GATED</div>
+  </div>
+  <div class="phase active">
+    <div class="phase-num">4</div>
+    <div class="phase-name">Pre-Launch</div>
+    <div class="phase-dates">IN PROGRESS</div>
   </div>
   <div class="phase upcoming">
-    <div class="phase-num">4</div>
-    <div class="phase-name">Sub Launch</div>
-    <div class="phase-dates">Month 6+</div>
+    <div class="phase-num">5</div>
+    <div class="phase-name">Vendor Seeding</div>
+    <div class="phase-dates">NEXT</div>
+  </div>
+  <div class="phase upcoming">
+    <div class="phase-num">6</div>
+    <div class="phase-name">Mass Outreach</div>
+    <div class="phase-dates">POST LAUNCH</div>
   </div>
 </div>
 
 <!-- SUMMARY STATS -->
 <div class="summary">
-  <div class="scard"><div class="scard-val" id="cnt-total" style="color:var(--text)">0</div><div class="scard-label">Total Assets</div></div>
-  <div class="scard"><div class="scard-val" id="cnt-approved" style="color:var(--green)">0</div><div class="scard-label">Approved</div></div>
-  <div class="scard"><div class="scard-val" id="cnt-pending" style="color:var(--yellow)">0</div><div class="scard-label">Pending Review</div></div>
-  <div class="scard"><div class="scard-val" id="cnt-rejected" style="color:var(--red)">0</div><div class="scard-label">Rejected / Edit</div></div>
+  <div class="scard">
+    <div class="scard-val">10</div>
+    <div class="scard-label">Pages Live (HUD)</div>
+  </div>
+  <div class="scard">
+    <div class="scard-val">50</div>
+    <div class="scard-label">SEO State Pages Built</div>
+  </div>
+  <div class="scard">
+    <div class="scard-val">11</div>
+    <div class="scard-label">Sitemap Pages Active</div>
+  </div>
+  <div class="scard">
+    <div class="scard-val">4</div>
+    <div class="scard-label">Email Sequences Ready</div>
+  </div>
+  <div class="scard">
+    <div class="scard-val">0</div>
+    <div class="scard-label">Emails Sent (pre-launch)</div>
+  </div>
 </div>
 
-<!-- NAV TABS -->
+<!-- STATUS ROW -->
+<div class="status-row" style="margin:0 28px;">
+  <div class="status-item"><div class="dot dot-green"></div>SITE LIVE ON RAILWAY</div>
+  <div class="status-item"><div class="dot dot-green"></div>HUD THEME: 8/10 PAGES MERGED</div>
+  <div class="status-item"><div class="dot dot-orange"></div>3 HUD PRs AWAITING ANDREI (#42 #45 #46)</div>
+  <div class="status-item"><div class="dot dot-orange"></div>SEO PAGES: BUILT — FLAG OFF UNTIL LAUNCH</div>
+  <div class="status-item"><div class="dot dot-blue"></div>SITEMAP: 11 CORE PAGES ACTIVE</div>
+  <div class="status-item"><div class="dot dot-gray"></div>BILLING: OFF (FREE LAUNCH PERIOD)</div>
+</div>
+
+<!-- TABS -->
 <div class="nav">
-  <div class="ntab active" onclick="showPanel('vendor-email')">📧 Vendor Emails</div>
-  <div class="ntab" onclick="showPanel('linkedin')">💼 LinkedIn Outreach</div>
-  <div class="ntab" onclick="showPanel('client-email')">🏢 Client Emails</div>
-  <div class="ntab" onclick="showPanel('seo')">🔍 SEO Pages</div>
-  <div class="ntab" onclick="showPanel('magnets')">📎 Lead Magnets</div>
-  <div class="ntab" onclick="showPanel('social')">📱 Social Posts</div>
+  <div class="ntab active" onclick="showPanel('launch')">Launch Checklist</div>
+  <div class="ntab" onclick="showPanel('prs')">PR Status</div>
+  <div class="ntab" onclick="showPanel('seo')">SEO Strategy</div>
+  <div class="ntab" onclick="showPanel('vendor-email')">Vendor Emails</div>
+  <div class="ntab" onclick="showPanel('client-email')">Client Emails</div>
+  <div class="ntab" onclick="showPanel('linkedin')">LinkedIn</div>
+  <div class="ntab" onclick="showPanel('magnets')">Lead Magnets</div>
+  <div class="ntab" onclick="showPanel('social')">Social Posts</div>
 </div>
 
 <div class="content">
 
-<!-- ==================== VENDOR EMAILS ==================== -->
-<div class="panel active" id="panel-vendor-email">
+<!-- ====== LAUNCH CHECKLIST ====== -->
+<div class="panel active" id="panel-launch">
+  <div class="stag">// LAUNCH CHECKLIST //</div>
+  <div class="section-title">Pre-Launch Checklist</div>
+  <div class="section-sub">Complete these before flipping the seo_pages_enabled flag and submitting to Google</div>
+
+  <div style="margin-bottom:24px;">
+    <div style="font-size:11px;color:var(--orange);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">// SITE &amp; DOMAIN //</div>
+
+    <div class="checklist-item">
+      <div class="check-box checked">✓</div>
+      <div>
+        <div class="check-text done-text">Military HUD theme applied to all 10 pages</div>
+        <div class="check-meta">HOME, VENDORS, RFPS, PRICING, ABOUT, VENDOR PROFILE, SUBMIT RFP, POST RESUME, SIGN IN, SIGN UP — ALL MERGED</div>
+      </div>
+      <span class="priority-badge p-critical">DONE</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Get production domain (nationwide-security.com or nsn.com)</div>
+        <div class="check-meta">Currently on nsn-test-production.up.railway.app — Google should NOT index this URL</div>
+      </div>
+      <span class="priority-badge p-critical">CRITICAL</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Point domain to Railway deployment</div>
+        <div class="check-meta">Update NEXT_PUBLIC_SITE_URL env var in Railway to match new domain</div>
+      </div>
+      <span class="priority-badge p-critical">CRITICAL</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Set up Google Search Console on production domain</div>
+        <div class="check-meta">google.com/search/console — verify ownership, submit sitemap URL: yourdomain.com/sitemap.xml</div>
+      </div>
+      <span class="priority-badge p-high">HIGH</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Flip seo_pages_enabled to TRUE in admin panel</div>
+        <div class="check-meta">DO NOT flip until on production domain. Turns on all 50 state pages + adds them to sitemap.</div>
+      </div>
+      <span class="priority-badge p-high">HOLD UNTIL DOMAIN READY</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Add real contact info to /contact page</div>
+        <div class="check-meta">Currently has placeholder dashes. Needs: NSN email, phone (Google Voice ok), business hours, city</div>
+      </div>
+      <span class="priority-badge p-high">HIGH</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Fix 0-review stars on vendor cards</div>
+        <div class="check-meta">Featured vendors show "★★★★★ (0)" — replace with "NEW MEMBER" badge until real reviews exist</div>
+      </div>
+      <span class="priority-badge p-medium">MEDIUM</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Fix Footer "Smart Matching" dead link</div>
+        <div class="check-meta">Links to /smart-matching which is a coming-soon page. Remove from footer or update link.</div>
+      </div>
+      <span class="priority-badge p-medium">MEDIUM</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Merge remaining HUD PRs — #42 Vendor Profile, #45 Post Resume, #46 Auth</div>
+        <div class="check-meta">Andrei to review and merge. No new dependencies. Zero logic changes.</div>
+      </div>
+      <span class="priority-badge p-high">HIGH</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <div style="font-size:11px;color:var(--orange);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">// VENDOR SEEDING //</div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Seed 100+ security vendors into platform using bulk import</div>
+        <div class="check-meta">Use NSN admin bulk import panel. Companies: Allied Universal, Pinkerton, Securitas + 100 regional companies</div>
+      </div>
+      <span class="priority-badge p-high">HIGH</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Send vendor outreach Email Sequence 1 to all seeded vendors</div>
+        <div class="check-meta">4-email sequence ready (see Vendor Emails tab). Goal: get them to claim their free listing</div>
+      </div>
+      <span class="priority-badge p-high">HIGH — AFTER SEEDING</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Set up outreach email address (outreach@[yourdomain].com)</div>
+        <div class="check-meta">Use subdomain for cold email. Set SPF, DKIM, DMARC. Tool: Instantly.ai ($37/mo) for sending + tracking</div>
+      </div>
+      <span class="priority-badge p-medium">MEDIUM</span>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-size:11px;color:var(--orange);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">// SEO LAUNCH //</div>
+
+    <div class="checklist-item">
+      <div class="check-box checked">✓</div>
+      <div>
+        <div class="check-text done-text">50 state SEO pages built and styled with HUD theme</div>
+        <div class="check-meta">All at /security-companies/[state-slug]. Structured data (JSON-LD), FAQ blocks, vendor grids, sidebar all done</div>
+      </div>
+      <span class="priority-badge p-critical">DONE</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box checked">✓</div>
+      <div>
+        <div class="check-text done-text">Sitemap expanded — 11 core pages always active, state pages gated</div>
+        <div class="check-meta">Google can crawl home, search, pricing, about, rfp/browse etc right now. State pages wait for flag.</div>
+      </div>
+      <span class="priority-badge p-critical">DONE</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Submit sitemap to Google Search Console</div>
+        <div class="check-meta">Once on production domain: Search Console → Sitemaps → submit yourdomain.com/sitemap.xml</div>
+      </div>
+      <span class="priority-badge p-high">LAUNCH DAY</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Request indexing for top 10 priority pages in Search Console</div>
+        <div class="check-meta">Manually request: homepage, /search, /pricing, /rfp/browse, top 5 state pages (TX, CA, FL, NY, IL)</div>
+      </div>
+      <span class="priority-badge p-high">LAUNCH DAY</span>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-box"></div>
+      <div>
+        <div class="check-text">Build 10 service category pages (/services/armed-guard-services etc)</div>
+        <div class="check-meta">Phase 2 SEO — high search volume keywords. "armed guard services near me" = 8,100/mo searches</div>
+      </div>
+      <span class="priority-badge p-medium">PHASE 2</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== PR STATUS ====== -->
+<div class="panel" id="panel-prs">
+  <div class="stag">// GITHUB PR STATUS //</div>
+  <div class="section-title">All NSN Pull Requests</div>
+  <div class="section-sub">HUD redesign progress + feature backlog</div>
+
+  <div style="font-size:11px;color:var(--green);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">// HUD THEME — MERGED //</div>
+
+  <div class="pr-row merged"><div class="pr-num">#40</div><div class="pr-title">Home Page — Full HUD Theme (hero, radar, feature cards, vendor section)</div><span class="pr-status pr-merged">MERGED</span></div>
+  <div class="pr-row merged"><div class="pr-num">#41</div><div class="pr-title">Submit RFP page</div><span class="pr-status pr-merged">MERGED</span></div>
+  <div class="pr-row merged"><div class="pr-num">#43</div><div class="pr-title">Pricing page</div><span class="pr-status pr-merged">MERGED</span></div>
+  <div class="pr-row merged"><div class="pr-num">#44</div><div class="pr-title">About page</div><span class="pr-status pr-merged">MERGED</span></div>
+  <div class="pr-row merged"><div class="pr-num">#47</div><div class="pr-title">Find Vendors / Search page</div><span class="pr-status pr-merged">MERGED</span></div>
+  <div class="pr-row merged"><div class="pr-num">#48</div><div class="pr-title">Browse RFPs page</div><span class="pr-status pr-merged">MERGED</span></div>
+
+  <div style="font-size:11px;color:var(--orange);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">// HUD THEME — OPEN — AWAITING ANDREI //</div>
+
+  <div class="pr-row open"><div class="pr-num">#42</div><div class="pr-title">Vendor Profile page — HUD header added, VendorProfile.tsx untouched</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#45</div><div class="pr-title">Post Resume page</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#46</div><div class="pr-title">Auth pages — Sign In + Sign Up (left panel only)</div><span class="pr-status pr-open">OPEN</span></div>
+
+  <div style="font-size:11px;color:var(--blue);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">// SEO — OPEN — AWAITING ANDREI //</div>
+
+  <div class="pr-row open"><div class="pr-num">#49</div><div class="pr-title">Security Companies Hub page (/security-companies) — HUD theme, all 50 states grid</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#50</div><div class="pr-title">State SEO pages + expanded sitemap (11 core pages now always in sitemap)</div><span class="pr-status pr-open">OPEN</span></div>
+
+  <div style="font-size:11px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">// FEATURE BACKLOG — OPEN //</div>
+
+  <div class="pr-row open"><div class="pr-num">#31</div><div class="pr-title">Client onboarding welcome banner (dismissible, shows once)</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#33</div><div class="pr-title">RFP templates — 6 pre-built (Guard Services, Exec Protection, Event Security etc)</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#34</div><div class="pr-title">Public vendor review button on profiles (approved clients only)</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#35</div><div class="pr-title">Vendor response rate badge (Responds Quickly / Good Response Rate)</div><span class="pr-status pr-open">OPEN</span></div>
+  <div class="pr-row open"><div class="pr-num">#36</div><div class="pr-title">Featured vendor spotlight on homepage (premium/Enterprise tier vendors)</div><span class="pr-status pr-open">OPEN</span></div>
+</div>
+
+<!-- ====== SEO ====== -->
+<div class="panel" id="panel-seo">
+  <div class="stag">// SEO STRATEGY //</div>
+  <div class="section-title">SEO Strategy — Pre-Launch Through Scale</div>
+  <div class="section-sub">50 state pages built and waiting. Core sitemap already active. Flag stays OFF until production domain is live.</div>
+
+  <div class="seo-status-bar">
+    <div class="seo-stat"><span>50</span>STATE PAGES BUILT</div>
+    <div class="seo-stat"><span>11</span>CORE PAGES IN SITEMAP</div>
+    <div class="seo-stat"><span>OFF</span>FLAG STATUS</div>
+    <div class="seo-stat"><span>0</span>GOOGLE IMPRESSIONS (PRE-LAUNCH)</div>
+    <div class="seo-stat"><span>160+</span>PAGES PLANNED (PHASES 1-3)</div>
+  </div>
+
+  <div class="seo-card">
+    <div class="seo-title">Phase 1 — State Pages (50 pages) — BUILT, GATED</div>
+    <div class="seo-url">/security-companies/[state-slug] — e.g. /security-companies/texas</div>
+    <div class="seo-desc">One page per state. Each has: H1 with state name, intro paragraph, vendor grid (live from DB), FAQ block (4 questions with structured data JSON-LD for Google rich results), sidebar with license info, top industries, major cities, and a vendor CTA. Metadata and canonical URLs set. All 50 pages auto-generate from a single component.</div>
+    <div class="seo-body">Target keywords (examples):
+"security companies in Texas" — 8,100/mo
+"security guard companies in California" — 4,400/mo
+"security companies in Florida" — 3,600/mo
+"security vendors in New York" — 2,900/mo
+"security companies in Illinois" — 2,100/mo
+
+STATUS: Pages built and styled with HUD theme (PR #50)
+GATING: seo_pages_enabled = false until production domain
+ACTION: Flip flag on launch day, submit sitemap to Google Search Console</div>
+  </div>
+
+  <div class="seo-card">
+    <div class="seo-title">Phase 2 — Service Category Pages (10 pages) — TO BUILD</div>
+    <div class="seo-url">/services/[service-slug] — e.g. /services/armed-guard-services</div>
+    <div class="seo-desc">One page per service type. High commercial intent keywords — people searching these are ready to hire. Each page: what the service is, what to look for, how to find vendors on NSN, CTA to search filtered by that service type.</div>
+    <div class="seo-body">Target keywords:
+"armed guard services" — 9,900/mo
+"executive protection services" — 8,100/mo
+"mobile patrol security" — 5,400/mo
+"event security companies" — 4,400/mo
+"loss prevention security" — 3,600/mo
+"security guard company near me" — 27,100/mo (broad match)
+
+STATUS: Not yet built — Phase 2 post-launch
+ASK ANDREI: ~1-2 days work to build the route + 10 pages</div>
+  </div>
+
+  <div class="seo-card">
+    <div class="seo-title">Phase 3 — City Pages (50 top cities) — PLANNED</div>
+    <div class="seo-url">/security-companies/[state]/[city] — e.g. /security-companies/texas/houston</div>
+    <div class="seo-desc">Hyper-local pages for the top 50 cities. "Security companies in Houston TX" = 2,400 searches/mo per major city. These compound — 50 pages x 2,400 avg = 120,000 potential monthly impressions. Best ROI SEO investment after state pages.</div>
+    <div class="seo-body">Priority cities:
+1. Houston TX — 2,400/mo
+2. Los Angeles CA — 2,900/mo
+3. Chicago IL — 1,900/mo
+4. Phoenix AZ — 1,600/mo
+5. Philadelphia PA — 1,400/mo
+6. San Antonio TX — 1,300/mo
+7. Dallas TX — 1,800/mo
+8. New York NY — 2,100/mo
+9. Miami FL — 1,700/mo
+10. Atlanta GA — 1,500/mo
+
+STATUS: Planned — Phase 3 (1-2 months post-launch)
+This route structure is already partially supported by the existing URL pattern</div>
+  </div>
+
+  <div class="seo-card">
+    <div class="seo-title">Launch Day SEO Actions (do these on launch day, in order)</div>
+    <div class="seo-url">Your checklist for launch day</div>
+    <div class="seo-desc">In order of importance. Takes about 30 minutes total.</div>
+    <div class="seo-body">1. Confirm production domain is live and HTTPS working
+2. Update NEXT_PUBLIC_SITE_URL in Railway env vars to new domain
+3. Flip seo_pages_enabled to TRUE in NSN admin panel
+4. Go to google.com/search/console
+5. Add property for your domain
+6. Verify ownership (DNS TXT record — Andrei adds this)
+7. Submit sitemap: yourdomain.com/sitemap.xml
+8. Click "Request Indexing" on these pages manually:
+   - yourdomain.com (homepage)
+   - yourdomain.com/search
+   - yourdomain.com/pricing
+   - yourdomain.com/security-companies/texas
+   - yourdomain.com/security-companies/california
+   - yourdomain.com/security-companies/florida
+9. Set up Bing Webmaster Tools (same process, 10% extra traffic free)
+10. Come back in 48-72 hours — pages should start appearing in Search Console</div>
+  </div>
+</div>
+
+<!-- ====== VENDOR EMAILS ====== -->
+id="panel-vendor-email" style="display:none;">
   <div class="section-title">Vendor Email Sequence — Claim Your Free Listing</div>
   <div class="section-sub">4-email sequence sent after a vendor is seeded. Goal: get them to claim their free profile on NSN. Nothing sends until you approve each email.</div>
 
@@ -313,7 +696,92 @@ Either way, best of luck with the business.
 </div>
 
 <!-- ==================== LINKEDIN ==================== -->
-<div class="panel" id="panel-linkedin">
+
+
+<!-- ====== CLIENT EMAILS ====== -->
+id="panel-client-email">
+  <div class="section-title">Client / Buyer Email Outreach</div>
+  <div class="section-sub">Cold outreach to corporate buyers — facilities directors, risk managers, HR directors at mid-large companies. Goal is to drive them to NSN to search for vendors. These run parallel to vendor outreach starting Month 3.</div>
+
+  <div class="channel-intro">
+    <strong>Targets:</strong> Director of Facilities, Director of Security, VP Operations, HR Director, Risk Manager at companies with 200–5,000 employees in industries with known security needs: healthcare, commercial real estate, financial services, manufacturing, hospitality.<br><br>
+    <strong>List source:</strong> I pull leads from LinkedIn Sales Navigator + public company directories. I build the list, you approve before any sends.
+  </div>
+
+  <!-- CLIENT EMAIL 1 -->
+  <div class="ccard" id="ce1">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Client Email 1 — Initial Outreach</div>
+        <div class="ccard-meta">Cold outreach to corporate buyers &nbsp;|&nbsp; <span class="badge b-phase">Phase 3</span></div>
+      </div>
+      <span class="badge b-draft" id="ce1-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">Finding vetted security vendors in {{City}} just got easier</div>
+    <div class="email-body">Hi {{First Name}},
+
+If your team ever needs to find, vet, or compare security vendors — whether for your facility, events, or corporate risk programs — I wanted to make sure you knew about NSN.
+
+Nationwide Security Network is a free B2B platform where you can:
+
+  → Search 500+ verified security vendors by city, service type, and specialty
+  → Compare armed guards, mobile patrol, executive protection, cybersecurity, and more
+  → Post RFPs and receive proposals directly from vetted vendors
+  → Read verified reviews from other corporate clients
+
+No subscription, no cost to buyers. It is completely free for your team.
+
+Search vendors in {{City}} now:
+nsn-platform.com/search?location={{city-slug}}
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ce1','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ce1','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ce1')">Copy Email</button>
+    </div>
+  </div>
+
+  <!-- CLIENT EMAIL 2 -->
+  <div class="ccard" id="ce2">
+    <div class="ccard-header">
+      <div>
+        <div class="ccard-title">Client Email 2 — Lead Magnet Offer</div>
+        <div class="ccard-meta">Sent Day 5 if no response &nbsp;|&nbsp; <span class="badge b-phase">Phase 3</span></div>
+      </div>
+      <span class="badge b-draft" id="ce2-badge">Draft</span>
+    </div>
+    <div class="subj-label">Subject Line</div>
+    <div class="subj-line">Free download: Security Vendor RFP Template (used by 200+ companies)</div>
+    <div class="email-body">Hi {{First Name}},
+
+Regardless of whether NSN is the right fit for you right now, I wanted to send over something useful.
+
+We put together a free Security Vendor RFP Template that covers everything your team needs to scope and evaluate security proposals — from guard services and access control to investigations and executive protection.
+
+Download it free here:
+nsn-platform.com/resources/rfp-template
+
+No form, no email required. Just a direct download.
+
+If you ever need to find security vendors in {{City}}, NSN has 500+ vetted vendors searchable by service type:
+nsn-platform.com/search
+
+— The NSN Team</div>
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="setStatus('ce2','approved')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="setStatus('ce2','rejected')">✗ Needs Edit</button>
+      <button class="btn btn-copy" onclick="copyText('ce2')">Copy Email</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SEO PAGES ==================== -->
+
+
+<!-- ====== LINKEDIN ====== -->
+id="panel-linkedin">
   <div class="section-title">LinkedIn Outreach — Vendor Side</div>
   <div class="section-sub">3-message sequence targeting security company owners and VP BizDev. I build the prospect list, pre-write every message, and you copy-paste. LinkedIn blocks automated sends so this requires your 5 minutes per batch.</div>
 
@@ -395,184 +863,10 @@ Either way, good luck with everything.</div>
 </div>
 
 <!-- ==================== CLIENT EMAILS ==================== -->
-<div class="panel" id="panel-client-email">
-  <div class="section-title">Client / Buyer Email Outreach</div>
-  <div class="section-sub">Cold outreach to corporate buyers — facilities directors, risk managers, HR directors at mid-large companies. Goal is to drive them to NSN to search for vendors. These run parallel to vendor outreach starting Month 3.</div>
 
-  <div class="channel-intro">
-    <strong>Targets:</strong> Director of Facilities, Director of Security, VP Operations, HR Director, Risk Manager at companies with 200–5,000 employees in industries with known security needs: healthcare, commercial real estate, financial services, manufacturing, hospitality.<br><br>
-    <strong>List source:</strong> I pull leads from LinkedIn Sales Navigator + public company directories. I build the list, you approve before any sends.
-  </div>
 
-  <!-- CLIENT EMAIL 1 -->
-  <div class="ccard" id="ce1">
-    <div class="ccard-header">
-      <div>
-        <div class="ccard-title">Client Email 1 — Initial Outreach</div>
-        <div class="ccard-meta">Cold outreach to corporate buyers &nbsp;|&nbsp; <span class="badge b-phase">Phase 3</span></div>
-      </div>
-      <span class="badge b-draft" id="ce1-badge">Draft</span>
-    </div>
-    <div class="subj-label">Subject Line</div>
-    <div class="subj-line">Finding vetted security vendors in {{City}} just got easier</div>
-    <div class="email-body">Hi {{First Name}},
-
-If your team ever needs to find, vet, or compare security vendors — whether for your facility, events, or corporate risk programs — I wanted to make sure you knew about NSN.
-
-Nationwide Security Network is a free B2B platform where you can:
-
-  → Search 500+ verified security vendors by city, service type, and specialty
-  → Compare armed guards, mobile patrol, executive protection, cybersecurity, and more
-  → Post RFPs and receive proposals directly from vetted vendors
-  → Read verified reviews from other corporate clients
-
-No subscription, no cost to buyers. It is completely free for your team.
-
-Search vendors in {{City}} now:
-nsn-platform.com/search?location={{city-slug}}
-
-— The NSN Team</div>
-    <div class="card-actions">
-      <button class="btn btn-approve" onclick="setStatus('ce1','approved')">✓ Approve</button>
-      <button class="btn btn-reject" onclick="setStatus('ce1','rejected')">✗ Needs Edit</button>
-      <button class="btn btn-copy" onclick="copyText('ce1')">Copy Email</button>
-    </div>
-  </div>
-
-  <!-- CLIENT EMAIL 2 -->
-  <div class="ccard" id="ce2">
-    <div class="ccard-header">
-      <div>
-        <div class="ccard-title">Client Email 2 — Lead Magnet Offer</div>
-        <div class="ccard-meta">Sent Day 5 if no response &nbsp;|&nbsp; <span class="badge b-phase">Phase 3</span></div>
-      </div>
-      <span class="badge b-draft" id="ce2-badge">Draft</span>
-    </div>
-    <div class="subj-label">Subject Line</div>
-    <div class="subj-line">Free download: Security Vendor RFP Template (used by 200+ companies)</div>
-    <div class="email-body">Hi {{First Name}},
-
-Regardless of whether NSN is the right fit for you right now, I wanted to send over something useful.
-
-We put together a free Security Vendor RFP Template that covers everything your team needs to scope and evaluate security proposals — from guard services and access control to investigations and executive protection.
-
-Download it free here:
-nsn-platform.com/resources/rfp-template
-
-No form, no email required. Just a direct download.
-
-If you ever need to find security vendors in {{City}}, NSN has 500+ vetted vendors searchable by service type:
-nsn-platform.com/search
-
-— The NSN Team</div>
-    <div class="card-actions">
-      <button class="btn btn-approve" onclick="setStatus('ce2','approved')">✓ Approve</button>
-      <button class="btn btn-reject" onclick="setStatus('ce2','rejected')">✗ Needs Edit</button>
-      <button class="btn btn-copy" onclick="copyText('ce2')">Copy Email</button>
-    </div>
-  </div>
-</div>
-
-<!-- ==================== SEO PAGES ==================== -->
-<div class="panel" id="panel-seo">
-  <div class="section-title">SEO City + Service Pages</div>
-  <div class="section-sub">250 pages targeting "[city] security companies" searches on Google. These are written and handed to your developer to publish. Long-term organic traffic — compounds over time, free forever once live.</div>
-
-  <div class="channel-intro">
-    <strong>Formula:</strong> One page per city-service combo. Each page targets a real search term, shows relevant vendors from NSN, and has a call to action to search or post an RFP. When enough of these rank on Google, corporate buyers find NSN without any ad spend.<br><br>
-    <strong>Volume:</strong> 50 cities x 5 core service types = 250 pages. I write all of them. Your developer adds them. Here are 3 examples.
-  </div>
-
-  <!-- SEO 1 -->
-  <div class="seo-card" id="seo1">
-    <div class="ccard-header">
-      <div>
-        <div class="seo-title">Security Companies in Nashville, TN</div>
-        <div class="seo-url">nsn-platform.com/security-companies/nashville-tn</div>
-        <div class="seo-desc">Meta: Find top-rated security companies in Nashville, TN. Compare armed guards, mobile patrol, event security, and executive protection vendors. Get free quotes on NSN.</div>
-      </div>
-      <span class="badge b-draft" id="seo1-badge">Draft</span>
-    </div>
-    <div class="seo-body">H1: Security Companies in Nashville, TN
-
-Nashville businesses rely on professional security services to protect employees, assets, and facilities. Whether you need armed security guards for a corporate campus, mobile patrol for a commercial property, or executive protection for company leadership, NSN connects you with vetted Nashville security vendors in minutes.
-
-HOW TO FIND THE RIGHT SECURITY COMPANY IN NASHVILLE
-
-Step 1: Define your security need
-Armed vs unarmed guards, mobile vs stationary, short-term event vs long-term contract.
-
-Step 2: Check licensing
-All security companies operating in Tennessee must hold a valid Private Protective Services license issued by the Tennessee Department of Commerce & Insurance.
-
-Step 3: Compare and get quotes
-Use NSN to search Nashville vendors by service type, read verified reviews, and request proposals directly from multiple vendors.
-
-TOP SECURITY SERVICES IN NASHVILLE
-• Armed Security Guards — licensed officers for high-risk environments
-• Unarmed Security — visible deterrence for commercial and retail
-• Mobile Patrol — vehicle-based patrol for large properties
-• Event Security — crowd management, access control, VIP protection
-• Executive Protection — personal security for corporate leadership
-
-[NSN VENDOR GRID — Nashville vendors auto-populated here]
-
-FREQUENTLY ASKED QUESTIONS
-Q: How much does a security guard cost in Nashville?
-A: Unarmed guard rates in Nashville typically range $18-28/hour. Armed guards run $25-40/hour depending on licensing level and contract length.
-
-Q: Do I need a contract?
-A: Most Nashville security firms offer both short-term and long-term contracts. Event coverage can be arranged with as little as 2 weeks notice.
-
-[SEARCH NASHVILLE VENDORS — CTA BUTTON]</div>
-    <div class="card-actions" style="margin-top:10px">
-      <button class="btn btn-approve" onclick="setStatus('seo1','approved')">✓ Approve Page</button>
-      <button class="btn btn-reject" onclick="setStatus('seo1','rejected')">✗ Needs Edit</button>
-    </div>
-  </div>
-
-  <!-- SEO 2 -->
-  <div class="seo-card" id="seo2">
-    <div class="ccard-header">
-      <div>
-        <div class="seo-title">Armed Security Guard Companies in Houston, TX</div>
-        <div class="seo-url">nsn-platform.com/armed-security/houston-tx</div>
-        <div class="seo-desc">Meta: Compare licensed armed security guard companies in Houston, TX. Verified vendors, real reviews, free RFP tool. Find the right partner on NSN.</div>
-      </div>
-      <span class="badge b-draft" id="seo2-badge">Draft</span>
-    </div>
-    <div class="seo-body">H1: Armed Security Guard Companies in Houston, TX
-
-Houston's size and density make armed security a common requirement for corporate campuses, healthcare facilities, financial institutions, and high-value retail. NSN lists licensed armed security guard companies across the greater Houston metro with verified credentials and client reviews.
-
-TEXAS ARMED SECURITY LICENSING
-Armed security guards in Texas must hold a valid Level III or Level IV security license issued by the Texas Department of Public Safety. All companies listed on NSN in this category have provided license verification.
-
-WHAT TO ASK ARMED SECURITY VENDORS IN HOUSTON
-1. What level of DPS license do your officers carry?
-2. What is your officer-to-supervisor ratio on large contracts?
-3. How do you handle officer no-shows or callouts?
-4. What does your incident reporting process look like?
-5. Do you carry a minimum of $1M general liability?
-
-HOUSTON ARMED SECURITY PRICING (2026)
-Level III guard: $28-38/hour
-Level IV guard: $35-50/hour
-Armed mobile patrol: $45-65/hour
-Armed executive protection: $75-150/hour
-
-[NSN VENDOR GRID — Houston armed security vendors]
-
-[POST AN RFP — GET PROPOSALS FROM 3+ VENDORS — CTA BUTTON]</div>
-    <div class="card-actions" style="margin-top:10px">
-      <button class="btn btn-approve" onclick="setStatus('seo2','approved')">✓ Approve Page</button>
-      <button class="btn btn-reject" onclick="setStatus('seo2','rejected')">✗ Needs Edit</button>
-    </div>
-  </div>
-</div>
-
-<!-- ==================== LEAD MAGNETS ==================== -->
-<div class="panel" id="panel-magnets">
+<!-- ====== MAGNETS ====== -->
+id="panel-magnets">
   <div class="section-title">Buyer Lead Magnets</div>
   <div class="section-sub">Free downloads for corporate buyers. Gated with an email form to build the buyer list. I write all content — your developer adds the download pages. These become permanent traffic and list-building assets.</div>
 
@@ -762,7 +1056,10 @@ Section 6: How to Use NSN to Get Competitive Bids
 </div>
 
 <!-- ==================== SOCIAL ==================== -->
-<div class="panel" id="panel-social">
+
+
+<!-- ====== SOCIAL ====== -->
+id="panel-social">
   <div class="section-title">Social Media — Organic Posts</div>
   <div class="section-sub">Posts for LinkedIn, Facebook, and X targeting both vendors and buyers. Consistent posting builds brand awareness and drives inbound. These are for NSN's company accounts. Approve what you want to run.</div>
 
@@ -901,58 +1198,17 @@ nsn-platform.com/vendors/join</div>
 
 </div><!-- end content -->
 
+
+
+</div><!-- end .content -->
+
+<div style="background:var(--card);border-top:1px solid var(--border);padding:12px 28px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(255,119,0,0.3);letter-spacing:2px;">
+  // NSN MARKETING COMMAND CENTER // UPDATED JUNE 29 2026 // HERMES AGENT //
+  &nbsp;|&nbsp; DESIGN PREVIEW: <a href="https://phillipsprute.github.io/nsn-design-preview/" style="color:rgba(255,119,0,0.5);">phillipsprute.github.io/nsn-design-preview</a>
+  &nbsp;|&nbsp; LIVE SITE: <a href="https://nsn-test-production.up.railway.app/" style="color:rgba(255,119,0,0.5);">nsn-test-production.up.railway.app</a>
+</div>
+
 <script>
-// APPROVAL STATE — stored in localStorage
-const ITEMS = ['ve1','ve2','ve3','ve4','li1','li2','li3','ce1','ce2','seo1','seo2','mag1','mag2','mag3','sp1','sp2','sp3','sp4'];
-let state = JSON.parse(localStorage.getItem('nsn_campaign_state') || '{}');
-
-function saveState() { localStorage.setItem('nsn_campaign_state', JSON.stringify(state)); }
-
-function setStatus(id, status) {
-  state[id] = status;
-  saveState();
-  renderStatuses();
-  updateCounts();
-}
-
-function renderStatuses() {
-  ITEMS.forEach(id => {
-    const s = state[id] || 'draft';
-    const badge = document.getElementById(id + '-badge');
-    const card = document.getElementById(id);
-    if (!badge || !card) return;
-    if (s === 'approved') {
-      badge.className = 'badge b-approved'; badge.textContent = '✓ Approved';
-      card.classList.add('approved'); card.classList.remove('rejected');
-    } else if (s === 'rejected') {
-      badge.className = 'badge b-rejected'; badge.textContent = '✗ Needs Edit';
-      card.classList.add('rejected'); card.classList.remove('approved');
-    } else {
-      badge.className = 'badge b-draft'; badge.textContent = 'Draft';
-      card.classList.remove('approved','rejected');
-    }
-  });
-}
-
-function updateCounts() {
-  const approved = ITEMS.filter(id => state[id] === 'approved').length;
-  const rejected = ITEMS.filter(id => state[id] === 'rejected').length;
-  const pending = ITEMS.length - approved - rejected;
-  document.getElementById('cnt-total').textContent = ITEMS.length;
-  document.getElementById('cnt-approved').textContent = approved;
-  document.getElementById('cnt-pending').textContent = pending;
-  document.getElementById('cnt-rejected').textContent = rejected;
-  // update header badge
-  const hb = document.querySelector('.header-badge');
-  if (approved === ITEMS.length) {
-    hb.style.background = '#14532d'; hb.style.color = '#4ade80';
-    hb.textContent = '✓ ALL APPROVED — READY TO LAUNCH';
-  } else if (approved > 0) {
-    hb.style.background = '#1e3a0d'; hb.style.color = '#86efac';
-    hb.textContent = approved + ' / ' + ITEMS.length + ' APPROVED';
-  }
-}
-
 function showPanel(name) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.ntab').forEach(t => t.classList.remove('active'));
@@ -960,19 +1216,43 @@ function showPanel(name) {
   event.target.classList.add('active');
 }
 
-function copyText(id) {
-  const card = document.getElementById(id);
-  const body = card.querySelector('.email-body, .post-body, .seo-body, .magnet-outline');
-  if (!body) return;
-  navigator.clipboard.writeText(body.textContent.trim()).then(() => {
-    const btn = card.querySelector('.btn-copy');
-    if (btn) { const orig = btn.textContent; btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = orig, 1500); }
-  });
-}
+// Checklist toggle
+document.querySelectorAll('.check-box').forEach(box => {
+  if (!box.classList.contains('checked')) {
+    box.addEventListener('click', function() {
+      this.classList.toggle('checked');
+      if (this.classList.contains('checked')) {
+        this.textContent = '✓';
+        const txt = this.parentElement.querySelector('.check-text');
+        if (txt) txt.classList.add('done-text');
+      } else {
+        this.textContent = '';
+        const txt = this.parentElement.querySelector('.check-text');
+        if (txt) txt.classList.remove('done-text');
+      }
+    });
+  }
+});
 
-// INIT
-renderStatuses();
-updateCounts();
+// Copy button
+document.querySelectorAll('.btn-copy').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const body = this.closest('.ccard')?.querySelector('.email-body, .seo-body, .magnet-outline, .post-body');
+    if (body) {
+      navigator.clipboard.writeText(body.textContent.trim()).then(() => {
+        const orig = this.textContent;
+        this.textContent = 'Copied!';
+        this.style.borderColor = 'var(--green)';
+        this.style.color = 'var(--green)';
+        setTimeout(() => {
+          this.textContent = orig;
+          this.style.borderColor = '';
+          this.style.color = '';
+        }, 2000);
+      });
+    }
+  });
+});
 </script>
 </body>
 </html>
