@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Ledger — App Prototype v1</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #111;
+  font-family: 'Inter', -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+
+/* ── PREVIEW BANNER ── */
+.banner {
+  background: #C9A84C;
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* ── SCREEN SELECTOR ── */
+.screen-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 28px;
+  max-width: 800px;
+}
+.snav-btn {
+  padding: 8px 18px;
+  background: #222;
+  border: 1px solid #333;
+  color: #888;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.snav-btn:hover { border-color: #C9A84C; color: #fff; }
+.snav-btn.active { background: #C9A84C; border-color: #C9A84C; color: #000; }
+
+/* ── PHONE SHELL ── */
+.phone-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.phone {
+  width: 375px;
+  background: #000;
+  border-radius: 52px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 1px #333,
+    0 40px 80px rgba(0,0,0,0.8),
+    inset 0 0 0 1px #1a1a1a;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Dynamic island */
+.dynamic-island {
+  width: 126px;
+  height: 36px;
+  background: #000;
+  border-radius: 20px;
+  margin: 0 auto 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.di-camera {
+  width: 12px; height: 12px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  border: 2px solid #111;
+}
+.di-sensor {
+  width: 8px; height: 8px;
+  background: #0d0d0d;
+  border-radius: 50%;
+}
+
+/* Screen */
+.screen {
+  width: 100%;
+  height: 734px;
+  background: #000;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Status bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.status-time { color: #fff; font-size: 15px; font-weight: 700; }
+.status-icons { display: flex; align-items: center; gap: 6px; }
+.status-icon { color: #fff; font-size: 13px; }
+
+/* ── SCREEN: ONBOARDING ── */
+#screen-onboarding {
+  display: none;
+  background: linear-gradient(180deg, #0B1629 0%, #112040 100%);
+  height: 100%;
+  flex-direction: column;
+}
+.onboard-slides {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  text-align: center;
+}
+.onboard-icon {
+  width: 120px; height: 120px;
+  background: rgba(201,168,76,0.12);
+  border: 2px solid rgba(201,168,76,0.3);
+  border-radius: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px; margin-bottom: 32px;
+}
+.onboard-title { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+.onboard-title em { color: #C9A84C; font-style: normal; }
+.onboard-desc { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.onboard-dots { display: flex; gap: 8px; justify-content: center; margin-top: 32px; }
+.odot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.odot.active { background: #C9A84C; width: 24px; border-radius: 4px; }
+.onboard-bottom { padding: 24px 28px 40px; }
+.ob-btn-primary {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, #C9A84C, #A07830);
+  color: #000; border: none; border-radius: 16px;
+  padding: 17px; font-size: 17px; font-weight: 800;
+  font-family: 'Inter', sans-serif; cursor: pointer; margin-bottom: 12px;
+}
+.ob-btn-secondary {
+  display: block; width: 100%;
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
+  padding: 15px; font-size: 15px; font-weight: 600;
+  font-family: 'Inter', sans-serif; cursor: pointer;
+}
+
+/* ── SCREEN: HOME ── */
+#screen-home {
+  display: none;
+  background: #0B1629;
+  height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.home-header {
+  padding: 16px 22px 20px;
+  background: linear-gradient(180deg, #112040 0%, #0B1629 100%);
+  flex-shrink: 0;
+}
+.home-greeting { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 2px; }
+.home-name { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+/* Summary card */
+.summary-card {
+  background: linear-gradient(135deg, #C9A84C 0%, #A07830 100%);
+  border-radius: 20px; padding: 20px 22px;
+}
+.sc-label { font-size: 12px; font-weight: 700; color: rgba(0,0,0,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.sc-value { font-size: 34px; font-weight: 900; color: #000; margin-bottom: 16px; }
+.sc-row { display: flex; gap: 12px; }
+.sc-stat { flex: 1; background: rgba(0,0,0,0.12); border-radius: 12px; padding: 10px 12px; }
+.sc-stat-num { font-size: 18px; font-weight: 800; color: #000; }
+.sc-stat-label { font-size: 11px; color: rgba(0,0,0,0.55); font-weight: 600; margin-top: 1px; }
+
+.home-body { flex: 1; padding: 20px 22px; overflow-y: auto; }
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.sh-title { font-size: 18px; font-weight: 800; color: #fff; }
+.sh-link { font-size: 14px; color: #C9A84C; font-weight: 600; }
+
+/* Room cards */
+.room-card {
+  background: #162238;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px; padding: 16px 18px;
+  margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; transition: all 0.15s;
+}
+.room-card:active { transform: scale(0.98); }
+.rc-left { display: flex; align-items: center; gap: 14px; }
+.rc-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.rc-icon.gold { background: rgba(201,168,76,0.15); }
+.rc-icon.blue { background: rgba(96,165,250,0.12); }
+.rc-icon.green { background: rgba(52,199,89,0.12); }
+.rc-icon.red { background: rgba(255,69,58,0.12); }
+.rc-icon.purple { background: rgba(175,82,222,0.12); }
+.rc-icon.teal { background: rgba(90,200,250,0.12); }
+.rc-name { font-size: 16px; font-weight: 700; color: #fff; }
+.rc-count { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.rc-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.rc-value { font-size: 16px; font-weight: 800; color: #C9A84C; }
+.rc-chevron { font-size: 14px; color: rgba(255,255,255,0.2); }
+
+/* Add room button */
+.add-room-btn {
+  border: 2px dashed rgba(201,168,76,0.3);
+  border-radius: 18px; padding: 16px 18px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; font-size: 15px; font-weight: 600;
+  color: #C9A84C; background: transparent;
+  width: 100%; cursor: pointer; font-family: 'Inter', sans-serif;
+  margin-top: 4px;
+}
+
+/* Quick actions */
+.quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.qa-btn {
+  background: #162238; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 16px; text-align: center;
+  cursor: pointer; transition: all 0.15s;
+}
+.qa-btn:hover { border-color: rgba(201,168,76,0.3); }
+.qa-icon { font-size: 24px; margin-bottom: 6px; display: block; }
+.qa-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); }
+
+/* ── SCREEN: ROOM DETAIL ── */
+#screen-room {
+  display: none;
+  background: #0B1629;
+  height: 100%;
+  flex-direction: column;
+}
+.room-header {
+  padding: 16px 22px 20px;
+  background: #162238;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.rh-back {
+  display: flex; align-items: center; gap: 6px;
+  color: #C9A84C; font-size: 15px; font-weight: 600;
+  margin-bottom: 12px; cursor: pointer;
+}
+.rh-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.rh-icon-name { display: flex; align-items: center; gap: 12px; }
+.rh-icon { width: 52px; height: 52px; background: rgba(201,168,76,0.15); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.rh-name { font-size: 22px; font-weight: 800; color: #fff; }
+.rh-count { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.rh-value-block { text-align: right; }
+.rh-value-label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; }
+.rh-value { font-size: 22px; font-weight: 800; color: #C9A84C; }
+.rh-tags { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+.rh-tag { background: rgba(255,255,255,0.07); border-radius: 50px; padding: 4px 12px; font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 600; }
+
+.room-items-list { flex: 1; overflow-y: auto; padding: 16px 22px; }
+.items-sort-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.items-count { font-size: 13px; color: rgba(255,255,255,0.35); font-weight: 600; }
+.items-sort { font-size: 13px; color: #C9A84C; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+.item-row {
+  background: #162238;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer;
+}
+.item-photo {
+  width: 56px; height: 56px; border-radius: 12px;
+  background: #1E3050; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0; overflow: hidden;
+}
+.item-info { flex: 1; }
+.item-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.item-meta { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+.item-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.item-tag {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 50px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.item-tag.insured { background: rgba(52,199,89,0.15); color: #34C759; }
+.item-tag.receipt { background: rgba(201,168,76,0.15); color: #C9A84C; }
+.item-tag.warranty { background: rgba(96,165,250,0.15); color: #60A5FA; }
+.item-value-block { text-align: right; flex-shrink: 0; }
+.item-value { font-size: 16px; font-weight: 800; color: #C9A84C; }
+.item-condition { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+.add-item-btn {
+  position: sticky; bottom: 0;
+  margin: 0 -22px; padding: 16px 22px 32px;
+  background: linear-gradient(0deg, #0B1629 60%, transparent);
+}
+.aib-inner {
+  background: linear-gradient(135deg, #C9A84C, #A07830);
+  color: #000; border: none; border-radius: 16px;
+  padding: 17px; font-size: 17px; font-weight: 800;
+  width: 100%; cursor: pointer; font-family: 'Inter', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+
+/* ── SCREEN: ITEM DETAIL ── */
+#screen-item {
+  display: none;
+  background: #0B1629;
+  height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.item-header {
+  background: #162238;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.ih-back {
+  padding: 16px 22px 12px;
+  display: flex; align-items: center; gap: 6px;
+  color: #C9A84C; font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.item-photo-large {
+  width: 100%; height: 200px;
+  background: linear-gradient(135deg, #1E3050, #112040);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px; position: relative;
+}
+.photo-badge {
+  position: absolute; bottom: 12px; right: 12px;
+  background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.7);
+  font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 50px;
+  display: flex; align-items: center; gap: 4px;
+}
+.item-detail-body { padding: 20px 22px 100px; }
+.item-detail-name { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.item-detail-brand { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+
+.detail-tags { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+.detail-tag {
+  font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 50px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.detail-tag.verified { background: rgba(52,199,89,0.15); color: #34C759; }
+.detail-tag.gold { background: rgba(201,168,76,0.15); color: #C9A84C; border: 1px solid rgba(201,168,76,0.3); }
+.detail-tag.blue { background: rgba(96,165,250,0.15); color: #60A5FA; }
+
+/* Info grid */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.info-cell {
+  background: #162238; border-radius: 14px; padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.info-cell.full { grid-column: 1/-1; }
+.info-cell.highlight { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.25); }
+.ic-label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 5px; }
+.ic-value { font-size: 16px; font-weight: 700; color: #fff; }
+.ic-value.gold { color: #C9A84C; font-size: 22px; font-weight: 900; }
+.ic-value.green { color: #34C759; }
+
+/* Notes */
+.notes-card { background: #162238; border-radius: 14px; padding: 16px; border: 1px solid rgba(255,255,255,0.07); margin-bottom: 20px; }
+.nc-title { font-size: 12px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 8px; }
+.nc-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+/* Action row */
+.item-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ia-btn {
+  padding: 14px; border-radius: 14px; text-align: center;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif; border: none;
+}
+.ia-btn.primary { background: linear-gradient(135deg, #C9A84C, #A07830); color: #000; }
+.ia-btn.secondary { background: #162238; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
+.ia-btn.danger { background: rgba(255,69,58,0.12); color: #FF453A; border: 1px solid rgba(255,69,58,0.2); }
+.ia-btn.green-btn { background: rgba(52,199,89,0.12); color: #34C759; border: 1px solid rgba(52,199,89,0.2); }
+
+/* ── SCREEN: ADD ITEM ── */
+#screen-add {
+  display: none;
+  background: #0B1629;
+  height: 100%;
+  flex-direction: column;
+}
+.add-header {
+  padding: 16px 22px;
+  background: #162238;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.ah-cancel { color: rgba(255,255,255,0.45); font-size: 16px; font-weight: 600; cursor: pointer; }
+.ah-title { font-size: 17px; font-weight: 800; color: #fff; }
+.ah-save { color: #C9A84C; font-size: 16px; font-weight: 700; cursor: pointer; }
+.add-photo-zone {
+  margin: 20px 22px;
+  height: 160px;
+  background: #162238;
+  border: 2px dashed rgba(201,168,76,0.3);
+  border-radius: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; cursor: pointer; flex-shrink: 0;
+}
+.apz-icon { font-size: 32px; }
+.apz-label { font-size: 14px; font-weight: 600; color: #C9A84C; }
+.apz-sub { font-size: 12px; color: rgba(255,255,255,0.3); }
+.add-form { flex: 1; overflow-y: auto; padding: 0 22px 120px; }
+.form-section-label {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.3);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 10px; margin-top: 20px;
+}
+.form-field {
+  background: #162238; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 16px 18px; margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.form-field-label { font-size: 14px; color: rgba(255,255,255,0.45); font-weight: 500; }
+.form-field-value { font-size: 15px; color: #fff; font-weight: 600; }
+.form-field-placeholder { font-size: 15px; color: rgba(255,255,255,0.2); }
+.form-field-chevron { color: rgba(255,255,255,0.2); font-size: 13px; }
+.form-field.active { border-color: rgba(201,168,76,0.4); }
+.form-input-field {
+  background: #162238; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 16px 18px; margin-bottom: 10px;
+  width: 100%; font-size: 15px; color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+.form-input-field::placeholder { color: rgba(255,255,255,0.2); }
+.condition-row { display: flex; gap: 8px; margin-bottom: 10px; }
+.cond-btn {
+  flex: 1; padding: 12px 8px; border-radius: 12px;
+  background: #162238; border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 600;
+  cursor: pointer; text-align: center; font-family: 'Inter', sans-serif;
+}
+.cond-btn.active { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.4); color: #C9A84C; }
+.add-submit {
+  position: sticky; bottom: 0;
+  padding: 16px 22px 40px;
+  background: linear-gradient(0deg, #0B1629 70%, transparent);
+  margin: 0 -22px;
+}
+.as-inner {
+  background: linear-gradient(135deg, #C9A84C, #A07830);
+  color: #000; border: none; border-radius: 16px;
+  padding: 17px; font-size: 17px; font-weight: 800;
+  width: 100%; cursor: pointer; font-family: 'Inter', sans-serif;
+}
+
+/* ── SCREEN: REPORT ── */
+#screen-report {
+  display: none;
+  background: #0B1629;
+  height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.report-header {
+  padding: 16px 22px 20px;
+  background: #162238;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.rph-back { display: flex; align-items: center; gap: 6px; color: #C9A84C; font-size: 15px; font-weight: 600; margin-bottom: 12px; cursor: pointer; }
+.rph-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.rph-sub { font-size: 14px; color: rgba(255,255,255,0.4); }
+.report-body { padding: 20px 22px 100px; }
+.report-banner {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 18px; padding: 20px 22px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.rb-icon { font-size: 40px; }
+.rb-info { flex: 1; }
+.rb-total-label { font-size: 12px; color: rgba(201,168,76,0.7); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+.rb-total { font-size: 30px; font-weight: 900; color: #C9A84C; }
+.rb-meta { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; }
+.export-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.export-btn {
+  background: #162238; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 16px 14px; text-align: center;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+}
+.export-btn.primary-export { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); }
+.eb-icon { font-size: 24px; margin-bottom: 6px; display: block; }
+.eb-label { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.eb-sub { font-size: 11px; color: rgba(255,255,255,0.3); }
+.export-btn.primary-export .eb-label { color: #C9A84C; }
+.report-table-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.report-row {
+  background: #162238; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 14px 16px; margin-bottom: 8px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rr-left { display: flex; align-items: center; gap: 12px; }
+.rr-photo { width: 40px; height: 40px; background: #1E3050; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.rr-name { font-size: 14px; font-weight: 600; color: #fff; }
+.rr-room { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 1px; }
+.rr-value { font-size: 15px; font-weight: 800; color: #C9A84C; }
+.report-total-row {
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 14px; padding: 16px; margin-top: 4px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.rt-label { font-size: 14px; font-weight: 700; color: #C9A84C; }
+.rt-value { font-size: 20px; font-weight: 900; color: #C9A84C; }
+
+/* ── TAB BAR ── */
+.tab-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(11,22,41,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; padding: 10px 0 28px;
+}
+.tab {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; cursor: pointer;
+}
+.tab-icon { font-size: 22px; }
+.tab-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); }
+.tab.active .tab-label { color: #C9A84C; }
+.tab.active .tab-icon { filter: none; }
+
+/* ── DESCRIPTION PANEL ── */
+.desc-panel {
+  width: 320px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 24px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  position: sticky;
+  top: 20px;
+}
+.dp-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.dp-screen { font-size: 12px; font-weight: 700; color: #C9A84C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
+.dp-desc { font-size: 14px; color: #7d8590; line-height: 1.7; margin-bottom: 20px; }
+.dp-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.dp-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #7d8590; line-height: 1.5; }
+.dp-check { color: #C9A84C; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.dp-divider { height: 1px; background: #30363d; margin: 20px 0; }
+.dp-note { font-size: 12px; color: #4a5568; font-style: italic; line-height: 1.6; }
+
+/* ── ACTIVE SCREENS ── */
+.screen.active-screen > * { display: flex !important; }
+
+@media (max-width: 760px) {
+  .desc-panel { display: none; }
+  .phone { width: 340px; }
+  .screen { height: 680px; }
+}
+</style>
+</head>
+<body>
+
+<div class="banner">LIFE LEDGER — APP PROTOTYPE — TAP SCREENS ABOVE TO SWITCH VIEWS — MOCK ONLY</div>
+
+<!-- SCREEN SELECTOR -->
+<div class="screen-nav">
+  <button class="snav-btn active" onclick="showScreen('onboarding')">1. Onboarding</button>
+  <button class="snav-btn" onclick="showScreen('home')">2. Home Dashboard</button>
+  <button class="snav-btn" onclick="showScreen('room')">3. Room View</button>
+  <button class="snav-btn" onclick="showScreen('item')">4. Item Detail</button>
+  <button class="snav-btn" onclick="showScreen('add')">5. Add Item</button>
+  <button class="snav-btn" onclick="showScreen('report')">6. Insurance Report</button>
+</div>
+
+<div class="phone-wrapper">
+
+  <!-- PHONE -->
+  <div class="phone">
+    <div class="dynamic-island">
+      <div class="di-sensor"></div>
+      <div class="di-camera"></div>
+    </div>
+    <div class="screen" id="main-screen">
+
+      <!-- STATUS BAR -->
+      <div class="status-bar" id="status-bar" style="position:absolute;top:0;left:0;right:0;z-index:10;padding:12px 24px 0;">
+        <div class="status-time">9:41</div>
+        <div class="status-icons">
+          <span class="status-icon">●●●●</span>
+          <span class="status-icon">WiFi</span>
+          <span class="status-icon">🔋</span>
+        </div>
+      </div>
+
+      <!-- ── ONBOARDING ── -->
+      <div id="screen-onboarding" style="display:flex;height:100%;flex-direction:column;background:linear-gradient(180deg,#0B1629 0%,#112040 100%);">
+        <div style="height:50px;"></div>
+        <div class="onboard-slides">
+          <div class="onboard-icon">📋</div>
+          <div class="onboard-title">Know What You Own.<br><em>Prove It When It Counts.</em></div>
+          <div class="onboard-desc">Document everything in your home so if disaster strikes, you have the proof to get paid what you deserve.</div>
+          <div class="onboard-dots">
+            <div class="odot active"></div>
+            <div class="odot"></div>
+            <div class="odot"></div>
+          </div>
+        </div>
+        <div class="onboard-bottom">
+          <button class="ob-btn-primary" onclick="showScreen('home')">Get Started — It's Free</button>
+          <button class="ob-btn-secondary">Sign In to Existing Account</button>
+        </div>
+      </div>
+
+      <!-- ── HOME DASHBOARD ── -->
+      <div id="screen-home" style="display:none;height:100%;flex-direction:column;background:#0B1629;">
+        <div style="height:50px;"></div>
+        <div class="home-header">
+          <div class="home-greeting">Good morning 👋</div>
+          <div class="home-name">My Home Inventory</div>
+          <div class="summary-card">
+            <div class="sc-label">Total Estimated Value</div>
+            <div class="sc-value">$28,340</div>
+            <div class="sc-row">
+              <div class="sc-stat"><div class="sc-stat-num">47</div><div class="sc-stat-label">Items</div></div>
+              <div class="sc-stat"><div class="sc-stat-num">6</div><div class="sc-stat-label">Rooms</div></div>
+              <div class="sc-stat"><div class="sc-stat-num">12</div><div class="sc-stat-label">Photos</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="home-body">
+          <div class="quick-actions" style="margin-bottom:20px;">
+            <div class="qa-btn" onclick="showScreen('add')"><span class="qa-icon">➕</span><div class="qa-label">Add Item</div></div>
+            <div class="qa-btn" onclick="showScreen('report')"><span class="qa-icon">📊</span><div class="qa-label">View Report</div></div>
+          </div>
+          <div class="section-header">
+            <div class="sh-title">Rooms</div>
+            <div class="sh-link">See All</div>
+          </div>
+          <div class="room-card" onclick="showScreen('room')">
+            <div class="rc-left"><div class="rc-icon gold">🛋️</div><div><div class="rc-name">Living Room</div><div class="rc-count">12 items · 4 photos</div></div></div>
+            <div class="rc-right"><div class="rc-value">$8,400</div><div class="rc-chevron">›</div></div>
+          </div>
+          <div class="room-card">
+            <div class="rc-left"><div class="rc-icon blue">🍳</div><div><div class="rc-name">Kitchen</div><div class="rc-count">9 items · 2 photos</div></div></div>
+            <div class="rc-right"><div class="rc-value">$4,200</div><div class="rc-chevron">›</div></div>
+          </div>
+          <div class="room-card">
+            <div class="rc-left"><div class="rc-icon green">🛏️</div><div><div class="rc-name">Master Bedroom</div><div class="rc-count">11 items · 6 photos</div></div></div>
+            <div class="rc-right"><div class="rc-value">$6,800</div><div class="rc-chevron">›</div></div>
+          </div>
+          <div class="room-card">
+            <div class="rc-left"><div class="rc-icon purple">💻</div><div><div class="rc-name">Home Office</div><div class="rc-count">8 items · 3 photos</div></div></div>
+            <div class="rc-right"><div class="rc-value">$5,940</div><div class="rc-chevron">›</div></div>
+          </div>
+          <div class="room-card">
+            <div class="rc-left"><div class="rc-icon red">🚗</div><div><div class="rc-name">Garage</div><div class="rc-count">7 items · 1 photo</div></div></div>
+            <div class="rc-right"><div class="rc-value">$3,000</div><div class="rc-chevron">›</div></div>
+          </div>
+          <button class="add-room-btn">＋ Add New Room</button>
+        </div>
+        <div class="tab-bar">
+          <div class="tab active"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+          <div class="tab" onclick="showScreen('room')"><div class="tab-icon">📦</div><div class="tab-label">Rooms</div></div>
+          <div class="tab" onclick="showScreen('report')"><div class="tab-icon">📊</div><div class="tab-label">Report</div></div>
+          <div class="tab"><div class="tab-icon">🛒</div><div class="tab-label">Sell</div></div>
+          <div class="tab"><div class="tab-icon">👤</div><div class="tab-label">Profile</div></div>
+        </div>
+      </div>
+
+      <!-- ── ROOM DETAIL ── -->
+      <div id="screen-room" style="display:none;height:100%;flex-direction:column;background:#0B1629;">
+        <div style="height:50px;"></div>
+        <div class="room-header">
+          <div class="rh-back" onclick="showScreen('home')">‹ Home</div>
+          <div class="rh-top">
+            <div class="rh-icon-name">
+              <div class="rh-icon">🛋️</div>
+              <div><div class="rh-name">Living Room</div><div class="rh-count">12 items</div></div>
+            </div>
+            <div class="rh-value-block">
+              <div class="rh-value-label">Est. Value</div>
+              <div class="rh-value">$8,400</div>
+            </div>
+          </div>
+          <div class="rh-tags">
+            <div class="rh-tag">Electronics</div>
+            <div class="rh-tag">Furniture</div>
+            <div class="rh-tag">Art &amp; Decor</div>
+          </div>
+        </div>
+        <div class="room-items-list">
+          <div class="items-sort-bar">
+            <div class="items-count">12 items</div>
+            <div class="items-sort">Sort: Value ↓</div>
+          </div>
+          <div class="item-row" onclick="showScreen('item')">
+            <div class="item-photo">📺</div>
+            <div class="item-info">
+              <div class="item-name">Samsung 65" QLED TV</div>
+              <div class="item-meta">Samsung · Model QN65QN90B · SN: 0X3F...</div>
+              <div class="item-tags">
+                <span class="item-tag insured">Insured</span>
+                <span class="item-tag receipt">Receipt</span>
+              </div>
+            </div>
+            <div class="item-value-block">
+              <div class="item-value">$1,200</div>
+              <div class="item-condition">Good</div>
+            </div>
+          </div>
+          <div class="item-row">
+            <div class="item-photo">🛋️</div>
+            <div class="item-info">
+              <div class="item-name">Restoration Hardware Sofa</div>
+              <div class="item-meta">RH · Maxwell Sofa · Gray Velvet</div>
+              <div class="item-tags"><span class="item-tag receipt">Receipt</span></div>
+            </div>
+            <div class="item-value-block">
+              <div class="item-value">$3,800</div>
+              <div class="item-condition">Excellent</div>
+            </div>
+          </div>
+          <div class="item-row">
+            <div class="item-photo">🎸</div>
+            <div class="item-info">
+              <div class="item-name">Gibson Les Paul Standard</div>
+              <div class="item-meta">Gibson · 2022 · Heritage Cherry</div>
+              <div class="item-tags">
+                <span class="item-tag insured">Insured</span>
+                <span class="item-tag warranty">Warranty</span>
+              </div>
+            </div>
+            <div class="item-value-block">
+              <div class="item-value">$3,200</div>
+              <div class="item-condition">Excellent</div>
+            </div>
+          </div>
+          <div class="item-row">
+            <div class="item-photo">🖼️</div>
+            <div class="item-info">
+              <div class="item-name">Abstract Art Print (Framed)</div>
+              <div class="item-meta">Local Artist · 24"×36" · Oak Frame</div>
+              <div class="item-tags"></div>
+            </div>
+            <div class="item-value-block">
+              <div class="item-value">$200</div>
+              <div class="item-condition">Good</div>
+            </div>
+          </div>
+          <div class="add-item-btn">
+            <button class="aib-inner" onclick="showScreen('add')">＋ Add Item to Living Room</button>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab" onclick="showScreen('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+          <div class="tab active"><div class="tab-icon">📦</div><div class="tab-label">Rooms</div></div>
+          <div class="tab" onclick="showScreen('report')"><div class="tab-icon">📊</div><div class="tab-label">Report</div></div>
+          <div class="tab"><div class="tab-icon">🛒</div><div class="tab-label">Sell</div></div>
+          <div class="tab"><div class="tab-icon">👤</div><div class="tab-label">Profile</div></div>
+        </div>
+      </div>
+
+      <!-- ── ITEM DETAIL ── -->
+      <div id="screen-item" style="display:none;height:100%;flex-direction:column;background:#0B1629;overflow-y:auto;">
+        <div style="height:50px;"></div>
+        <div class="item-header">
+          <div class="ih-back" onclick="showScreen('room')">‹ Living Room</div>
+        </div>
+        <div class="item-photo-large">
+          📺
+          <div class="photo-badge">📷 3 Photos</div>
+        </div>
+        <div class="item-detail-body">
+          <div class="item-detail-name">Samsung 65" QLED TV</div>
+          <div class="item-detail-brand">Samsung · Electronics</div>
+          <div class="detail-tags">
+            <span class="detail-tag verified">✓ Insured</span>
+            <span class="detail-tag gold">📄 Receipt Saved</span>
+            <span class="detail-tag blue">🛡️ Warranty Active</span>
+          </div>
+          <div class="info-grid">
+            <div class="info-cell highlight">
+              <div class="ic-label">Current Value</div>
+              <div class="ic-value gold">$1,200</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Purchase Price</div>
+              <div class="ic-value">$1,799</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Purchase Date</div>
+              <div class="ic-value">Mar 14, 2023</div>
+            </div>
+            <div class="info-cell">
+              <div class="ic-label">Condition</div>
+              <div class="ic-value green">Good</div>
+            </div>
+            <div class="info-cell full">
+              <div class="ic-label">Model / Serial</div>
+              <div class="ic-value" style="font-size:14px;">QN65QN90B · SN: 0X3F7829KL</div>
+            </div>
+            <div class="info-cell full">
+              <div class="ic-label">Warranty Expires</div>
+              <div class="ic-value green">Mar 14, 2025 · 9 months left</div>
+            </div>
+          </div>
+          <div class="notes-card">
+            <div class="nc-title">Notes</div>
+            <div class="nc-text">Purchased at Best Buy. Includes wall mount and original remote. Receipt uploaded.</div>
+          </div>
+          <div class="item-actions">
+            <button class="ia-btn primary">Edit Item</button>
+            <button class="ia-btn green-btn">List for Sale</button>
+            <button class="ia-btn secondary">View Photos</button>
+            <button class="ia-btn danger">Delete</button>
+          </div>
+        </div>
+        <div style="height:80px;"></div>
+        <div class="tab-bar">
+          <div class="tab" onclick="showScreen('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+          <div class="tab active"><div class="tab-icon">📦</div><div class="tab-label">Rooms</div></div>
+          <div class="tab" onclick="showScreen('report')"><div class="tab-icon">📊</div><div class="tab-label">Report</div></div>
+          <div class="tab"><div class="tab-icon">🛒</div><div class="tab-label">Sell</div></div>
+          <div class="tab"><div class="tab-icon">👤</div><div class="tab-label">Profile</div></div>
+        </div>
+      </div>
+
+      <!-- ── ADD ITEM ── -->
+      <div id="screen-add" style="display:none;height:100%;flex-direction:column;background:#0B1629;">
+        <div style="height:50px;"></div>
+        <div class="add-header">
+          <div class="ah-cancel" onclick="showScreen('room')">Cancel</div>
+          <div class="ah-title">Add Item</div>
+          <div class="ah-save">Save</div>
+        </div>
+        <div class="add-photo-zone">
+          <div class="apz-icon">📷</div>
+          <div class="apz-label">Add Photos</div>
+          <div class="apz-sub">Tap to take a photo or choose from library</div>
+        </div>
+        <div class="add-form">
+          <div class="form-section-label">Item Details</div>
+          <input class="form-input-field" placeholder="Item name (e.g. Samsung 65&quot; TV)" style="background:#162238;border:1px solid rgba(255,255,255,0.08);">
+          <input class="form-input-field" placeholder="Brand / Manufacturer" style="background:#162238;border:1px solid rgba(255,255,255,0.08);margin-top:0;">
+          <input class="form-input-field" placeholder="Model number" style="background:#162238;border:1px solid rgba(255,255,255,0.08);margin-top:0;">
+          <input class="form-input-field" placeholder="Serial number" style="background:#162238;border:1px solid rgba(255,255,255,0.08);margin-top:0;">
+
+          <div class="form-section-label">Value</div>
+          <input class="form-input-field" placeholder="Purchase price  $0.00" style="background:#162238;border:1px solid rgba(255,255,255,0.08);">
+          <input class="form-input-field" placeholder="Current estimated value  $0.00" style="background:#162238;border:1px solid rgba(255,255,255,0.08);margin-top:0;">
+          <div class="form-field active">
+            <div class="form-field-label">Purchase Date</div>
+            <div class="form-field-value">Mar 14, 2023</div>
+          </div>
+
+          <div class="form-section-label">Condition</div>
+          <div class="condition-row">
+            <button class="cond-btn">Poor</button>
+            <button class="cond-btn">Fair</button>
+            <button class="cond-btn active">Good</button>
+            <button class="cond-btn">Excellent</button>
+          </div>
+
+          <div class="form-section-label">Location</div>
+          <div class="form-field">
+            <div class="form-field-label">Room</div>
+            <div style="display:flex;align-items:center;gap:6px;"><div class="form-field-value">Living Room</div><div class="form-field-chevron">›</div></div>
+          </div>
+
+          <div class="form-section-label">Documentation</div>
+          <div class="form-field">
+            <div class="form-field-label">Attach Receipt</div>
+            <div style="display:flex;align-items:center;gap:6px;"><div class="form-field-placeholder">Add photo</div><div class="form-field-chevron">›</div></div>
+          </div>
+          <div class="form-field">
+            <div class="form-field-label">Warranty Expires</div>
+            <div style="display:flex;align-items:center;gap:6px;"><div class="form-field-placeholder">Add date</div><div class="form-field-chevron">›</div></div>
+          </div>
+
+          <div class="add-submit">
+            <button class="as-inner">Save Item to Living Room</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── INSURANCE REPORT ── -->
+      <div id="screen-report" style="display:none;height:100%;flex-direction:column;background:#0B1629;overflow-y:auto;">
+        <div style="height:50px;"></div>
+        <div class="report-header">
+          <div class="rph-back" onclick="showScreen('home')">‹ Home</div>
+          <div class="rph-title">Insurance Report</div>
+          <div class="rph-sub">Full home inventory · June 2026</div>
+        </div>
+        <div class="report-body">
+          <div class="report-banner">
+            <div class="rb-icon">📋</div>
+            <div class="rb-info">
+              <div class="rb-total-label">Total Estimated Value</div>
+              <div class="rb-total">$28,340</div>
+              <div class="rb-meta">47 items · 6 rooms · 12 photos</div>
+            </div>
+          </div>
+          <div class="export-btns">
+            <div class="export-btn primary-export">
+              <span class="eb-icon">📄</span>
+              <div class="eb-label">Export PDF</div>
+              <div class="eb-sub">Share with agent</div>
+            </div>
+            <div class="export-btn">
+              <span class="eb-icon">📊</span>
+              <div class="eb-label">Export CSV</div>
+              <div class="eb-sub">Spreadsheet format</div>
+            </div>
+            <div class="export-btn">
+              <span class="eb-icon">📧</span>
+              <div class="eb-label">Email Report</div>
+              <div class="eb-sub">Send to yourself</div>
+            </div>
+            <div class="export-btn">
+              <span class="eb-icon">🔗</span>
+              <div class="eb-label">Share Link</div>
+              <div class="eb-sub">Secure 24hr link</div>
+            </div>
+          </div>
+          <div class="report-table-title">All Items</div>
+          <div class="report-row">
+            <div class="rr-left"><div class="rr-photo">📺</div><div><div class="rr-name">Samsung 65" QLED TV</div><div class="rr-room">Living Room</div></div></div>
+            <div class="rr-value">$1,200</div>
+          </div>
+          <div class="report-row">
+            <div class="rr-left"><div class="rr-photo">🛋️</div><div><div class="rr-name">RH Maxwell Sofa</div><div class="rr-room">Living Room</div></div></div>
+            <div class="rr-value">$3,800</div>
+          </div>
+          <div class="report-row">
+            <div class="rr-left"><div class="rr-photo">💻</div><div><div class="rr-name">MacBook Pro 14"</div><div class="rr-room">Home Office</div></div></div>
+            <div class="rr-value">$2,499</div>
+          </div>
+          <div class="report-row">
+            <div class="rr-left"><div class="rr-photo">⌚</div><div><div class="rr-name">Rolex Submariner</div><div class="rr-room">Master Bedroom</div></div></div>
+            <div class="rr-value">$9,800</div>
+          </div>
+          <div class="report-row">
+            <div class="rr-left"><div class="rr-photo">🎸</div><div><div class="rr-name">Gibson Les Paul</div><div class="rr-room">Living Room</div></div></div>
+            <div class="rr-value">$3,200</div>
+          </div>
+          <div class="report-row" style="opacity:0.5;">
+            <div class="rr-left"><div class="rr-photo" style="font-size:12px;color:#555;">+42</div><div><div class="rr-name">42 more items</div><div class="rr-room">All rooms</div></div></div>
+            <div class="rr-value">$7,841</div>
+          </div>
+          <div class="report-total-row">
+            <div class="rt-label">Total Estimated Value</div>
+            <div class="rt-value">$28,340</div>
+          </div>
+        </div>
+        <div style="height:80px;"></div>
+        <div class="tab-bar">
+          <div class="tab" onclick="showScreen('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+          <div class="tab" onclick="showScreen('room')"><div class="tab-icon">📦</div><div class="tab-label">Rooms</div></div>
+          <div class="tab active"><div class="tab-icon">📊</div><div class="tab-label">Report</div></div>
+          <div class="tab"><div class="tab-icon">🛒</div><div class="tab-label">Sell</div></div>
+          <div class="tab"><div class="tab-icon">👤</div><div class="tab-label">Profile</div></div>
+        </div>
+      </div>
+
+    </div><!-- end .screen -->
+  </div><!-- end .phone -->
+
+  <!-- DESCRIPTION PANEL -->
+  <div class="desc-panel" id="desc-panel">
+    <div class="dp-screen" id="dp-screen-label">Screen 1 of 6</div>
+    <div class="dp-title" id="dp-title">Onboarding</div>
+    <div class="dp-desc" id="dp-desc">First thing users see when they open the app for the first time. Clean and confidence-building — sets the tone for what Life Ledger is and why they need it.</div>
+    <ul class="dp-features" id="dp-features">
+      <li><span class="dp-check">✓</span>Strong value proposition front and center</li>
+      <li><span class="dp-check">✓</span>Free positioning clear — no friction</li>
+      <li><span class="dp-check">✓</span>App Store branding badge</li>
+      <li><span class="dp-check">✓</span>Sign in option for returning users</li>
+    </ul>
+    <div class="dp-divider"></div>
+    <div class="dp-note" id="dp-note">Tap the buttons above to switch between all 6 app screens.</div>
+  </div>
+
+</div><!-- end .phone-wrapper -->
+
+<script>
+const screens = {
+  onboarding: {
+    label: 'Screen 1 of 6',
+    title: 'Onboarding',
+    desc: 'First screen when the app opens. Sets the value proposition immediately — documentation for insurance, disaster prep, and peace of mind.',
+    features: [
+      'Strong headline — "Know What You Own. Prove It When It Counts."',
+      'Single clear CTA — Get Started Free',
+      'Sign In option for returning users',
+      'No friction — no email required to preview'
+    ],
+    note: 'Swipe through 3 slides showing key features before signup.'
+  },
+  home: {
+    label: 'Screen 2 of 6',
+    title: 'Home Dashboard',
+    desc: 'Main dashboard after login. At a glance: total home value, item count, room count, and quick access to all rooms.',
+    features: [
+      'Gold summary card — total estimated value front and center',
+      'Quick Actions — Add Item and View Report in two taps',
+      'Room list with per-room value and item count',
+      'Add New Room button at the bottom',
+      'Tab bar navigation across all sections'
+    ],
+    note: 'This is where users land every time they open the app. Value number motivates continued use.'
+  },
+  room: {
+    label: 'Screen 3 of 6',
+    title: 'Room View',
+    desc: 'Individual room showing all items. Sort by value, name, or date added. Each item shows photo, name, condition, and value at a glance.',
+    features: [
+      'Room total value displayed in header',
+      'Item count and category tags',
+      'Each item: photo + name + value + condition',
+      'Insurance / Receipt / Warranty badges on items',
+      'Sticky Add Item button always visible'
+    ],
+    note: 'Tap any item row to go to the full Item Detail screen.'
+  },
+  item: {
+    label: 'Screen 4 of 6',
+    title: 'Item Detail',
+    desc: 'Full detail view for a single item. Photos, all tracking fields, documentation badges, and actions in one clean screen.',
+    features: [
+      'Large photo area with photo count badge',
+      'Current vs purchase price comparison',
+      'Serial number, model, purchase date, condition',
+      'Warranty expiration with time remaining',
+      'Insured / Receipt / Warranty status badges',
+      'Edit, List for Sale, View Photos, Delete actions'
+    ],
+    note: 'This is the screen an insurance adjuster is asking you to recreate after a loss. With Life Ledger you already have it.'
+  },
+  add: {
+    label: 'Screen 5 of 6',
+    title: 'Add Item',
+    desc: 'Item entry form. Photo first — reduces friction. All insurance-critical fields included. Condition selector, receipt attachment, warranty date.',
+    features: [
+      'Photo tap at top — camera or library',
+      'Item name, brand, model, serial number',
+      'Purchase price + current estimated value',
+      'Purchase date picker',
+      'Condition: Poor / Fair / Good / Excellent',
+      'Receipt photo attachment',
+      'Warranty expiration date'
+    ],
+    note: 'Target time to add one item: under 60 seconds with a photo.'
+  },
+  report: {
+    label: 'Screen 6 of 6',
+    title: 'Insurance Report',
+    desc: 'The most important screen. One tap to generate a complete insurance-ready PDF. This is what justifies the Plus subscription.',
+    features: [
+      'Total home value summary card',
+      'Export to PDF — shareable with insurance agent',
+      'Export to CSV for spreadsheet users',
+      'Email report to yourself',
+      'Secure share link (24hr expiry)',
+      'Full itemized list with room and value',
+      'Photos included in PDF export'
+    ],
+    note: 'PDF export is the #1 upgrade reason. Free users see the report but need Plus to export.'
+  }
+};
+
+function showScreen(name) {
+  // Hide all screens
+  ['onboarding','home','room','item','add','report'].forEach(id => {
+    document.getElementById('screen-' + id).style.display = 'none';
+  });
+
+  // Show selected
+  document.getElementById('screen-' + name).style.display = 'flex';
+
+  // Update nav buttons
+  document.querySelectorAll('.snav-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Update description panel
+  const info = screens[name];
+  document.getElementById('dp-screen-label').textContent = info.label;
+  document.getElementById('dp-title').textContent = info.title;
+  document.getElementById('dp-desc').textContent = info.desc;
+  document.getElementById('dp-note').textContent = info.note;
+  const feat = document.getElementById('dp-features');
+  feat.innerHTML = info.features.map(f => `<li><span class="dp-check">✓</span>${f}</li>`).join('');
+}
+</script>
+
+</body>
+</html>
