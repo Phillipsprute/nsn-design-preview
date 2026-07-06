@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSN Community — Concept Prototype</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#1a1a1a;color:#d1d5db;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(26,26,26,0.97);backdrop-filter:blur(12px);border-bottom:2px solid #3d4a57;height:64px;display:flex;align-items:center;padding:0 36px;gap:20px;}
+.nav-logo{color:#fff;font-size:1rem;letter-spacing:2px;font-weight:700;font-family:'Rajdhani',sans-serif;white-space:nowrap;text-decoration:none;}
+.nav-logo span{color:#ff7700;}
+.nav-links{display:flex;gap:28px;margin-left:auto;}
+.nav-links a{color:#d1d5db;text-decoration:none;font-size:0.92rem;font-weight:600;letter-spacing:0.5px;}
+.nav-links a:hover,.nav-links a.active{color:#ff7700;}
+.nav-btns{display:flex;gap:10px;margin-left:20px;}
+.btn-nav{background:transparent;border:1px solid #3d4a57;color:#d1d5db;padding:8px 18px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Rajdhani',sans-serif;}
+.btn-nav-primary{background:#ff7700;border:2px solid #ff7700;color:#000;padding:8px 20px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;}
+
+/* PREVIEW BANNER */
+.banner{background:#ff7700;color:#000;text-align:center;padding:8px;font-size:11px;font-weight:700;letter-spacing:1px;font-family:'Share Tech Mono',monospace;}
+
+/* HUD UTILITIES */
+.nsn-divider{height:4px;background:linear-gradient(90deg,transparent 0%,#ff7700 30%,#ff7700 70%,transparent 100%);opacity:0.6;}
+.nsn-tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:3px;color:rgba(255,119,0,0.7);border-top:1px solid rgba(255,119,0,0.3);border-bottom:1px solid rgba(255,119,0,0.3);padding:5px 18px;margin-bottom:22px;}
+.nsn-card{background:#1a1a1a;border:2px solid #3d4a57;position:relative;transition:border-color 0.3s,box-shadow 0.3s;}
+.nsn-card:hover{border-color:#ff7700;box-shadow:0 0 24px rgba(255,119,0,0.1);}
+.nsn-card::before{content:'';position:absolute;top:0;left:0;width:18px;height:18px;border-top:2px solid rgba(255,119,0,0.5);border-left:2px solid rgba(255,119,0,0.5);}
+
+/* PAGE HEADER */
+.page-header{background:#272b30;border-bottom:2px solid #3d4a57;padding:90px 24px 60px;text-align:center;position:relative;}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,119,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,119,0,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.page-header-inner{position:relative;z-index:1;}
+.page-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:14px;}
+.page-header p{color:#9ca3af;font-size:1.05rem;max-width:640px;margin:0 auto;line-height:1.7;}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.community-layout{display:grid;grid-template-columns:300px 1fr;gap:24px;padding:32px 24px;max-width:1200px;margin:0 auto;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:16px;}
+.sidebar-card{background:#272b30;border:1px solid #3d4a57;padding:20px;}
+.sidebar-card-title{font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:rgba(255,119,0,0.7);letter-spacing:2px;margin-bottom:14px;}
+.user-card{display:flex;align-items:center;gap:12px;padding:14px;background:#1a1a1a;border:1px solid #3d4a57;margin-bottom:14px;}
+.avatar{width:44px;height:44px;background:rgba(255,119,0,0.15);border:2px solid rgba(255,119,0,0.4);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#ff7700;flex-shrink:0;font-family:'Share Tech Mono',monospace;}
+.user-name{font-size:1rem;font-weight:700;color:#fff;}
+.user-role{font-size:11px;color:#9ca3af;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+.stat-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #3d4a57;}
+.stat-row:last-child{border-bottom:none;}
+.stat-label{font-size:12px;color:#9ca3af;}
+.stat-val{font-size:12px;font-weight:700;color:#ff7700;font-family:'Share Tech Mono',monospace;}
+.category-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;background:transparent;border:1px solid transparent;color:#d1d5db;cursor:pointer;font-size:13px;font-weight:600;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;transition:all 0.15s;margin-bottom:2px;text-align:left;}
+.category-btn:hover{background:rgba(255,119,0,0.08);border-color:rgba(255,119,0,0.2);color:#fff;}
+.category-btn.active{background:rgba(255,119,0,0.12);border-color:rgba(255,119,0,0.35);color:#ff7700;}
+.category-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.category-count{margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;}
+.online-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;display:inline-block;margin-right:5px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* MAIN FEED */
+.feed-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.feed-title{font-size:1.1rem;font-weight:700;color:#fff;font-family:'Rajdhani',sans-serif;}
+.feed-tabs{display:flex;gap:6px;}
+.feed-tab{padding:6px 16px;font-size:11px;font-weight:700;font-family:'Share Tech Mono',monospace;letter-spacing:1px;cursor:pointer;border:1px solid #3d4a57;color:#9ca3af;background:transparent;transition:all 0.2s;}
+.feed-tab.active{background:#ff7700;border-color:#ff7700;color:#000;}
+
+/* POST CARD */
+.post-card{background:#272b30;border:1px solid #3d4a57;padding:20px;margin-bottom:12px;position:relative;transition:border-color 0.2s;}
+.post-card:hover{border-color:rgba(255,119,0,0.3);}
+.post-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.post-avatar{width:38px;height:38px;background:rgba(255,119,0,0.1);border:1px solid rgba(255,119,0,0.3);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#ff7700;flex-shrink:0;font-family:'Share Tech Mono',monospace;}
+.post-meta{flex:1;}
+.post-author{font-size:14px;font-weight:700;color:#fff;}
+.post-info{font-size:11px;color:#9ca3af;font-family:'Share Tech Mono',monospace;letter-spacing:0.5px;margin-top:2px;}
+.post-tag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 8px;margin-left:8px;}
+.tag-discuss{background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.3);color:#60a5fa;}
+.tag-rfp{background:rgba(255,119,0,0.12);border:1px solid rgba(255,119,0,0.3);color:#ff7700;}
+.tag-alert{background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:#f87171;}
+.tag-job{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);color:#4ade80;}
+.tag-resource{background:rgba(196,181,253,0.12);border:1px solid rgba(196,181,253,0.3);color:#c4b5fd;}
+.post-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.4;}
+.post-body{font-size:13px;color:#9ca3af;line-height:1.65;margin-bottom:14px;}
+.post-footer{display:flex;align-items:center;gap:16px;}
+.post-action{display:flex;align-items:center;gap:5px;font-size:12px;color:#6b7280;cursor:pointer;font-weight:600;padding:4px 8px;border:1px solid transparent;transition:all 0.15s;}
+.post-action:hover{color:#ff7700;border-color:rgba(255,119,0,0.2);background:rgba(255,119,0,0.05);}
+.post-action svg{width:13px;height:13px;}
+.post-divider{height:1px;background:#3d4a57;margin:8px 0;}
+
+/* COMPOSE */
+.compose-card{background:#272b30;border:1px solid #3d4a57;padding:18px;margin-bottom:18px;}
+.compose-inner{display:flex;gap:12px;align-items:flex-start;}
+.compose-input{flex:1;background:#1a1a1a;border:1px solid #3d4a57;color:#d1d5db;padding:12px 14px;font-size:14px;font-family:'Rajdhani',sans-serif;resize:none;outline:none;transition:border-color 0.2s;}
+.compose-input:focus{border-color:#ff7700;}
+.compose-input::placeholder{color:#6b7280;}
+.compose-btn{background:#ff7700;border:2px solid #ff7700;color:#000;padding:10px 20px;font-size:13px;font-weight:700;font-family:'Rajdhani',sans-serif;cursor:pointer;white-space:nowrap;}
+
+/* PINNED ALERT */
+.pinned-card{background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.3);padding:16px 20px;margin-bottom:12px;display:flex;align-items:flex-start;gap:12px;}
+.pin-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.pin-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:#f87171;letter-spacing:2px;margin-bottom:4px;}
+.pin-text{font-size:13px;color:#d1d5db;line-height:1.5;}
+
+/* MEMBER LIST */
+.member-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #3d4a57;}
+.member-item:last-child{border-bottom:none;}
+.mini-avatar{width:30px;height:30px;background:rgba(255,119,0,0.1);border:1px solid rgba(255,119,0,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#ff7700;flex-shrink:0;font-family:'Share Tech Mono',monospace;}
+.member-name{font-size:13px;font-weight:600;color:#fff;}
+.member-title{font-size:11px;color:#9ca3af;}
+.member-badge{margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 6px;}
+.badge-mod{background:rgba(255,119,0,0.12);border:1px solid rgba(255,119,0,0.3);color:#ff7700;}
+.badge-verified{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:#4ade80;}
+
+/* UPCOMING */
+.event-item{padding:12px 0;border-bottom:1px solid #3d4a57;}
+.event-item:last-child{border-bottom:none;}
+.event-date{font-family:'Share Tech Mono',monospace;font-size:10px;color:#ff7700;letter-spacing:1px;margin-bottom:3px;}
+.event-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;}
+.event-meta{font-size:11px;color:#9ca3af;}
+
+@media(max-width:900px){.community-layout{grid-template-columns:1fr;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<div class="banner">NSN COMMUNITY — CONCEPT PROTOTYPE — NOT LIVE — VISION ONLY</div>
+
+<nav>
+  <a class="nav-logo" href="#">NSN <span>// NATIONWIDE SECURITY NETWORK</span></a>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Browse RFPs</a>
+    <a href="#">Find Vendors</a>
+    <a href="#" class="active">Community</a>
+    <a href="#">Pricing</a>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-nav">Sign In</button>
+    <button class="btn-nav-primary">Sign Up</button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="nsn-tag">// NSN COMMUNITY //</div>
+    <h1>Security Professional Network</h1>
+    <p>Connect with 2,400+ verified security professionals. Share knowledge, post RFPs, find talent, and stay current on industry intelligence — all in one place.</p>
+
+    <!-- Live stats bar -->
+    <div style="display:flex;gap:24px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#9ca3af;"><span class="online-dot"></span>347 ONLINE NOW</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#9ca3af;">2,418 MEMBERS</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#9ca3af;">142 POSTS THIS WEEK</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#9ca3af;">50 STATES REPRESENTED</div>
+    </div>
+  </div>
+</div>
+
+<div class="nsn-divider"></div>
+
+<!-- MAIN COMMUNITY LAYOUT -->
+<div class="community-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- User card -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">// MY PROFILE //</div>
+      <div class="user-card">
+        <div class="avatar">PS</div>
+        <div>
+          <div class="user-name">Phillip Sprute</div>
+          <div class="user-role">DIRECTOR · PINKERTON</div>
+        </div>
+      </div>
+      <div class="stat-row"><span class="stat-label">Posts</span><span class="stat-val">14</span></div>
+      <div class="stat-row"><span class="stat-label">Connections</span><span class="stat-val">38</span></div>
+      <div class="stat-row"><span class="stat-label">RFPs Posted</span><span class="stat-val">3</span></div>
+      <div class="stat-row"><span class="stat-label">Member Since</span><span class="stat-val">JUN 2026</span></div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">// CATEGORIES //</div>
+      <button class="category-btn active">
+        <span class="category-dot" style="background:#ff7700;"></span>
+        All Discussions
+        <span class="category-count">142</span>
+      </button>
+      <button class="category-btn">
+        <span class="category-dot" style="background:#60a5fa;"></span>
+        Industry News
+        <span class="category-count">31</span>
+      </button>
+      <button class="category-btn">
+        <span class="category-dot" style="background:#f87171;"></span>
+        Threat Alerts
+        <span class="category-count">8</span>
+      </button>
+      <button class="category-btn">
+        <span class="category-dot" style="background:#ff7700;"></span>
+        RFP Help
+        <span class="category-count">24</span>
+      </button>
+      <button class="category-btn">
+        <span class="category-dot" style="background:#4ade80;"></span>
+        Jobs & Hiring
+        <span class="category-count">19</span>
+      </button>
+      <button class="category-btn">
+        <span class="category-dot" style="background:#c4b5fd;"></span>
+        Resources & Guides
+        <span class="category-count">27</span>
+      </button>
+      <button class="category-btn">
+        <span class="category-dot" style="background:#facc15;"></span>
+        Vendor Reviews
+        <span class="category-count">33</span>
+      </button>
+    </div>
+
+    <!-- Active Members -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">// ACTIVE MEMBERS //</div>
+      <div class="member-item">
+        <div class="mini-avatar">JH</div>
+        <div><div class="member-name">James Holloway</div><div class="member-title">CSO · Allied Universal</div></div>
+        <span class="member-badge badge-mod">MOD</span>
+      </div>
+      <div class="member-item">
+        <div class="mini-avatar">SR</div>
+        <div><div class="member-name">Sarah Reyes</div><div class="member-title">Dir. Security · Kaiser</div></div>
+        <span class="member-badge badge-verified">VFD</span>
+      </div>
+      <div class="member-item">
+        <div class="mini-avatar">MT</div>
+        <div><div class="member-name">Marcus Tillman</div><div class="member-title">Owner · Guardian TX</div></div>
+        <span class="member-badge badge-verified">VFD</span>
+      </div>
+      <div class="member-item">
+        <div class="mini-avatar">LK</div>
+        <div><div class="member-name">Lisa Kovacs</div><div class="member-title">VP Risk · Nationwide</div></div>
+      </div>
+      <div class="member-item">
+        <div class="mini-avatar">DC</div>
+        <div><div class="member-name">Derek Chen</div><div class="member-title">Exec Protection · LA</div></div>
+      </div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">// UPCOMING EVENTS //</div>
+      <div class="event-item">
+        <div class="event-date">JUL 14 · 2:00 PM ET</div>
+        <div class="event-name">NSN Vendor Webinar: Winning RFPs</div>
+        <div class="event-meta">Virtual · 128 registered</div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">JUL 22 · PORTLAND, OR</div>
+        <div class="event-name">Northwest Security Summit</div>
+        <div class="event-meta">In-Person · ASIS Chapter</div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">AUG 5-7 · DALLAS, TX</div>
+        <div class="event-name">GSX 2026 Conference</div>
+        <div class="event-meta">In-Person · NSN Booth #422</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAIN FEED -->
+  <div>
+    <!-- Feed header + tabs -->
+    <div class="feed-header">
+      <div class="feed-title">Community Feed</div>
+      <div class="feed-tabs">
+        <button class="feed-tab active">LATEST</button>
+        <button class="feed-tab">TOP</button>
+        <button class="feed-tab">FOLLOWING</button>
+      </div>
+    </div>
+
+    <!-- Compose -->
+    <div class="compose-card">
+      <div class="compose-inner">
+        <div class="avatar" style="width:38px;height:38px;font-size:12px;">PS</div>
+        <textarea class="compose-input" rows="2" placeholder="Share something with the security community..."></textarea>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end;align-items:center;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;letter-spacing:1px;">CATEGORY:</span>
+        <select style="background:#1a1a1a;border:1px solid #3d4a57;color:#d1d5db;padding:6px 10px;font-size:12px;font-family:'Rajdhani',sans-serif;outline:none;">
+          <option>Discussion</option>
+          <option>RFP Help</option>
+          <option>Industry News</option>
+          <option>Jobs & Hiring</option>
+          <option>Resources</option>
+        </select>
+        <button class="compose-btn">Post</button>
+      </div>
+    </div>
+
+    <!-- Pinned threat alert -->
+    <div class="pinned-card">
+      <div class="pin-icon">⚠️</div>
+      <div>
+        <div class="pin-label">PINNED · THREAT ALERT</div>
+        <div class="pin-text">Rise in corporate campus tailgating incidents reported across Pacific Northwest — 14 events in Q2 2026. Review access control protocols. Full brief available in Resources.</div>
+      </div>
+    </div>
+
+    <!-- POST 1 -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">JH</div>
+        <div class="post-meta">
+          <div class="post-author">James Holloway <span class="post-tag tag-discuss">DISCUSSION</span></div>
+          <div class="post-info">CSO · Allied Universal · Portland, OR · 2 HRS AGO</div>
+        </div>
+      </div>
+      <div class="post-title">What's your go-to contract clause for post-incident response SLAs?</div>
+      <div class="post-body">Been reworking our master service agreement language after a Q1 incident where response time expectations were ambiguous. Curious what language others are using to define and enforce post-incident reporting timelines. Our current approach is a 4-hour verbal brief + 24-hour written report. Has anyone had success with penalty clauses?</div>
+      <div class="post-footer">
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg>
+          24 Upvotes
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          18 Replies
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 2 - RFP -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">SR</div>
+        <div class="post-meta">
+          <div class="post-author">Sarah Reyes <span class="post-tag tag-rfp">RFP HELP</span></div>
+          <div class="post-info">Dir. Security · Kaiser Permanente · Oakland, CA · 5 HRS AGO</div>
+        </div>
+      </div>
+      <div class="post-title">Looking for armed guard vendors in Sacramento — anyone have a recommendation?</div>
+      <div class="post-body">We are expanding into Sacramento and need coverage for 3 medical office buildings. Need a vendor with healthcare experience and ability to handle behavioral health situations. Preferred response time under 5 mins to any location. Budget is $18-22K/month. Have posted an RFP on NSN but also looking for community referrals.</div>
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:rgba(255,119,0,0.1);border:1px solid rgba(255,119,0,0.3);color:#ff7700;letter-spacing:1px;">HEALTHCARE</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:rgba(61,74,87,0.5);border:1px solid #3d4a57;color:#9ca3af;letter-spacing:1px;">SACRAMENTO CA</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:rgba(61,74,87,0.5);border:1px solid #3d4a57;color:#9ca3af;letter-spacing:1px;">$18-22K/MO</span>
+      </div>
+      <div class="post-footer">
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg>
+          11 Upvotes
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          7 Replies
+        </div>
+        <div class="post-action" style="margin-left:auto;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          View RFP on NSN
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 3 - Job -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">MT</div>
+        <div class="post-meta">
+          <div class="post-author">Marcus Tillman <span class="post-tag tag-job">HIRING</span></div>
+          <div class="post-info">Owner · Guardian Security TX · Houston, TX · 8 HRS AGO</div>
+        </div>
+      </div>
+      <div class="post-title">Hiring: Lead Operations Manager — Houston, TX</div>
+      <div class="post-body">Growing security company in Houston looking for an experienced operations manager. 5+ years in security operations required. Must have experience managing 50+ officers across multiple sites. Competitive salary $65-85K + benefits. Licensed Texas company, strong client base in energy and healthcare sectors.</div>
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:#4ade80;letter-spacing:1px;">FULL-TIME</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:rgba(61,74,87,0.5);border:1px solid #3d4a57;color:#9ca3af;letter-spacing:1px;">HOUSTON TX</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:rgba(61,74,87,0.5);border:1px solid #3d4a57;color:#9ca3af;letter-spacing:1px;">$65-85K</span>
+      </div>
+      <div class="post-footer">
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg>
+          6 Upvotes
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          3 Replies
+        </div>
+        <button style="margin-left:auto;background:#ff7700;border:2px solid #ff7700;color:#000;font-weight:700;padding:6px 16px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;">Apply Now</button>
+      </div>
+    </div>
+
+    <!-- POST 4 - Resource -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">LK</div>
+        <div class="post-meta">
+          <div class="post-author">Lisa Kovacs <span class="post-tag tag-resource">RESOURCE</span></div>
+          <div class="post-info">VP Risk Management · Nationwide Insurance · Columbus, OH · 1 DAY AGO</div>
+        </div>
+      </div>
+      <div class="post-title">Sharing: Physical Security Assessment Checklist we use for vendor audits</div>
+      <div class="post-body">We refined this over 3 years and 40+ vendor audits. Covers access control, CCTV coverage mapping, incident response documentation, guard post orders, and licensing verification. 47 line items. Free to use and adapt for your organization. Uploaded to NSN Resources.</div>
+      <div style="background:#1a1a1a;border:1px solid #3d4a57;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">📋</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff;">Physical_Security_Assessment_Checklist_v3.pdf</div>
+          <div style="font-size:11px;color:#9ca3af;font-family:'Share Tech Mono',monospace;">47 LINE ITEMS · 8 PAGES · 2.1 MB</div>
+        </div>
+        <button style="margin-left:auto;background:transparent;border:1px solid #3d4a57;color:#d1d5db;font-weight:600;padding:6px 14px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;">Download</button>
+      </div>
+      <div class="post-footer">
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg>
+          89 Upvotes
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          12 Replies
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          234 Downloads
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 5 -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">DC</div>
+        <div class="post-meta">
+          <div class="post-author">Derek Chen <span class="post-tag tag-discuss">DISCUSSION</span></div>
+          <div class="post-info">Executive Protection Specialist · Los Angeles, CA · 1 DAY AGO</div>
+        </div>
+      </div>
+      <div class="post-title">AI tools for threat assessment — anyone actually using them in the field?</div>
+      <div class="post-body">Been experimenting with a few AI tools for pre-advance work and threat level scoring. Curious if others in EP are using anything beyond the standard OSINT tools. Specifically looking at social media threat monitoring. Happy to share what I've found, but wanted to see if there's already some experience in the community first.</div>
+      <div class="post-footer">
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg>
+          31 Upvotes
+        </div>
+        <div class="post-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          22 Replies
+        </div>
+      </div>
+    </div>
+
+    <!-- Load more -->
+    <div style="text-align:center;padding:24px 0;">
+      <button style="background:transparent;border:2px solid #3d4a57;color:#9ca3af;padding:12px 32px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;">Load More Posts</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="nsn-divider"></div>
+<footer style="background:#111;border-top:2px solid #3d4a57;padding:40px 36px;text-align:center;">
+  <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(255,119,0,0.3);letter-spacing:2px;">// NSN PLATFORM v2.6 // COMMUNITY MODULE // CONCEPT ONLY — NOT YET BUILT //</div>
+</footer>
+
+</body>
+</html>
