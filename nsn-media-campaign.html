@@ -219,6 +219,59 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 /* STATUS CHANGE DROPDOWN */
 .status-select{background:var(--card);border:1px solid var(--border);color:var(--text);padding:4px 6px;font-size:10px;font-family:'Share Tech Mono',monospace;}
 
+
+/* IMAGE UPLOAD ZONES */
+.img-zone{margin-top:10px;margin-bottom:4px;}
+.img-zone-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:#2dd4bf;letter-spacing:2px;font-weight:700;margin-bottom:6px;}
+.img-drop{border:2px dashed rgba(45,212,191,0.3);border-radius:6px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;background:rgba(45,212,191,0.03);}
+.img-drop:hover,.img-drop.drag-over{border-color:rgba(45,212,191,0.7);background:rgba(45,212,191,0.07);}
+.img-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.img-drop-text{font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(45,212,191,0.6);letter-spacing:1px;pointer-events:none;}
+.img-drop-text span{display:block;font-size:11px;color:#2dd4bf;font-weight:700;margin-bottom:4px;}
+.img-preview-wrap{display:none;margin-top:8px;position:relative;}
+.img-preview-wrap img{width:100%;border-radius:4px;border:1px solid rgba(45,212,191,0.3);display:block;max-height:220px;object-fit:contain;background:#0d0f14;}
+.img-preview-actions{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
+.btn-img-dl{background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-family:'Share Tech Mono',monospace;font-size:9px;padding:4px 12px;cursor:pointer;letter-spacing:0.5px;border-radius:2px;text-decoration:none;}
+.btn-img-dl:hover{background:rgba(45,212,191,0.28);}
+.btn-img-clear{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);color:var(--red);font-family:'Share Tech Mono',monospace;font-size:9px;padding:4px 10px;cursor:pointer;letter-spacing:0.5px;border-radius:2px;}
+.img-saved-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:#2dd4bf;letter-spacing:1px;margin-left:auto;}
+.img-filename{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px;}
+.img-size-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(45,212,191,0.5);margin-left:6px;}
+
+
+/* IMAGE UPLOAD ZONES */
+.img-zone{margin-top:10px;margin-bottom:4px;}
+.img-zone-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:#2dd4bf;letter-spacing:2px;font-weight:700;margin-bottom:6px;}
+.img-drop{border:2px dashed rgba(45,212,191,0.3);border-radius:6px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;background:rgba(45,212,191,0.03);}
+.img-drop:hover,.img-drop.drag-over{border-color:rgba(45,212,191,0.7);background:rgba(45,212,191,0.07);}
+.img-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.img-drop-text{font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(45,212,191,0.6);letter-spacing:1px;pointer-events:none;}
+.img-drop-text span{display:block;font-size:12px;color:#2dd4bf;font-weight:700;margin-bottom:3px;}
+.img-preview-wrap{margin-top:8px;position:relative;}
+.img-preview-wrap img{width:100%;border-radius:4px;border:1px solid rgba(45,212,191,0.3);display:block;max-height:240px;object-fit:contain;background:#0d0f14;}
+.img-preview-actions{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
+.btn-img-dl{background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-family:'Share Tech Mono',monospace;font-size:9px;padding:4px 12px;cursor:pointer;letter-spacing:0.5px;border-radius:2px;text-decoration:none;display:inline-block;}
+.btn-img-dl:hover{background:rgba(45,212,191,0.28);}
+.btn-img-clear{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);color:var(--red);font-family:'Share Tech Mono',monospace;font-size:9px;padding:4px 10px;cursor:pointer;letter-spacing:0.5px;border-radius:2px;border:none;}
+.img-saved-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:#2dd4bf;letter-spacing:1px;margin-left:auto;}
+.img-filename{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+
+.img-zone{margin-top:10px;}
+.img-zone-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:#2dd4bf;letter-spacing:2px;font-weight:700;margin-bottom:6px;}
+.img-drop{border:2px dashed rgba(45,212,191,0.3);border-radius:6px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;background:rgba(45,212,191,0.03);}
+.img-drop:hover,.img-drop.drag-over{border-color:rgba(45,212,191,0.7);background:rgba(45,212,191,0.07);}
+.img-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.img-drop-hint{font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(45,212,191,0.5);letter-spacing:1px;pointer-events:none;}
+.img-drop-hint b{display:block;font-size:12px;color:#2dd4bf;font-weight:700;margin-bottom:3px;}
+.img-prev-wrap{margin-top:8px;}
+.img-prev-wrap img{width:100%;border-radius:4px;border:1px solid rgba(45,212,191,0.3);display:block;max-height:240px;object-fit:contain;background:#0d0f14;}
+.img-prev-acts{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
+.btn-imdl{background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-family:'Share Tech Mono',monospace;font-size:9px;padding:4px 12px;letter-spacing:0.5px;border-radius:2px;text-decoration:none;display:inline-block;}
+.btn-imcl{background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.3);color:#f87171;font-family:'Share Tech Mono',monospace;font-size:9px;padding:4px 10px;cursor:pointer;border-radius:2px;}
+.img-ok{font-family:'Share Tech Mono',monospace;font-size:9px;color:#2dd4bf;margin-left:auto;}
+.img-fn{font-family:'Share Tech Mono',monospace;font-size:9px;color:#7d8590;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
 </style>
 </head>
 <body>
@@ -351,7 +404,7 @@ One search. Verified vendors. Direct connection.
 We're live. Explore the platform below.
 
 #SecurityIndustry #CorporateSecurity #NSN #NationwideSecurityNetwork #SecurityVendors #B2B</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Launch day visual — dramatic city skyline at night</div><div class="hf-prompt">dramatic aerial view of an American city skyline at night, dense urban landscape, orange and amber city lights glowing below, deep dark blue-black sky, ultra-wide 16:9 cinematic composition, no people, architectural photography, photorealistic, 8K, cinematic color grade with orange accent lighting, slight atmospheric haze</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Launch day visual — dramatic city skyline at night</div><div class="hf-prompt">dramatic aerial view of an American city skyline at night, dense urban landscape, orange and amber city lights glowing below, deep dark blue-black sky, ultra-wide 16:9 cinematic composition, no people, architectural photography, photorealistic, 8K, cinematic color grade with orange accent lighting, slight atmospheric haze</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz0"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id0" ondragover="iDO(event,0)" ondragleave="iDL(event,0)" ondrop="iDD(event,0)"><input type="file" accept="image/*" onchange="iSel(this,0)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip0" style="display:none;"><img id="ie0" src="" alt="image"><div class="img-fn" id="ifn0"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl0" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(0)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -375,7 +428,7 @@ Security companies in all 50 states are already on the platform.
 Claim your listing: [your domain]
 
 #SecurityCompany #GuardCompany #SecurityBusiness #NSN #SecurityIndustry #B2BMarketing</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Vendor on the job — security professional facing forward</div><div class="hf-prompt">lone security officer in dark tactical uniform standing at the main entrance of a modern corporate glass building at night, back to camera surveying the exterior, dramatic orange rim lighting from building facade illuminating their shoulders, cinematic wide shot, shallow depth of field, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Vendor on the job — security professional facing forward</div><div class="hf-prompt">lone security officer in dark tactical uniform standing at the main entrance of a modern corporate glass building at night, back to camera surveying the exterior, dramatic orange rim lighting from building facade illuminating their shoulders, cinematic wide shot, shallow depth of field, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz1"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id1" ondragover="iDO(event,1)" ondragleave="iDL(event,1)" ondrop="iDD(event,1)"><input type="file" accept="image/*" onchange="iSel(this,1)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip1" style="display:none;"><img id="ie1" src="" alt="image"><div class="img-fn" id="ifn1"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl1" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(1)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -404,7 +457,7 @@ On NSN, you post your requirement once and qualified vendors come to you. Every 
 First RFP is free. Always.
 
 #CorporateSecurity #FacilityManagement #SecurityRFP #RiskManagement #NSN #SecurityManagement</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Corporate buyer pain — the 90-day procurement problem</div><div class="hf-prompt">corporate executive in a tailored dark suit standing at floor-to-ceiling glass windows of a high-rise office looking down at the city below at dusk, orange sunset light reflecting across the glass panels, silhouette composition, contemplative mood, cinematic wide shot, back fully to camera, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Corporate buyer pain — the 90-day procurement problem</div><div class="hf-prompt">corporate executive in a tailored dark suit standing at floor-to-ceiling glass windows of a high-rise office looking down at the city below at dusk, orange sunset light reflecting across the glass panels, silhouette composition, contemplative mood, cinematic wide shot, back fully to camera, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz2"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id2" ondragover="iDO(event,2)" ondragleave="iDL(event,2)" ondrop="iDD(event,2)"><input type="file" accept="image/*" onchange="iSel(this,2)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip2" style="display:none;"><img id="ie2" src="" alt="image"><div class="img-fn" id="ifn2"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl2" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(2)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -435,7 +488,7 @@ NSN covers:
 233+ verified vendors. All 50 states. One platform.
 
 #SecurityIndustry #PrivateSecurity #SecurityMarketplace #NSN #NationwideSecurityNetwork</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Industry scale — $46 billion untapped marketplace</div><div class="hf-prompt">abstract dark background with glowing orange #ff7700 data network nodes and connection lines radiating outward from a central point, representing a massive nationwide industry network, financial data visualization aesthetic, no text, deep pure black background, cinematic lighting, photorealistic digital art, ultra-detailed glowing nodes</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Digital Art Cinematic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Industry scale — $46 billion untapped marketplace</div><div class="hf-prompt">abstract dark background with glowing orange #ff7700 data network nodes and connection lines radiating outward from a central point, representing a massive nationwide industry network, financial data visualization aesthetic, no text, deep pure black background, cinematic lighting, photorealistic digital art, ultra-detailed glowing nodes</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Digital Art Cinematic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz3"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id3" ondragover="iDO(event,3)" ondragleave="iDL(event,3)" ondrop="iDD(event,3)"><input type="file" accept="image/*" onchange="iSel(this,3)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip3" style="display:none;"><img id="ie3" src="" alt="image"><div class="img-fn" id="ifn3"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl3" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(3)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -460,7 +513,7 @@ You don't chase vendors. They come to you.
 Post your first RFP free: [your domain]
 
 #SecurityRFP #CorporateSecurity #SecurityProcurement #NSN #SecurityVendors #FacilityManagement</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Corporate campus aerial — buyers post one RFP, vendors come to them</div><div class="hf-prompt">birds-eye drone view of a modern corporate campus and office complex at dusk, warm orange pathway lights illuminating manicured grounds, deep dark blue sky transitioning to black at top, geometric architectural shapes clearly visible from above, no people visible, cinematic aerial drone photography, ultra-wide composition, photorealistic</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Aerial Cinematic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Corporate campus aerial — buyers post one RFP, vendors come to them</div><div class="hf-prompt">birds-eye drone view of a modern corporate campus and office complex at dusk, warm orange pathway lights illuminating manicured grounds, deep dark blue sky transitioning to black at top, geometric architectural shapes clearly visible from above, no people visible, cinematic aerial drone photography, ultra-wide composition, photorealistic</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Aerial Cinematic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz4"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id4" ondragover="iDO(event,4)" ondragleave="iDL(event,4)" ondrop="iDD(event,4)"><input type="file" accept="image/*" onchange="iSel(this,4)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip4" style="display:none;"><img id="ie4" src="" alt="image"><div class="img-fn" id="ifn4"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl4" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(4)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -488,7 +541,7 @@ Free. No contracts. Takes 5 minutes to claim.
 [your domain]
 
 #SecurityBusiness #SecurityCompany #GuardCompany #NSN #SecurityIndustry #EarlyAdopter</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Founding member positioning — all 50 states covered</div><div class="hf-prompt">dark topographic relief map of the United States viewed from slightly above, glowing orange pinpoints of light positioned at cities across all 50 states, deep pure black background, cinematic overhead view, dramatic lighting with glow halos around each node, subtle orange connection lines between major cities, no text, photorealistic digital art</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Digital Art</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Founding member positioning — all 50 states covered</div><div class="hf-prompt">dark topographic relief map of the United States viewed from slightly above, glowing orange pinpoints of light positioned at cities across all 50 states, deep pure black background, cinematic overhead view, dramatic lighting with glow halos around each node, subtle orange connection lines between major cities, no text, photorealistic digital art</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Digital Art</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz5"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id5" ondragover="iDO(event,5)" ondragleave="iDL(event,5)" ondrop="iDD(event,5)"><input type="file" accept="image/*" onchange="iSel(this,5)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip5" style="display:none;"><img id="ie5" src="" alt="image"><div class="img-fn" id="ifn5"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl5" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(5)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -512,7 +565,7 @@ The platform is live. The vendors are verified. The RFP system is free to use.
 Start here: [your domain]
 
 #NSN #NationwideSecurityNetwork #SecurityIndustry #CorporateSecurity #SecurityVendors #B2BMarketplace</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Two audiences, one platform — vendors and buyers connected</div><div class="hf-prompt">cinematic split-scene wide photograph: left half shows a security officer in dark uniform at a corporate entrance under evening orange lighting, right half shows a corporate conference room with city skyline view through tall glass windows, dramatic vertical orange light divide between the two scenes, both halves lit with warm orange rim lighting, no faces clearly visible, photorealistic</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Split Composition</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Two audiences, one platform — vendors and buyers connected</div><div class="hf-prompt">cinematic split-scene wide photograph: left half shows a security officer in dark uniform at a corporate entrance under evening orange lighting, right half shows a corporate conference room with city skyline view through tall glass windows, dramatic vertical orange light divide between the two scenes, both halves lit with warm orange rim lighting, no faces clearly visible, photorealistic</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x627</span><span class="hf-meta-tag">STYLE: Split Composition</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz6"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id6" ondragover="iDO(event,6)" ondragleave="iDL(event,6)" ondrop="iDD(event,6)"><input type="file" accept="image/*" onchange="iSel(this,6)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip6" style="display:none;"><img id="ie6" src="" alt="image"><div class="img-fn" id="ifn6"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl6" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(6)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -550,7 +603,7 @@ NSN is the first B2B marketplace built specifically for the security industry. C
 Your profile takes 5 minutes to set up. Your listing is free. No contracts.
 
 Get listed before your competitors do: [your domain]</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Launch energy — security operations control room</div><div class="hf-prompt">dramatic security operations control room at night, multiple monitors emitting orange and amber glow, security operator silhouetted facing the screens, atmospheric dark cinematic lighting, professional environment, no readable screen content visible, moody and intense atmosphere, photorealistic wide shot</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x628</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Launch energy — security operations control room</div><div class="hf-prompt">dramatic security operations control room at night, multiple monitors emitting orange and amber glow, security operator silhouetted facing the screens, atmospheric dark cinematic lighting, professional environment, no readable screen content visible, moody and intense atmosphere, photorealistic wide shot</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x628</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz7"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id7" ondragover="iDO(event,7)" ondragleave="iDL(event,7)" ondrop="iDD(event,7)"><input type="file" accept="image/*" onchange="iSel(this,7)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip7" style="display:none;"><img id="ie7" src="" alt="image"><div class="img-fn" id="ifn7"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl7" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(7)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -575,7 +628,7 @@ NSN puts your company in front of corporate buyers who are actively searching fo
 Free listing. No monthly fees to get started.
 
 [your domain]</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Security owner reviewing client acquisition — referral dependence</div><div class="hf-prompt">close-up overhead shot of business owner hands resting on a dark mahogany desk with a printed client list and pen, warm orange desk lamp casting a selective spotlight, deep shadows surrounding the lit area, shallow depth of field, cinematic macro photography, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x628</span><span class="hf-meta-tag">STYLE: Cinematic Macro</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Security owner reviewing client acquisition — referral dependence</div><div class="hf-prompt">close-up overhead shot of business owner hands resting on a dark mahogany desk with a printed client list and pen, warm orange desk lamp casting a selective spotlight, deep shadows surrounding the lit area, shallow depth of field, cinematic macro photography, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x628</span><span class="hf-meta-tag">STYLE: Cinematic Macro</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz8"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id8" ondragover="iDO(event,8)" ondragleave="iDL(event,8)" ondrop="iDD(event,8)"><input type="file" accept="image/*" onchange="iSel(this,8)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip8" style="display:none;"><img id="ie8" src="" alt="image"><div class="img-fn" id="ifn8"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl8" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(8)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -591,7 +644,7 @@ Stop Googling. Stop asking around.
 NSN has 233+ verified security vendors searchable by state, city, and service type. Armed guard services. Executive protection. Mobile patrol. Event security. All vetted, all on one platform.
 
 Browse vendors free: [your domain]</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Facility manager searching for vendors — buyers need a better tool</div><div class="hf-prompt">facility manager in business attire walking purposefully through a large modern corporate lobby at dawn, long dramatic shadows stretched across the polished floor, orange sunrise light streaming through tall floor-to-ceiling windows, back to camera, cinematic wide shot, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x628</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Facility manager searching for vendors — buyers need a better tool</div><div class="hf-prompt">facility manager in business attire walking purposefully through a large modern corporate lobby at dawn, long dramatic shadows stretched across the polished floor, orange sunrise light streaming through tall floor-to-ceiling windows, back to camera, cinematic wide shot, no face visible, photorealistic professional photography</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1200x628</span><span class="hf-meta-tag">STYLE: Cinematic Photorealistic</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz9"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id9" ondragover="iDO(event,9)" ondragleave="iDL(event,9)" ondrop="iDD(event,9)"><input type="file" accept="image/*" onchange="iSel(this,9)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip9" style="display:none;"><img id="ie9" src="" alt="image"><div class="img-fn" id="ifn9"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl9" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(9)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -708,7 +761,7 @@ Link in bio to explore.
 
 ——
 #SecurityIndustry #NSN #NationwideSecurityNetwork #SecurityVendors #CorporateSecurity #SecurityProfessionals #GuardCompany #SecurityBusiness #B2BMarketplace #SecurityServices #ArmedSecurity #ExecutiveProtection #EventSecurity #MobilePatrol #SecurityManagement</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Instagram launch — bold tactical badge close-up for square format</div><div class="hf-prompt">extreme close-up macro photograph of a security officer badge and metal insignia with orange glow radiating from behind, pure deep black background, selective orange #ff7700 rim lighting, tactical professional aesthetic, shallow depth of field, cinematic macro photography, square 1:1 composition, photorealistic, no face visible</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Cinematic Macro Square</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Instagram launch — bold tactical badge close-up for square format</div><div class="hf-prompt">extreme close-up macro photograph of a security officer badge and metal insignia with orange glow radiating from behind, pure deep black background, selective orange #ff7700 rim lighting, tactical professional aesthetic, shallow depth of field, cinematic macro photography, square 1:1 composition, photorealistic, no face visible</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Cinematic Macro Square</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz10"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id10" ondragover="iDO(event,10)" ondragleave="iDL(event,10)" ondrop="iDD(event,10)"><input type="file" accept="image/*" onchange="iSel(this,10)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip10" style="display:none;"><img id="ie10" src="" alt="image"><div class="img-fn" id="ifn10"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl10" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(10)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -729,7 +782,7 @@ Tap the link in bio to explore.
 
 ——
 #SecurityIndustry #PrivateSecurity #SecurityMarket #NSN #SecurityTech #SecurityBusiness #GuardIndustry #SecurityProfessionals #SecurityServices #B2B #SecurityCompany #CorporateSecurity #SecurityManagement #SecuritySolutions #SecurityMarketplace</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">$46B stat — abstract expansive network visual</div><div class="hf-prompt">abstract glowing orange neural network nodes and connections expanding outward from center on a pure deep black background, representing a massive untapped $46 billion industry with no central hub, cinematic digital art, orange #ff7700 glow intensity, dramatic and expansive, photorealistic digital art, square 1:1 format, ultra-detailed tendrils of glowing light</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Digital Art Abstract</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">$46B stat — abstract expansive network visual</div><div class="hf-prompt">abstract glowing orange neural network nodes and connections expanding outward from center on a pure deep black background, representing a massive untapped $46 billion industry with no central hub, cinematic digital art, orange #ff7700 glow intensity, dramatic and expansive, photorealistic digital art, square 1:1 format, ultra-detailed tendrils of glowing light</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Digital Art Abstract</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz11"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id11" ondragover="iDO(event,11)" ondragleave="iDL(event,11)" ondrop="iDD(event,11)"><input type="file" accept="image/*" onchange="iSel(this,11)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip11" style="display:none;"><img id="ie11" src="" alt="image"><div class="img-fn" id="ifn11"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl11" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(11)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -750,7 +803,7 @@ Claim yours: link in bio.
 
 ——
 #SecurityCompany #GuardCompany #SecurityBusiness #NSN #SecurityVendors #SecurityServices #GetListed #SecurityMarketing #SecurityIndustry #ArmedSecurity #UnarmedSecurity #MobilePatrol #EventSecurity #ExecutiveProtection #SecurityProfessionals</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Vendor profile credibility — B2B professional connection portrait</div><div class="hf-prompt">two security professionals in dark formal business attire mid-handshake in front of a modern glass corporate headquarters exterior, dramatic orange sunset backlight creating strong rim lighting silhouette around both figures, cinematic photography, portrait 4:5 crop, professional, atmospheric bokeh background, no faces clearly visible in frame, photorealistic</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1350</span><span class="hf-meta-tag">STYLE: Cinematic Portrait 4:5</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Vendor profile credibility — B2B professional connection portrait</div><div class="hf-prompt">two security professionals in dark formal business attire mid-handshake in front of a modern glass corporate headquarters exterior, dramatic orange sunset backlight creating strong rim lighting silhouette around both figures, cinematic photography, portrait 4:5 crop, professional, atmospheric bokeh background, no faces clearly visible in frame, photorealistic</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1350</span><span class="hf-meta-tag">STYLE: Cinematic Portrait 4:5</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz12"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id12" ondragover="iDO(event,12)" ondragleave="iDL(event,12)" ondrop="iDD(event,12)"><input type="file" accept="image/*" onchange="iSel(this,12)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip12" style="display:none;"><img id="ie12" src="" alt="image"><div class="img-fn" id="ifn12"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl12" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(12)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -769,7 +822,7 @@ Find vendors free: link in bio.
 
 ——
 #CorporateSecurity #SecurityRFP #FacilityManagement #SecurityManagement #RiskManagement #NSN #SecurityVendors #NationwideSecurityNetwork #SecuritySolutions #SecurityServices #HireSecurityCompany #SecuritySearch #VendorManagement #SecurityDirectory #SecurityProcurement</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Corporate security director using NSN — buyer searches for vendors</div><div class="hf-prompt">corporate security director at an executive desk with dual ultrawide monitors showing a platform search interface, dark modern office with orange accent lighting on walls, city view through floor-to-ceiling windows behind the desk, focused and professional, cinematic still photograph, no clearly visible face, photorealistic, square 1:1 crop</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Cinematic Corporate</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Corporate security director using NSN — buyer searches for vendors</div><div class="hf-prompt">corporate security director at an executive desk with dual ultrawide monitors showing a platform search interface, dark modern office with orange accent lighting on walls, city view through floor-to-ceiling windows behind the desk, focused and professional, cinematic still photograph, no clearly visible face, photorealistic, square 1:1 crop</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Cinematic Corporate</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz13"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id13" ondragover="iDO(event,13)" ondragleave="iDL(event,13)" ondrop="iDD(event,13)"><input type="file" accept="image/*" onchange="iSel(this,13)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip13" style="display:none;"><img id="ie13" src="" alt="image"><div class="img-fn" id="ifn13"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl13" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(13)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -788,7 +841,7 @@ Post your first RFP free: link in bio.
 
 ——
 #SecurityRFP #CorporateSecurity #SecurityProcurement #NSN #SecurityVendors #RFPManagement #SecurityServices #FacilityManagement #SecurityManagement #HireSecurityCompany #SecurityDirectory #SecuritySearch #SecurityBusiness #VendorSelection #SecuritySolutions</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Laptop RFP submission — one post and vendors respond</div><div class="hf-prompt">close-up of hands typing on a sleek dark matte laptop in a corporate setting, warm orange screen glow reflecting across hands and the dark desk surface below, moody dramatic atmospheric lighting, shallow depth of field, cinematic macro photography, no face visible, professional, photorealistic, dark office environment, square 1:1 crop</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Cinematic Macro</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Laptop RFP submission — one post and vendors respond</div><div class="hf-prompt">close-up of hands typing on a sleek dark matte laptop in a corporate setting, warm orange screen glow reflecting across hands and the dark desk surface below, moody dramatic atmospheric lighting, shallow depth of field, cinematic macro photography, no face visible, professional, photorealistic, dark office environment, square 1:1 crop</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Cinematic Macro</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz14"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id14" ondragover="iDO(event,14)" ondragleave="iDL(event,14)" ondrop="iDD(event,14)"><input type="file" accept="image/*" onchange="iSel(this,14)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip14" style="display:none;"><img id="ie14" src="" alt="image"><div class="img-fn" id="ifn14"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl14" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(14)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -807,7 +860,7 @@ Explore the map: link in bio.
 
 ——
 #NationwideSecurity #SecurityIndustry #AllStates #NSN #NationwideSecurityNetwork #SecurityVendors #SecurityCompany #SecurityDirectory #GuardServices #SecurityServices #SecuritySearch #CorporateSecurity #USASecurity #SecurityNationwide #SecurityProfessionals</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Nationwide coverage — satellite night view of the USA</div><div class="hf-prompt">satellite-inspired digital art view of the continental United States at night, city light clusters glowing in amber and orange across all 50 states, subtle orange glowing network connection lines linking major metropolitan areas, deep pure black space background, cinematic digital art, photorealistic, square 1:1 format, no text overlays</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Satellite Digital Art</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Nationwide coverage — satellite night view of the USA</div><div class="hf-prompt">satellite-inspired digital art view of the continental United States at night, city light clusters glowing in amber and orange across all 50 states, subtle orange glowing network connection lines linking major metropolitan areas, deep pure black space background, cinematic digital art, photorealistic, square 1:1 format, no text overlays</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Satellite Digital Art</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz15"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id15" ondragover="iDO(event,15)" ondragleave="iDL(event,15)" ondrop="iDD(event,15)"><input type="file" accept="image/*" onchange="iSel(this,15)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip15" style="display:none;"><img id="ie15" src="" alt="image"><div class="img-fn" id="ifn15"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl15" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(15)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -833,7 +886,7 @@ Link in bio. See you there.
 
 ——
 #NSN #NationwideSecurityNetwork #SecurityIndustry #SecurityVendors #CorporateSecurity #SecurityBusiness #GuardCompany #SecurityServices #SecurityDirectory #B2BMarketplace #SecurityProfessionals #SecurityManagement #SecuritySearch #SecuritySolutions #NowLive</div>
-    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Week close — two worlds one platform, square Instagram format</div><div class="hf-prompt">cinematic square split composition: top half shows a security officer in dark tactical gear scanning a dark perimeter at night with an orange flashlight beam cutting dramatically through the darkness, bottom half shows a corporate executive at a glass desk reviewing documents in an illuminated modern office, bold orange horizontal dividing line between the two scenes, photorealistic, 1:1 square format</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Split Composition Square</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div>
+    <div class="post-visual"><div class="hf-wrap"><div class="hf-label">// HIGGSFIELD PROMPT //</div><div class="hf-concept">Week close — two worlds one platform, square Instagram format</div><div class="hf-prompt">cinematic square split composition: top half shows a security officer in dark tactical gear scanning a dark perimeter at night with an orange flashlight beam cutting dramatically through the darkness, bottom half shows a corporate executive at a glass desk reviewing documents in an illuminated modern office, bold orange horizontal dividing line between the two scenes, photorealistic, 1:1 square format</div><div class="hf-meta"><span class="hf-meta-tag">MODEL: Nano Banana Pro</span><span class="hf-meta-tag">SIZE: 1080x1080</span><span class="hf-meta-tag">STYLE: Split Composition Square</span></div><button class="btn-hf" onclick="copyHF(this)">Copy Prompt</button></div></div> <div class="img-zone" id="iz16"><div class="img-zone-lbl">// YOUR HIGGSFIELD IMAGE //</div><div class="img-drop" id="id16" ondragover="iDO(event,16)" ondragleave="iDL(event,16)" ondrop="iDD(event,16)"><input type="file" accept="image/*" onchange="iSel(this,16)"><div class="img-drop-hint"><b>&#8679; Upload Image</b>Click or drag your finished Higgsfield image here</div></div><div class="img-prev-wrap" id="ip16" style="display:none;"><img id="ie16" src="" alt="image"><div class="img-fn" id="ifn16"></div><div class="img-prev-acts"><a class="btn-imdl" id="idl16" href="#" download="">&#8681; Download</a><button class="btn-imcl" onclick="iClear(16)">Remove</button><span class="img-ok">&#10003; Saved</span></div></div></div>
     <div class="post-actions">
       <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
       <button class="btn btn-approve">Approve</button>
@@ -2449,6 +2502,275 @@ function exportSummary() {
 
 // Init tracker on load
 window.addEventListener('load', () => { renderContacts(); updateTrackerStats(); });
+
+
+// ===== IMAGE UPLOAD ZONES (IndexedDB) =====
+let imgDB = null;
+
+function openImgDB() {
+  return new Promise((resolve, reject) => {
+    if (imgDB) { resolve(imgDB); return; }
+    const req = indexedDB.open('nsn_campaign_images', 1);
+    req.onupgradeneeded = e => e.target.result.createObjectStore('images', { keyPath: 'id' });
+    req.onsuccess = e => { imgDB = e.target.result; resolve(imgDB); };
+    req.onerror = e => reject(e);
+  });
+}
+
+function imgSave(n, dataUrl, filename) {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readwrite');
+    tx.objectStore('images').put({ id: 'zone-' + n, dataUrl, filename });
+  });
+}
+
+function imgLoad(n) {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readonly');
+    const req = tx.objectStore('images').get('zone-' + n);
+    req.onsuccess = e => {
+      if (e.target.result) {
+        const { dataUrl, filename } = e.target.result;
+        showImgPreview(n, dataUrl, filename);
+      }
+    };
+  });
+}
+
+function imgClear(n) {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readwrite');
+    tx.objectStore('images').delete('zone-' + n);
+  });
+  const prev = document.getElementById('img-preview-' + n);
+  const drop = document.getElementById('img-drop-' + n);
+  const el = document.getElementById('img-el-' + n);
+  const dl = document.getElementById('img-dl-' + n);
+  const fn = document.getElementById('img-fname-' + n);
+  if (prev) prev.style.display = 'none';
+  if (drop) drop.style.display = '';
+  if (el) el.src = '';
+  if (dl) { dl.href = '#'; dl.download = ''; }
+  if (fn) fn.textContent = '';
+}
+
+function showImgPreview(n, dataUrl, filename) {
+  const prev = document.getElementById('img-preview-' + n);
+  const drop = document.getElementById('img-drop-' + n);
+  const el = document.getElementById('img-el-' + n);
+  const dl = document.getElementById('img-dl-' + n);
+  const fn = document.getElementById('img-fname-' + n);
+  if (el) el.src = dataUrl;
+  if (dl) { dl.href = dataUrl; dl.download = filename || 'nsn-image.png'; }
+  if (fn) fn.textContent = filename || '';
+  if (prev) prev.style.display = 'block';
+  if (drop) drop.style.display = 'none';
+}
+
+function imgSelected(input, n) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const dataUrl = e.target.result;
+    imgSave(n, dataUrl, file.name);
+    showImgPreview(n, dataUrl, file.name);
+  };
+  reader.readAsDataURL(file);
+}
+
+function imgDragOver(e, n) {
+  e.preventDefault();
+  document.getElementById('img-drop-' + n)?.classList.add('drag-over');
+}
+function imgDragLeave(e, n) {
+  document.getElementById('img-drop-' + n)?.classList.remove('drag-over');
+}
+function imgDrop(e, n) {
+  e.preventDefault();
+  document.getElementById('img-drop-' + n)?.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const dataUrl = ev.target.result;
+    imgSave(n, dataUrl, file.name);
+    showImgPreview(n, dataUrl, file.name);
+  };
+  reader.readAsDataURL(file);
+}
+
+// Load all saved images on page load
+window.addEventListener('load', () => {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readonly');
+    const req = tx.objectStore('images').getAll();
+    req.onsuccess = e => {
+      (e.target.result || []).forEach(item => {
+        const n = item.id.replace('zone-', '');
+        if (document.getElementById('img-zone-' + n)) {
+          showImgPreview(n, item.dataUrl, item.filename);
+        }
+      });
+    };
+  });
+});
+
+
+// ===== IMAGE UPLOAD ZONES (IndexedDB) =====
+let imgDB = null;
+
+function openImgDB() {
+  return new Promise((resolve, reject) => {
+    if (imgDB) { resolve(imgDB); return; }
+    const req = indexedDB.open('nsn_campaign_images', 1);
+    req.onupgradeneeded = e => e.target.result.createObjectStore('images', { keyPath: 'id' });
+    req.onsuccess = e => { imgDB = e.target.result; resolve(imgDB); };
+    req.onerror = e => reject(e);
+  });
+}
+
+function imgSave(n, dataUrl, filename) {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readwrite');
+    tx.objectStore('images').put({ id: 'zone-' + n, dataUrl, filename });
+  });
+}
+
+function imgClear(n) {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readwrite');
+    tx.objectStore('images').delete('zone-' + n);
+  });
+  const prev = document.getElementById('img-preview-' + n);
+  const drop = document.getElementById('img-drop-' + n);
+  const el = document.getElementById('img-el-' + n);
+  const dl = document.getElementById('img-dl-' + n);
+  const fn = document.getElementById('img-fname-' + n);
+  if (prev) prev.style.display = 'none';
+  if (drop) drop.style.display = '';
+  if (el) el.src = '';
+  if (dl) { dl.href = '#'; dl.removeAttribute('download'); }
+  if (fn) fn.textContent = '';
+}
+
+function showImgPreview(n, dataUrl, filename) {
+  const prev = document.getElementById('img-preview-' + n);
+  const drop = document.getElementById('img-drop-' + n);
+  const el = document.getElementById('img-el-' + n);
+  const dl = document.getElementById('img-dl-' + n);
+  const fn = document.getElementById('img-fname-' + n);
+  if (el) el.src = dataUrl;
+  if (dl) { dl.href = dataUrl; dl.download = filename || 'nsn-image.png'; }
+  if (fn) fn.textContent = filename || '';
+  if (prev) prev.style.display = 'block';
+  if (drop) drop.style.display = 'none';
+}
+
+function imgSelected(input, n) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    imgSave(n, e.target.result, file.name);
+    showImgPreview(n, e.target.result, file.name);
+  };
+  reader.readAsDataURL(file);
+}
+
+function imgDragOver(e, n) {
+  e.preventDefault();
+  document.getElementById('img-drop-' + n)?.classList.add('drag-over');
+}
+function imgDragLeave(e, n) {
+  document.getElementById('img-drop-' + n)?.classList.remove('drag-over');
+}
+function imgDrop(e, n) {
+  e.preventDefault();
+  document.getElementById('img-drop-' + n)?.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    imgSave(n, ev.target.result, file.name);
+    showImgPreview(n, ev.target.result, file.name);
+  };
+  reader.readAsDataURL(file);
+}
+
+// Restore all saved images on page load
+window.addEventListener('load', () => {
+  openImgDB().then(db => {
+    const tx = db.transaction('images', 'readonly');
+    const req = tx.objectStore('images').getAll();
+    req.onsuccess = e => {
+      (e.target.result || []).forEach(item => {
+        const n = item.id.replace('zone-', '');
+        if (document.getElementById('img-zone-' + n)) {
+          showImgPreview(parseInt(n), item.dataUrl, item.filename);
+        }
+      });
+    };
+  }).catch(() => {});
+});
+
+
+// ===== IMAGE ZONES (IndexedDB) =====
+let _idb=null;
+function _openDB(){
+  return new Promise((res,rej)=>{
+    if(_idb){res(_idb);return;}
+    const r=indexedDB.open('nsn_imgs',1);
+    r.onupgradeneeded=e=>e.target.result.createObjectStore('imgs',{keyPath:'id'});
+    r.onsuccess=e=>{_idb=e.target.result;res(_idb);};
+    r.onerror=rej;
+  });
+}
+function _iSave(n,url,name){_openDB().then(db=>db.transaction('imgs','readwrite').objectStore('imgs').put({id:'z'+n,url,name}));}
+function iClear(n){
+  _openDB().then(db=>db.transaction('imgs','readwrite').objectStore('imgs').delete('z'+n));
+  const pr=document.getElementById('ip'+n),dr=document.getElementById('id'+n),
+        el=document.getElementById('ie'+n),dl=document.getElementById('idl'+n),fn=document.getElementById('ifn'+n);
+  if(pr)pr.style.display='none';
+  if(dr)dr.style.display='';
+  if(el)el.src='';
+  if(dl){dl.href='#';dl.removeAttribute('download');}
+  if(fn)fn.textContent='';
+}
+function _iShow(n,url,name){
+  const el=document.getElementById('ie'+n),dl=document.getElementById('idl'+n),
+        fn=document.getElementById('ifn'+n),pr=document.getElementById('ip'+n),dr=document.getElementById('id'+n);
+  if(el)el.src=url;
+  if(dl){dl.href=url;dl.download=name||'nsn-image.png';}
+  if(fn)fn.textContent=name||'';
+  if(pr)pr.style.display='block';
+  if(dr)dr.style.display='none';
+}
+function iSel(input,n){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{_iSave(n,e.target.result,f.name);_iShow(n,e.target.result,f.name);};
+  r.readAsDataURL(f);
+}
+function iDO(e,n){e.preventDefault();document.getElementById('id'+n)?.classList.add('drag-over');}
+function iDL(e,n){document.getElementById('id'+n)?.classList.remove('drag-over');}
+function iDD(e,n){
+  e.preventDefault();document.getElementById('id'+n)?.classList.remove('drag-over');
+  const f=e.dataTransfer.files[0];
+  if(!f||!f.type.startsWith('image/'))return;
+  const r=new FileReader();
+  r.onload=ev=>{_iSave(n,ev.target.result,f.name);_iShow(n,ev.target.result,f.name);};
+  r.readAsDataURL(f);
+}
+window.addEventListener('load',()=>{
+  _openDB().then(db=>{
+    const req=db.transaction('imgs','readonly').objectStore('imgs').getAll();
+    req.onsuccess=e=>(e.target.result||[]).forEach(item=>{
+      const n=item.id.slice(1);
+      if(document.getElementById('iz'+n))_iShow(parseInt(n),item.url,item.name);
+    });
+  }).catch(()=>{});
+});
 
 // ===== LOGO COPY =====
 function copyLogoURL(url, btn) {
