@@ -148,6 +148,77 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .saved-note{background:rgba(251,113,133,0.07);border:1px solid rgba(251,113,133,0.25);border-left:3px solid #fb7185;padding:8px 12px;font-size:11px;color:#fda4af;line-height:1.6;margin-top:6px;font-style:italic;}
 .saved-note .note-edit{font-family:'Share Tech Mono',monospace;font-size:9px;color:#fb7185;border:none;background:none;cursor:pointer;margin-left:8px;text-decoration:underline;}
 
+
+/* OUTREACH TRACKER */
+.tracker-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center;}
+.tracker-search{background:var(--card2);border:1px solid var(--border);color:var(--text);padding:8px 12px;font-size:12px;font-family:'Rajdhani',sans-serif;flex:1;min-width:160px;}
+.tracker-search::placeholder{color:var(--muted);}
+.tracker-filter{background:var(--card2);border:1px solid var(--border);color:var(--text);padding:8px 10px;font-size:11px;font-family:'Share Tech Mono',monospace;}
+.btn-add-contact{background:var(--orange);color:#000;border:none;padding:8px 18px;font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;white-space:nowrap;}
+.btn-add-contact:hover{background:#e06600;}
+
+.tracker-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.t-stat{background:var(--card);border:1px solid var(--border);padding:10px;text-align:center;}
+.t-stat-val{font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:900;display:block;}
+.t-stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+/* ADD CONTACT FORM */
+.add-contact-form{background:var(--card2);border:1px solid var(--orange);border-radius:8px;padding:20px;margin-bottom:20px;display:none;}
+.add-contact-form.open{display:block;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.f-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:1px;margin-bottom:4px;}
+.f-input{background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-size:12px;font-family:'Rajdhani',sans-serif;width:100%;}
+.f-input:focus{outline:none;border-color:var(--orange);}
+.f-select{background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-size:11px;font-family:'Share Tech Mono',monospace;width:100%;}
+.f-textarea{background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-size:12px;font-family:'Rajdhani',sans-serif;width:100%;resize:vertical;min-height:50px;line-height:1.6;}
+.form-actions{display:flex;gap:8px;margin-top:10px;}
+.btn-save-contact{background:var(--orange);color:#000;border:none;padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;}
+.btn-cancel-form{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;cursor:pointer;}
+
+/* CONTACT TABLE */
+.contact-table{width:100%;border-collapse:collapse;font-size:12px;}
+.contact-table th{background:rgba(255,119,0,0.1);border-bottom:2px solid rgba(255,119,0,0.3);padding:10px 12px;text-align:left;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:1px;white-space:nowrap;}
+.contact-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+.contact-table tr:hover td{background:rgba(255,255,255,0.02);}
+.contact-name{font-weight:700;color:#fff;font-size:13px;}
+.contact-company{color:var(--muted);font-size:11px;margin-top:2px;}
+.contact-role{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:0.5px;margin-top:3px;}
+.contact-note{font-size:11px;color:var(--muted);line-height:1.5;max-width:260px;}
+.contact-note-edit{display:none;width:100%;}
+.contact-note-edit textarea{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 8px;font-size:11px;font-family:'Rajdhani',sans-serif;resize:vertical;min-height:40px;}
+.contact-note-edit .btn-note-save{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--green);border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.08);padding:3px 10px;cursor:pointer;margin-top:4px;}
+
+.status-badge{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:3px;white-space:nowrap;}
+.status-sent{background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.3);color:var(--blue);}
+.status-replied{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);color:var(--green);}
+.status-claimed{background:rgba(255,119,0,0.15);border:1px solid rgba(255,119,0,0.4);color:var(--orange);}
+.status-no-response{background:rgba(125,133,144,0.12);border:1px solid rgba(125,133,144,0.3);color:var(--muted);}
+.status-not-interested{background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:var(--red);}
+.status-follow-up{background:rgba(250,204,21,0.12);border:1px solid rgba(250,204,21,0.3);color:var(--yellow);}
+.status-converted{background:rgba(192,132,252,0.15);border:1px solid rgba(192,132,252,0.4);color:var(--purple);}
+
+.platform-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;}
+.pd-email{background:#f59e0b;}
+.pd-linkedin{background:#0077b5;}
+.pd-phone{background:#4ade80;}
+.pd-other{background:#94a3b8;}
+
+.contact-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.btn-xs{padding:3px 10px;font-size:9px;font-family:'Share Tech Mono',monospace;cursor:pointer;border-radius:2px;letter-spacing:0.5px;border:none;}
+.btn-edit-note{background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.3);color:var(--blue);}
+.btn-status{background:rgba(250,204,21,0.1);border:1px solid rgba(250,204,21,0.3);color:var(--yellow);}
+.btn-del-contact{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,133,0.3);color:var(--red);}
+.btn-add-followup{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--green);}
+
+.no-contacts{padding:40px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;}
+.export-bar{display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+.btn-export{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:6px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:0.5px;}
+.btn-export:hover{border-color:var(--blue);color:var(--blue);}
+
+/* STATUS CHANGE DROPDOWN */
+.status-select{background:var(--card);border:1px solid var(--border);color:var(--text);padding:4px 6px;font-size:10px;font-family:'Share Tech Mono',monospace;}
+
 </style>
 </head>
 <body>
@@ -178,6 +249,7 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
   <div class="tab" onclick="show('client-email')"><span class="plat-dot" style="background:#34d399;"></span>Client Emails</div>
   <div class="tab" onclick="show('li-outreach')"><span class="plat-dot" style="background:#818cf8;"></span>LI Outreach</div>
   <div class="tab" onclick="show('logo')"><span class="plat-dot" style="background:#e2e8f0;"></span>Logo Assets</div>
+  <div class="tab" onclick="show('outreach-tracker')"><span class="plat-dot" style="background:#2dd4bf;"></span>Outreach Tracker</div>
   <div class="tab" onclick="show('notes')"><span class="plat-dot" style="background:#fb7185;"></span>Notes</div>
 </div>
 
@@ -1842,6 +1914,189 @@ Happy to show you around the platform if that would be useful.</div>
     </div>
   </div>
 </div>
+<div class="panel" id="panel-outreach-tracker">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(45,212,191,0.15);border:2px solid rgba(45,212,191,0.4);">📋</div>
+    <div>
+      <div class="plat-title">Outreach Tracker</div>
+      <div class="plat-sub">// WHO YOU CONTACTED, WHEN, HOW, AND WHAT HAPPENED //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Track every touchpoint.</strong> Log vendors, corporate buyers, LinkedIn connections, and anyone you've emailed or messaged. Update the status as conversations progress. Add notes after every interaction. This is your CRM — everything in one place so nothing falls through the cracks.
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="tracker-stats" id="tracker-stats-row">
+    <div class="t-stat"><span class="t-stat-val" id="ts-total" style="color:var(--text);">0</span><div class="t-stat-label">Total</div></div>
+    <div class="t-stat"><span class="t-stat-val" id="ts-sent" style="color:var(--blue);">0</span><div class="t-stat-label">Sent</div></div>
+    <div class="t-stat"><span class="t-stat-val" id="ts-replied" style="color:var(--green);">0</span><div class="t-stat-label">Replied</div></div>
+    <div class="t-stat"><span class="t-stat-val" id="ts-followup" style="color:var(--yellow);">0</span><div class="t-stat-label">Follow Up</div></div>
+    <div class="t-stat"><span class="t-stat-val" id="ts-claimed" style="color:var(--orange);">0</span><div class="t-stat-label">Claimed</div></div>
+    <div class="t-stat"><span class="t-stat-val" id="ts-converted" style="color:var(--purple);">0</span><div class="t-stat-label">Converted</div></div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="tracker-toolbar">
+    <input class="tracker-search" type="text" id="tracker-search" placeholder="Search by name, company, city..." oninput="renderContacts()">
+    <select class="tracker-filter" id="tracker-filter-status" onchange="renderContacts()">
+      <option value="">All Statuses</option>
+      <option value="sent">Sent</option>
+      <option value="replied">Replied</option>
+      <option value="follow-up">Follow Up</option>
+      <option value="claimed">Claimed</option>
+      <option value="converted">Converted</option>
+      <option value="no-response">No Response</option>
+      <option value="not-interested">Not Interested</option>
+    </select>
+    <select class="tracker-filter" id="tracker-filter-type" onchange="renderContacts()">
+      <option value="">All Types</option>
+      <option value="vendor">Vendor</option>
+      <option value="client">Client / Buyer</option>
+    </select>
+    <select class="tracker-filter" id="tracker-filter-platform" onchange="renderContacts()">
+      <option value="">All Platforms</option>
+      <option value="email">Email</option>
+      <option value="linkedin">LinkedIn</option>
+      <option value="phone">Phone</option>
+      <option value="other">Other</option>
+    </select>
+    <button class="btn-add-contact" onclick="toggleAddForm()">+ Add Contact</button>
+  </div>
+
+  <!-- ADD CONTACT FORM -->
+  <div class="add-contact-form" id="add-contact-form">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--orange);letter-spacing:2px;margin-bottom:14px;">// NEW CONTACT //</div>
+    <div class="form-grid">
+      <div>
+        <div class="f-label">FIRST NAME *</div>
+        <input class="f-input" id="f-first" type="text" placeholder="John">
+      </div>
+      <div>
+        <div class="f-label">LAST NAME</div>
+        <input class="f-input" id="f-last" type="text" placeholder="Smith">
+      </div>
+      <div>
+        <div class="f-label">COMPANY *</div>
+        <input class="f-input" id="f-company" type="text" placeholder="ABC Security Inc.">
+      </div>
+    </div>
+    <div class="form-grid">
+      <div>
+        <div class="f-label">ROLE / TITLE</div>
+        <input class="f-input" id="f-role" type="text" placeholder="Owner / Facility Manager / CSO">
+      </div>
+      <div>
+        <div class="f-label">CITY / STATE</div>
+        <input class="f-input" id="f-city" type="text" placeholder="Portland, OR">
+      </div>
+      <div>
+        <div class="f-label">EMAIL / LINKEDIN</div>
+        <input class="f-input" id="f-contact" type="text" placeholder="email or linkedin URL">
+      </div>
+    </div>
+    <div class="form-grid">
+      <div>
+        <div class="f-label">CONTACT TYPE *</div>
+        <select class="f-select" id="f-type">
+          <option value="vendor">Vendor (Security Company)</option>
+          <option value="client">Client / Corporate Buyer</option>
+        </select>
+      </div>
+      <div>
+        <div class="f-label">PLATFORM USED *</div>
+        <select class="f-select" id="f-platform">
+          <option value="email">Email</option>
+          <option value="linkedin">LinkedIn DM</option>
+          <option value="phone">Phone / Call</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <div class="f-label">INITIAL STATUS</div>
+        <select class="f-select" id="f-status">
+          <option value="sent">Sent — Awaiting Reply</option>
+          <option value="replied">Replied</option>
+          <option value="follow-up">Follow Up Needed</option>
+          <option value="claimed">Claimed Profile</option>
+          <option value="converted">Converted / Paid</option>
+          <option value="no-response">No Response</option>
+          <option value="not-interested">Not Interested</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-grid-2">
+      <div>
+        <div class="f-label">DATE CONTACTED *</div>
+        <input class="f-input" id="f-date" type="date">
+      </div>
+      <div>
+        <div class="f-label">EMAIL SEQUENCE / MESSAGE SENT</div>
+        <select class="f-select" id="f-sequence">
+          <option value="">— Select —</option>
+          <option value="Vendor Email 1">Vendor Email 1 — Initial Outreach</option>
+          <option value="Vendor Email 2">Vendor Email 2 — Follow Up</option>
+          <option value="Vendor Email 3">Vendor Email 3 — Value + Urgency</option>
+          <option value="Vendor Email 4">Vendor Email 4 — Final Close</option>
+          <option value="Client Email 1">Client Email 1 — Cold Outreach</option>
+          <option value="Client Email 2">Client Email 2 — Value Add</option>
+          <option value="Client Email 3">Client Email 3 — Event/Situational</option>
+          <option value="LI Vendor Message 1">LI Vendor — Connection Note</option>
+          <option value="LI Vendor Message 2">LI Vendor — After Accept</option>
+          <option value="LI Vendor Message 3">LI Vendor — Follow Up</option>
+          <option value="LI Client Message 1">LI Client — Connection Note</option>
+          <option value="LI Client Message 2">LI Client — After Accept</option>
+          <option value="Custom">Custom / Other</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div class="f-label">NOTES</div>
+      <textarea class="f-textarea" id="f-notes" placeholder="What did you say? What did they respond? Any context to remember..."></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn-save-contact" onclick="saveContact()">Save Contact</button>
+      <button class="btn-cancel-form" onclick="toggleAddForm()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- CONTACT TABLE -->
+  <div style="overflow-x:auto;">
+    <table class="contact-table" id="contacts-table">
+      <thead>
+        <tr>
+          <th onclick="sortContacts('name')" style="cursor:pointer;">CONTACT ▾</th>
+          <th>TYPE</th>
+          <th onclick="sortContacts('date')" style="cursor:pointer;">DATE ▾</th>
+          <th>PLATFORM</th>
+          <th>SEQUENCE SENT</th>
+          <th onclick="sortContacts('status')" style="cursor:pointer;">STATUS ▾</th>
+          <th>NOTES</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody id="contacts-tbody">
+        <tr><td colspan="8" class="no-contacts">No contacts yet. Click "+ Add Contact" to log your first outreach.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="export-bar">
+    <button class="btn-export" onclick="exportCSV()">Export CSV</button>
+    <button class="btn-export" onclick="exportSummary()">Copy Summary</button>
+    <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);align-self:center;margin-left:8px;">Data saves to your browser automatically</span>
+  </div>
+
+  <div class="section-note-wrap" style="margin-top:16px;">
+    <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+    <div class="section-note-area">
+      <textarea placeholder="Note about outreach — e.g. 'add a column for phone number' or 'need to track follow-up dates'..."></textarea>
+      <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+    </div>
+  </div>
+</div>
 <div class="panel" id="panel-notes">
 
   <div class="plat-header">
@@ -1957,6 +2212,243 @@ function copyPost(btn) {
     });
   }
 }
+
+
+// ===== OUTREACH TRACKER =====
+let contacts = JSON.parse(localStorage.getItem('nsn_contacts') || '[]');
+let sortField = 'date';
+let sortDir = -1;
+
+function saveContacts() {
+  localStorage.setItem('nsn_contacts', JSON.stringify(contacts));
+  renderContacts();
+  updateTrackerStats();
+}
+
+function toggleAddForm() {
+  const f = document.getElementById('add-contact-form');
+  f.classList.toggle('open');
+  if (f.classList.contains('open')) {
+    document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
+    document.getElementById('f-first').focus();
+  }
+}
+
+function saveContact() {
+  const first = document.getElementById('f-first').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  if (!first || !company) { alert('First name and company are required.'); return; }
+  const c = {
+    id: Date.now(),
+    first, 
+    last: document.getElementById('f-last').value.trim(),
+    company,
+    role: document.getElementById('f-role').value.trim(),
+    city: document.getElementById('f-city').value.trim(),
+    contact: document.getElementById('f-contact').value.trim(),
+    type: document.getElementById('f-type').value,
+    platform: document.getElementById('f-platform').value,
+    status: document.getElementById('f-status').value,
+    date: document.getElementById('f-date').value,
+    sequence: document.getElementById('f-sequence').value,
+    notes: document.getElementById('f-notes').value.trim(),
+    history: []
+  };
+  c.history.push({ ts: new Date().toLocaleDateString(), action: 'Added — ' + c.status });
+  contacts.unshift(c);
+  saveContacts();
+  // Reset form
+  ['f-first','f-last','f-company','f-role','f-city','f-contact','f-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-status').value = 'sent';
+  document.getElementById('f-sequence').value = '';
+  document.getElementById('add-contact-form').classList.remove('open');
+}
+
+function deleteContact(id) {
+  if (!confirm('Remove this contact from the tracker?')) return;
+  contacts = contacts.filter(c => c.id !== id);
+  saveContacts();
+}
+
+function updateStatus(id, newStatus) {
+  const c = contacts.find(x => x.id === id);
+  if (!c) return;
+  c.history = c.history || [];
+  c.history.push({ ts: new Date().toLocaleDateString(), action: 'Status → ' + newStatus });
+  c.status = newStatus;
+  saveContacts();
+}
+
+function toggleNoteEdit(id) {
+  const row = document.getElementById('contact-row-' + id);
+  if (!row) return;
+  const display = row.querySelector('.contact-note');
+  const edit = row.querySelector('.contact-note-edit');
+  if (display && edit) {
+    const isOpen = edit.style.display === 'block';
+    edit.style.display = isOpen ? 'none' : 'block';
+    display.style.display = isOpen ? 'block' : 'none';
+    if (!isOpen) edit.querySelector('textarea').value = display.textContent.trim();
+  }
+}
+
+function saveNoteEdit(id) {
+  const c = contacts.find(x => x.id === id);
+  const row = document.getElementById('contact-row-' + id);
+  if (!c || !row) return;
+  const ta = row.querySelector('.contact-note-edit textarea');
+  c.notes = ta.value.trim();
+  c.history = c.history || [];
+  c.history.push({ ts: new Date().toLocaleDateString(), action: 'Note updated' });
+  saveContacts();
+}
+
+function sortContacts(field) {
+  if (sortField === field) sortDir *= -1;
+  else { sortField = field; sortDir = -1; }
+  renderContacts();
+}
+
+function getStatusClass(s) {
+  return { sent:'sent', replied:'replied', 'follow-up':'follow-up', claimed:'claimed', converted:'converted', 'no-response':'no-response', 'not-interested':'not-interested' }[s] || 'sent';
+}
+
+function getStatusLabel(s) {
+  return { sent:'SENT', replied:'REPLIED', 'follow-up':'FOLLOW UP', claimed:'CLAIMED', converted:'CONVERTED', 'no-response':'NO RESPONSE', 'not-interested':'NOT INTERESTED' }[s] || s.toUpperCase();
+}
+
+function getPlatformDot(p) {
+  return { email:'pd-email', linkedin:'pd-linkedin', phone:'pd-phone', other:'pd-other' }[p] || 'pd-other';
+}
+
+function getPlatformLabel(p) {
+  return { email:'Email', linkedin:'LinkedIn', phone:'Phone', other:'Other' }[p] || p;
+}
+
+function renderContacts() {
+  const tbody = document.getElementById('contacts-tbody');
+  if (!tbody) return;
+  const search = (document.getElementById('tracker-search')?.value || '').toLowerCase();
+  const fStatus = document.getElementById('tracker-filter-status')?.value || '';
+  const fType = document.getElementById('tracker-filter-type')?.value || '';
+  const fPlat = document.getElementById('tracker-filter-platform')?.value || '';
+
+  let filtered = contacts.filter(c => {
+    const text = (c.first+' '+c.last+' '+c.company+' '+c.city+' '+c.role+' '+c.notes).toLowerCase();
+    return (!search || text.includes(search))
+      && (!fStatus || c.status === fStatus)
+      && (!fType || c.type === fType)
+      && (!fPlat || c.platform === fPlat);
+  });
+
+  filtered.sort((a, b) => {
+    if (sortField === 'date') return sortDir * (new Date(b.date) - new Date(a.date));
+    if (sortField === 'name') return sortDir * (a.company.localeCompare(b.company));
+    if (sortField === 'status') return sortDir * (a.status.localeCompare(b.status));
+    return 0;
+  });
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="no-contacts">' + (contacts.length ? 'No contacts match your filters.' : 'No contacts yet. Click "+ Add Contact" to log your first outreach.') + '</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(c => `
+    <tr id="contact-row-${c.id}">
+      <td>
+        <div class="contact-name">${c.first} ${c.last}</div>
+        <div class="contact-company">${c.company}${c.city ? ' — ' + c.city : ''}</div>
+        ${c.role ? '<div class="contact-role">' + c.role + '</div>' : ''}
+        ${c.contact ? '<div style="font-size:10px;color:var(--muted);margin-top:3px;font-family:Share Tech Mono,monospace;">' + c.contact.slice(0,40) + '</div>' : ''}
+      </td>
+      <td>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;${c.type==='vendor'?'background:rgba(255,119,0,0.1);border:1px solid rgba(255,119,0,0.3);color:var(--orange);':'background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--green);'}">
+          ${c.type === 'vendor' ? 'VENDOR' : 'CLIENT'}
+        </span>
+      </td>
+      <td style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;">${c.date || '—'}</td>
+      <td>
+        <span class="platform-dot ${getPlatformDot(c.platform)}"></span>
+        <span style="font-size:11px;">${getPlatformLabel(c.platform)}</span>
+        ${c.sequence ? '<div style="font-size:9px;color:var(--muted);font-family:Share Tech Mono,monospace;margin-top:3px;">' + c.sequence + '</div>' : ''}
+      </td>
+      <td style="font-size:11px;color:var(--muted);">${c.sequence || '—'}</td>
+      <td>
+        <span class="status-badge status-${getStatusClass(c.status)}">${getStatusLabel(c.status)}</span>
+        ${(c.history||[]).length > 1 ? '<div style="font-size:9px;color:var(--muted);font-family:Share Tech Mono,monospace;margin-top:4px;">' + c.history.slice(-1)[0].ts + '</div>' : ''}
+      </td>
+      <td style="min-width:180px;">
+        <div class="contact-note">${c.notes || '<span style="color:var(--muted);font-style:italic;font-size:10px;">No notes yet</span>'}</div>
+        <div class="contact-note-edit" style="display:none;">
+          <textarea style="width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 8px;font-size:11px;font-family:Rajdhani,sans-serif;resize:vertical;min-height:50px;"></textarea>
+          <button class="btn-xs btn-note-save" onclick="saveNoteEdit(${c.id})" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--green);margin-top:4px;cursor:pointer;">Save</button>
+          <button class="btn-xs" onclick="toggleNoteEdit(${c.id})" style="background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;margin-left:4px;">Cancel</button>
+        </div>
+      </td>
+      <td>
+        <div class="contact-actions">
+          <select class="status-select" onchange="updateStatus(${c.id}, this.value)" title="Change status">
+            <option value="">Status...</option>
+            <option value="sent">Sent</option>
+            <option value="replied">Replied</option>
+            <option value="follow-up">Follow Up</option>
+            <option value="claimed">Claimed</option>
+            <option value="converted">Converted</option>
+            <option value="no-response">No Response</option>
+            <option value="not-interested">Not Interested</option>
+          </select>
+          <button class="btn-xs btn-edit-note" onclick="toggleNoteEdit(${c.id})">Note</button>
+          <button class="btn-xs btn-del-contact" onclick="deleteContact(${c.id})">Del</button>
+        </div>
+        ${(c.history||[]).length ? '<div style="font-size:9px;color:var(--muted);font-family:Share Tech Mono,monospace;margin-top:6px;line-height:1.5;">' + (c.history||[]).slice(-2).map(h => h.ts+': '+h.action).join('<br>') + '</div>' : ''}
+      </td>
+    </tr>
+  `).join('');
+  updateTrackerStats();
+}
+
+function updateTrackerStats() {
+  const counts = { sent:0, replied:0, 'follow-up':0, claimed:0, converted:0 };
+  contacts.forEach(c => { if (counts[c.status] !== undefined) counts[c.status]++; });
+  const total = document.getElementById('ts-total');
+  const sent = document.getElementById('ts-sent');
+  const replied = document.getElementById('ts-replied');
+  const followup = document.getElementById('ts-followup');
+  const claimed = document.getElementById('ts-claimed');
+  const converted = document.getElementById('ts-converted');
+  if (total) total.textContent = contacts.length;
+  if (sent) sent.textContent = counts['sent'];
+  if (replied) replied.textContent = counts['replied'];
+  if (followup) followup.textContent = counts['follow-up'];
+  if (claimed) claimed.textContent = counts['claimed'];
+  if (converted) converted.textContent = counts['converted'];
+}
+
+function exportCSV() {
+  const headers = ['First','Last','Company','Role','City','Contact','Type','Platform','Sequence','Status','Date','Notes'];
+  const rows = contacts.map(c => [c.first,c.last,c.company,c.role,c.city,c.contact,c.type,c.platform,c.sequence,c.status,c.date,c.notes].map(v => '"'+(v||'').replace(/"/g,'""')+'"').join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'NSN_Outreach_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+}
+
+function exportSummary() {
+  const lines = ['NSN OUTREACH SUMMARY — ' + new Date().toLocaleDateString(), ''];
+  const byStatus = {};
+  contacts.forEach(c => { (byStatus[c.status] = byStatus[c.status] || []).push(c); });
+  Object.entries(byStatus).forEach(([s, cs]) => {
+    lines.push(s.toUpperCase() + ' (' + cs.length + ')');
+    cs.forEach(c => lines.push('  • ' + c.first + ' ' + c.last + ' — ' + c.company + (c.notes ? ' — ' + c.notes.slice(0,60) : '')));
+    lines.push('');
+  });
+  navigator.clipboard.writeText(lines.join('\n')).then(() => alert('Summary copied to clipboard!'));
+}
+
+// Init tracker on load
+window.addEventListener('load', () => { renderContacts(); updateTrackerStats(); });
 
 // ===== LOGO COPY =====
 function copyLogoURL(url, btn) {
