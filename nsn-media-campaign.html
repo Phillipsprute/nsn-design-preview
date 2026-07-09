@@ -111,6 +111,43 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .btn-hf{background:rgba(192,132,252,0.15);border:1px solid rgba(192,132,252,0.4);color:#c084fc;font-size:10px;padding:4px 12px;cursor:pointer;font-family:'Share Tech Mono',monospace;letter-spacing:0.5px;border-radius:3px;}
 .btn-hf:hover{background:rgba(192,132,252,0.28);}
 
+
+/* EMAIL CARDS */
+.email-card{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:18px;margin-bottom:16px;position:relative;}
+.email-card::before{content:'';position:absolute;top:0;left:0;width:14px;height:14px;border-top:2px solid rgba(255,119,0,0.4);border-left:2px solid rgba(255,119,0,0.4);}
+.email-num{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:2px;margin-bottom:8px;}
+.email-subj{background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:5px;padding:8px 12px;font-size:12px;color:var(--blue);font-weight:700;margin-bottom:12px;}
+.email-timing{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--yellow);letter-spacing:1px;margin-bottom:10px;}
+.email-body-content{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:14px;font-size:12px;color:var(--text);line-height:1.85;white-space:pre-wrap;margin-bottom:10px;max-height:260px;overflow-y:auto;}
+.email-tip{font-size:11px;color:var(--muted);padding:8px 12px;background:rgba(255,119,0,0.05);border-left:2px solid rgba(255,119,0,0.3);line-height:1.6;margin-bottom:10px;}
+.email-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+
+/* NOTES SYSTEM */
+.notes-global{position:fixed;bottom:20px;right:20px;z-index:1000;}
+.notes-toggle{background:var(--orange);color:#000;border:none;padding:10px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 20px rgba(255,119,0,0.4);}
+.notes-panel-global{position:fixed;bottom:70px;right:20px;width:340px;background:#1a1a1a;border:2px solid var(--orange);z-index:1000;display:none;box-shadow:0 8px 40px rgba(0,0,0,0.8);}
+.notes-panel-global.open{display:block;}
+.notes-panel-header{background:rgba(255,119,0,0.15);border-bottom:1px solid rgba(255,119,0,0.3);padding:10px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:2px;display:flex;justify-content:space-between;align-items:center;}
+.notes-list{max-height:300px;overflow-y:auto;padding:10px;}
+.note-item{background:var(--card2);border:1px solid var(--border);border-radius:5px;padding:10px 12px;margin-bottom:8px;font-size:11px;color:var(--text);line-height:1.6;}
+.note-item .note-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:1px;margin-bottom:4px;}
+.note-item .note-del{float:right;color:var(--red);cursor:pointer;font-size:10px;border:none;background:none;padding:0;font-family:'Share Tech Mono',monospace;}
+.notes-add{padding:10px;}
+.notes-add textarea{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px;font-size:11px;font-family:'Rajdhani',sans-serif;resize:vertical;min-height:60px;margin-bottom:6px;}
+.notes-add select{background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 8px;font-size:11px;font-family:'Share Tech Mono',monospace;margin-bottom:6px;width:100%;}
+.notes-add .btn-add-note{background:var(--orange);color:#000;border:none;padding:7px 16px;font-family:'Share Tech Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:1px;width:100%;}
+
+/* INLINE SECTION NOTES */
+.section-note-wrap{margin:10px 0;}
+.section-note-btn{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);border:1px dashed var(--border);background:none;padding:4px 12px;cursor:pointer;letter-spacing:1px;}
+.section-note-btn:hover{border-color:var(--orange);color:var(--orange);}
+.section-note-area{display:none;margin-top:6px;}
+.section-note-area.open{display:block;}
+.section-note-area textarea{width:100%;background:rgba(251,113,133,0.05);border:1px solid rgba(251,113,133,0.3);border-left:3px solid #fb7185;color:var(--text);padding:8px 10px;font-size:11px;font-family:'Rajdhani',sans-serif;resize:vertical;min-height:50px;line-height:1.6;}
+.section-note-area .btn-save-note{font-family:'Share Tech Mono',monospace;font-size:9px;color:#fb7185;border:1px solid rgba(251,113,133,0.4);background:rgba(251,113,133,0.1);padding:4px 12px;cursor:pointer;letter-spacing:1px;margin-top:4px;}
+.saved-note{background:rgba(251,113,133,0.07);border:1px solid rgba(251,113,133,0.25);border-left:3px solid #fb7185;padding:8px 12px;font-size:11px;color:#fda4af;line-height:1.6;margin-top:6px;font-style:italic;}
+.saved-note .note-edit{font-family:'Share Tech Mono',monospace;font-size:9px;color:#fb7185;border:none;background:none;cursor:pointer;margin-left:8px;text-decoration:underline;}
+
 </style>
 </head>
 <body>
@@ -137,6 +174,10 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
   <div class="tab" onclick="show('google-ads')"><span class="plat-dot" style="background:#4285f4;"></span>Google Ads</div>
   <div class="tab" onclick="show('google-profile')"><span class="plat-dot" style="background:#34a853;"></span>Google Profile</div>
   <div class="tab" onclick="show('week')"><span class="plat-dot" style="background:#facc15;"></span>Week 1 Calendar</div>
+  <div class="tab" onclick="show('vendor-email')"><span class="plat-dot" style="background:#f59e0b;"></span>Vendor Emails</div>
+  <div class="tab" onclick="show('client-email')"><span class="plat-dot" style="background:#34d399;"></span>Client Emails</div>
+  <div class="tab" onclick="show('li-outreach')"><span class="plat-dot" style="background:#818cf8;"></span>LI Outreach</div>
+  <div class="tab" onclick="show('notes')"><span class="plat-dot" style="background:#fb7185;"></span>Notes</div>
 </div>
 
 <div class="content">
@@ -1203,8 +1244,539 @@ NSN is headquartered in the United States and serves clients and vendors nationw
   </div>
 </div>
 
+<div class="panel" id="panel-vendor-email">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.4);">📧</div>
+    <div>
+      <div class="plat-title">Vendor Email Sequence</div>
+      <div class="plat-sub">// 4-EMAIL SEQUENCE — SECURITY COMPANY OWNERS // GOAL: CLAIM FREE PROFILE //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Strategy:</strong> The vendor is already seeded on the platform before you email them. You're telling them their listing is live and inviting them to claim it free. This is the Clutch.co playbook — zero friction because they're not starting from scratch, they're just claiming what's already there.<br><br>
+    <strong>Timing:</strong> Email 1 on seed day &rarr; Email 2 on Day 5 &rarr; Email 3 on Day 12 &rarr; Email 4 on Day 18<br><br>
+    <strong>Personalization tokens:</strong> {{First Name}} {{Company Name}} {{City}} {{profile-slug}} {{token}}
+  </div>
+
+  <div class="section-note-wrap">
+    <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+    <div class="section-note-area">
+      <textarea placeholder="Add a note about the vendor email sequence — what to change, what's working, what tone you prefer..."></textarea>
+      <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 1 -->
+  <div class="email-card">
+    <div class="email-num">EMAIL 1 OF 4 — INITIAL OUTREACH</div>
+    <div class="email-timing">SEND: Day 0 — same day vendor is seeded on platform</div>
+    <div class="email-subj">{{Company Name}} is now listed on Nationwide Security Network — claim your free profile</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+I wanted to give you a quick heads-up — {{Company Name}} is now featured on Nationwide Security Network (NSN), a new B2B marketplace connecting security vendors with corporate clients across the country.
+
+Your profile is already live at:
+[your domain]/vendors/{{profile-slug}}
+
+Right now the profile shows your basic information pulled from public records. When you claim it (free), you can:
+
+  → Add photos, service details, and specializations
+  → Get discovered by corporate buyers searching in {{City}}
+  → Respond to RFPs posted by companies needing security services
+  → Lock in Founding Member status — 50% off when paid tiers launch
+
+Takes about 5 minutes. No credit card, no contracts.
+
+Claim your free profile here:
+[your domain]/claim/{{token}}
+
+Let me know if you have any questions.
+
+— The NSN Team
+[your domain]</div>
+    <div class="email-tip"><strong>Why it works:</strong> They're already on the platform. You're not asking them to sign up for something new — you're inviting them to claim something that exists. Much lower psychological barrier than a cold sign-up ask.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Email 1 — e.g. 'make the tone warmer' or 'add our phone number'..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 2 -->
+  <div class="email-card">
+    <div class="email-num">EMAIL 2 OF 4 — FOLLOW UP</div>
+    <div class="email-timing">SEND: Day 5 — if no response to Email 1</div>
+    <div class="email-subj">Quick follow-up — {{Company Name}} profile on NSN</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+Just circling back on my note from last week.
+
+{{Company Name}} has a live profile on NSN and I wanted to make sure you saw it before it gets buried under the other vendors we are adding in {{City}}.
+
+Corporate buyers are already browsing the platform — a complete profile with photos and service details gets 4-6x more profile views than a basic listing.
+
+If claiming is not the right fit right now, no problem at all — just let me know and I will stop following up.
+
+If you do want to grab the free Founding Member listing before the window closes:
+[your domain]/claim/{{token}}
+
+— The NSN Team</div>
+    <div class="email-tip"><strong>Key move:</strong> Giving them an easy out ("just let me know") actually increases response rate — it removes the fear of being hounded. Also adds social proof ("4-6x more profile views") without overselling.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Email 2..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 3 -->
+  <div class="email-card">
+    <div class="email-num">EMAIL 3 OF 4 — VALUE + URGENCY</div>
+    <div class="email-timing">SEND: Day 12 — if no response to Email 2</div>
+    <div class="email-subj">The math behind one NSN lead for a security company</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+One more note and then I will leave you alone.
+
+The average commercial security contract in the US is worth $60,000 — $120,000 per year. NSN's free Founding Member listing takes 5 minutes to claim.
+
+One lead that converts pays for years of any subscription we ever charge.
+
+Other security vendors in {{City}} have already claimed their profiles. Once we hit our cap in your service category, we move to a paid waitlist for new listings.
+
+Your free claim link (expires in 6 days):
+[your domain]/claim/{{token}}
+
+— The NSN Team</div>
+    <div class="email-tip"><strong>Key move:</strong> ROI math makes the decision obvious. Scarcity ("cap in your category") is real — you are limiting free listings. Short and punchy — best email in the sequence for opens and clicks.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Email 3..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <!-- EMAIL 4 -->
+  <div class="email-card">
+    <div class="email-num">EMAIL 4 OF 4 — FINAL CLOSE</div>
+    <div class="email-timing">SEND: Day 18 — final email in sequence</div>
+    <div class="email-subj">Last email from us — {{Company Name}}</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+This is the last email I will send.
+
+I am going to open up {{Company Name}}'s Founding Member spot to the next security vendor on our waitlist in {{City}} if I do not hear back by Friday.
+
+If the timing is not right — totally fine. We will keep your basic listing live. You can always claim it later at the standard rate.
+
+But if you want to lock in free Founding Member status (50% off subscriptions for life when we launch paid tiers):
+[your domain]/claim/{{token}}
+
+Either way, best of luck with the business.
+
+— The NSN Team</div>
+    <div class="email-tip"><strong>Key move:</strong> Real deadline, genuine consequence. Not fake urgency — you actually will give the spot away. "Last email I will send" is the most honest thing you can say and it consistently drives last-minute conversions.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Email 4..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+</div>
+<div class="panel" id="panel-client-email">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(52,211,153,0.15);border:2px solid rgba(52,211,153,0.4);">🏢</div>
+    <div>
+      <div class="plat-title">Client Email Sequence</div>
+      <div class="plat-sub">// 2-EMAIL SEQUENCE — CORPORATE BUYERS // GOAL: FIRST RFP POSTED //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Strategy:</strong> Target corporate security directors, facility managers, HR directors, and risk managers at mid-to-large companies. These are people who have sourced security vendors before and know how painful the process is. Lead with the pain point, offer the solution, make it free and frictionless.<br><br>
+    <strong>Sources:</strong> LinkedIn Sales Navigator (Job Title = Facility Manager / Security Director / Director of Operations + Company Size = 200+ employees), local chamber of commerce lists, trade association directories.<br><br>
+    <strong>Timing:</strong> Email 1 cold outreach &rarr; Email 2 follow-up Day 7
+  </div>
+
+  <div class="section-note-wrap">
+    <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+    <div class="section-note-area">
+      <textarea placeholder="Note about client email strategy — audience targeting, tone, what to change..."></textarea>
+      <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+    </div>
+  </div>
+
+  <!-- CLIENT EMAIL 1 -->
+  <div class="email-card">
+    <div class="email-num">CLIENT EMAIL 1 OF 2 — COLD OUTREACH</div>
+    <div class="email-timing">SEND: Day 0 — initial cold outreach</div>
+    <div class="email-subj">Finding vetted security vendors in {{City}} just got easier</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+If your team ever needs to find, vet, or compare security vendors — whether for your facility, events, or corporate risk programs — I wanted to make sure you knew about NSN.
+
+Nationwide Security Network is a free B2B platform where you can:
+
+  → Search 233+ verified security vendors by city, service type, and specialty
+  → Compare armed guards, mobile patrol, executive protection, cybersecurity, and more
+  → Post RFPs and receive proposals directly from vetted vendors in your area
+  → No subscription, no cost to buyers — completely free
+
+Most corporate security directors I talk to tell me the same thing: finding and vetting vendors takes weeks. NSN cuts that down to a few hours.
+
+Worth a look if vendor sourcing is ever on your plate:
+[your domain]
+
+Happy to walk you through it if that would be helpful.
+
+— The NSN Team
+[your domain]</div>
+    <div class="email-tip"><strong>Key move:</strong> No hard sell. Lead with "if you ever need to..." — it's low pressure. The list of capabilities speaks for itself. Ends with an offer to help, not a push to sign up.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Client Email 1..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <!-- CLIENT EMAIL 2 -->
+  <div class="email-card">
+    <div class="email-num">CLIENT EMAIL 2 OF 2 — VALUE-ADD FOLLOW UP</div>
+    <div class="email-timing">SEND: Day 7 — if no response</div>
+    <div class="email-subj">Free download: Security Vendor RFP Template (used by 200+ companies)</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+Regardless of whether NSN is the right fit for you right now, I wanted to send over something useful.
+
+We put together a free Security Vendor RFP Template that covers everything your team needs to scope and evaluate security proposals — from guard services and access control to investigations and executive protection.
+
+Download it free here:
+[your domain]/resources/rfp-template
+
+No form, no email required. Just a direct download.
+
+If you ever need to find security vendors in {{City}}, NSN has 233+ vetted vendors searchable by service type:
+[your domain]/search
+
+— The NSN Team</div>
+    <div class="email-tip"><strong>Key move:</strong> Give something valuable with zero strings attached. The RFP template is genuinely useful and positions NSN as an industry resource, not just a sales pitch. People who download it are warm leads for future outreach.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Client Email 2..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <!-- NEW: CLIENT EMAIL 3 — EVENT/SEASONAL -->
+  <div class="email-card">
+    <div class="email-num">CLIENT EMAIL 3 — EVENT / SITUATIONAL OUTREACH</div>
+    <div class="email-timing">SEND: When buyer has a known upcoming event, new facility, or seasonal need</div>
+    <div class="email-subj">Security coverage for {{Event/Project}} — vendors ready in {{City}}</div>
+    <div class="email-body-content">Hi {{First Name}},
+
+I saw that {{Company Name}} has {{event/expansion/project}} coming up and wanted to reach out at the right time.
+
+If you need security coverage — whether armed guards, mobile patrol, event security, or executive protection — NSN has 233+ vetted vendors in {{City}} and surrounding areas ready to respond to RFPs.
+
+How it works:
+  1. Post your requirement (takes 10 minutes, completely free)
+  2. Qualified vendors in your area respond with proposals
+  3. Compare, shortlist, and connect — all in one place
+
+No vendor calls to chase, no Google searching, no spreadsheets.
+
+Post your requirement here:
+[your domain]/rfp/upload
+
+Happy to answer any questions.
+
+— The NSN Team</div>
+    <div class="email-tip"><strong>When to use:</strong> Best for outreach tied to a specific trigger — new facility opening, public event, corporate conference, major expansion. Personalization to a real need dramatically improves response rate over generic outreach.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for Client Email 3..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Email</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+</div>
+<div class="panel" id="panel-li-outreach">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(129,140,248,0.15);border:2px solid rgba(129,140,248,0.4);">💬</div>
+    <div>
+      <div class="plat-title">LinkedIn DM Outreach</div>
+      <div class="plat-sub">// 3-MESSAGE SEQUENCE — CONNECT → PITCH → FOLLOW UP //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Strategy:</strong> LinkedIn DMs are the highest-converting channel for both audiences because the person's job title is right there — you know exactly who you're talking to. Keep connection notes ultra-short (under 300 chars). First message after connect is conversational, not salesy. Always personalize with their company name or a detail from their profile.<br><br>
+    <strong>Target for vendors:</strong> Owner, President, CEO, VP Business Development at security guard companies<br>
+    <strong>Target for buyers:</strong> Director of Security, Facility Manager, VP Operations, Chief Security Officer, Director of Risk at companies with 200+ employees
+  </div>
+
+  <div class="section-note-wrap">
+    <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+    <div class="section-note-area">
+      <textarea placeholder="Note about LinkedIn outreach strategy..."></textarea>
+      <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+    </div>
+  </div>
+
+  <div class="section-head">Vendor Outreach — 3 Messages</div>
+
+  <div class="email-card">
+    <div class="email-num">VENDOR LI — MESSAGE 1 — CONNECTION REQUEST NOTE</div>
+    <div class="email-timing">Max 300 characters. Sent with connection request.</div>
+    <div class="email-subj">Connection Request Note</div>
+    <div class="email-body-content">Hi {{First Name}} — I'm building a national B2B marketplace specifically for security vendors. Early members are getting free founding listings + priority placement. Thought {{Company Name}} would be a great fit. Happy to share more if interested.</div>
+    <div class="email-tip"><strong>Key move:</strong> Specific, brief, ends with a soft door open not a hard ask. Don't pitch in the connection note — just create curiosity.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for LI Vendor Message 1..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Message</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-num">VENDOR LI — MESSAGE 2 — AFTER THEY ACCEPT</div>
+    <div class="email-timing">Send within 24 hours of connection being accepted</div>
+    <div class="email-subj">Message After Connection Accepted</div>
+    <div class="email-body-content">Thanks for connecting, {{First Name}}.
+
+Quick background — I'm launching Nationwide Security Network, a marketplace where corporate buyers (facilities directors, risk managers, HR teams) search for and vet security vendors by city, service type, and specialty.
+
+We're in the founding member phase right now — free listings, no subscription required. Vendors who join early get:
+  • 50% off when paid tiers launch
+  • Priority placement in search results
+  • "Founding Member" badge on their profile
+
+Takes about 5 minutes to set up. Would it make sense to get {{Company Name}} listed?
+
+Here's what the vendor profile looks like: [your domain]/vendor-example</div>
+    <div class="email-tip"><strong>Key move:</strong> Full pitch now that they've shown interest by accepting. Specific benefits, clear ask, show them the product with a direct link. Ends with a soft question not a pressure close.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for LI Vendor Message 2..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Message</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-num">VENDOR LI — MESSAGE 3 — FOLLOW UP</div>
+    <div class="email-timing">Send Day 5 if no reply to Message 2</div>
+    <div class="email-subj">Follow-Up (if no reply)</div>
+    <div class="email-body-content">Hey {{First Name}} — just bumping this up in case it got buried.
+
+Short version: corporate clients are already using NSN to find vendors in {{City}}. A complete profile takes 5 minutes and it's free right now.
+
+If it's not a fit, no worries at all — just let me know and I'll stop following up. But if you want to grab a founding member spot before we cap the category:
+[your domain]/claim
+
+Either way, good luck with everything.</div>
+    <div class="email-tip"><strong>Key move:</strong> Extremely short. Easy out offered again. Scarcity reminder. Warm sign-off. After this — stop. Three messages is the limit on LinkedIn DMs before it becomes spam.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for LI Vendor Message 3..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Message</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="section-head">Client/Buyer Outreach — 2 Messages</div>
+
+  <div class="email-card">
+    <div class="email-num">CLIENT LI — MESSAGE 1 — CONNECTION REQUEST NOTE</div>
+    <div class="email-timing">Max 300 characters. Sent with connection request.</div>
+    <div class="email-subj">Connection Request Note — Corporate Buyer</div>
+    <div class="email-body-content">Hi {{First Name}} — I run a B2B marketplace that helps facility managers and security directors find vetted security vendors nationwide. Cuts the vendor sourcing process from weeks to days. Happy to connect.</div>
+    <div class="email-tip"><strong>Key move:</strong> Speaks directly to their pain — they know vendor sourcing takes too long. No pitch yet, just a relevant hook that makes them want to connect.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for LI Client Message 1..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Message</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-num">CLIENT LI — MESSAGE 2 — AFTER THEY ACCEPT</div>
+    <div class="email-timing">Send within 24 hours of connection accepted</div>
+    <div class="email-subj">Message After Connection Accepted — Corporate Buyer</div>
+    <div class="email-body-content">Thanks for connecting, {{First Name}}.
+
+Quick version of what NSN does — it's a verified directory of 233+ security vendors searchable by state, service type, and specialty. Built specifically for corporate buyers so you don't have to Google, cold call, or ask around when you need a security vendor.
+
+If you ever need to source armed guards, mobile patrol, executive protection, event security, or investigations — you can search the platform free and post an RFP that goes out to all qualified vendors in your area.
+
+No subscription for buyers. No vendor list to build. 
+
+Worth bookmarking for when the need comes up:
+[your domain]
+
+Happy to show you around the platform if that would be useful.</div>
+    <div class="email-tip"><strong>Key move:</strong> "Bookmark for when the need comes up" — removes pressure to act now. Plant the seed. The goal isn't an immediate RFP, it's to be top of mind when they have a real need. Most corporate buyers aren't shopping for security vendors right now — you want them to remember NSN when they are.</div>
+    <div class="section-note-wrap">
+      <button class="section-note-btn" onclick="toggleNote(this)">+ Add Note for Hermes</button>
+      <div class="section-note-area">
+        <textarea placeholder="Note for LI Client Message 2..."></textarea>
+        <button class="btn-save-note" onclick="saveNote(this)">Save Note</button>
+      </div>
+    </div>
+    <div class="email-actions">
+      <button class="btn btn-copy" onclick="copyEmail(this)">Copy Message</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+</div>
+<div class="panel" id="panel-notes">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(251,113,133,0.15);border:2px solid rgba(251,113,133,0.4);">📝</div>
+    <div>
+      <div class="plat-title">Campaign Notes — All Sections</div>
+      <div class="plat-sub">// CENTRALIZED NOTES VIEW // ALL SAVED NOTES APPEAR HERE //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>How to use:</strong> Click "+ Add Note for Hermes" on any section of the dashboard — posts, emails, outreach sequences, or strategy boxes. Your notes save to this tab automatically. Share this dashboard with Hermes and say "read the notes and update accordingly" — the notes will guide exactly what to change in each section.
+  </div>
+
+  <div id="all-notes-view">
+    <div style="color:var(--muted);font-size:12px;padding:20px;text-align:center;font-family:'Share Tech Mono',monospace;">No notes saved yet. Click "+ Add Note for Hermes" on any section to add one.</div>
+  </div>
+
+  <div class="section-head" style="margin-top:24px;">Add a General Campaign Note</div>
+  <div class="email-card">
+    <div class="email-num">GENERAL NOTE</div>
+    <textarea id="general-note-input" style="width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px;font-size:12px;font-family:'Rajdhani',sans-serif;resize:vertical;min-height:80px;line-height:1.7;" placeholder="Add a general note about the campaign — overall tone changes, strategy pivots, feedback from your partner, what's working..."></textarea>
+    <div style="margin-top:8px;">
+      <select id="general-note-section" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 10px;font-size:11px;font-family:'Share Tech Mono',monospace;margin-right:8px;">
+        <option value="General">General Campaign</option>
+        <option value="LinkedIn Posts">LinkedIn Posts</option>
+        <option value="Facebook Posts">Facebook Posts</option>
+        <option value="Instagram Posts">Instagram Posts</option>
+        <option value="X / Twitter Posts">X / Twitter Posts</option>
+        <option value="Google Ads">Google Ads</option>
+        <option value="Google Profile">Google Profile</option>
+        <option value="Vendor Emails">Vendor Emails</option>
+        <option value="Client Emails">Client Emails</option>
+        <option value="LinkedIn Outreach">LinkedIn Outreach</option>
+        <option value="Week 1 Calendar">Week 1 Calendar</option>
+      </select>
+      <button class="btn btn-approve" onclick="saveGeneralNote()" style="padding:7px 18px;">Save Note</button>
+    </div>
+  </div>
+</div>
 </div><!-- end .content -->
 
+
+<!-- FLOATING NOTES -->
+<div class="notes-global">
+  <button class="notes-toggle" onclick="toggleFloatNotes()">📝 NOTES</button>
+  <div class="notes-panel-global" id="floatNotesPanel">
+    <div class="notes-panel-header">
+      <span>// QUICK NOTES //</span>
+      <button onclick="toggleFloatNotes()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div class="notes-list" id="floatNotesList"></div>
+    <div class="notes-add">
+      <select id="floatNoteSection" style="background:#1a1a1a;border:1px solid var(--border);color:var(--text);padding:5px 8px;font-size:10px;font-family:'Share Tech Mono',monospace;width:100%;margin-bottom:6px;">
+        <option value="General">General Campaign</option>
+        <option value="LinkedIn Posts">LinkedIn Posts</option>
+        <option value="Facebook Posts">Facebook Posts</option>
+        <option value="Instagram Posts">Instagram Posts</option>
+        <option value="X / Twitter">X / Twitter</option>
+        <option value="Google Ads">Google Ads</option>
+        <option value="Vendor Emails">Vendor Emails</option>
+        <option value="Client Emails">Client Emails</option>
+        <option value="LinkedIn Outreach">LinkedIn Outreach</option>
+      </select>
+      <textarea id="floatNoteText" placeholder="Type your note here..." style="width:100%;background:#1a1a1a;border:1px solid var(--border);color:var(--text);padding:8px;font-size:11px;font-family:'Rajdhani',sans-serif;resize:vertical;min-height:60px;margin-bottom:6px;"></textarea>
+      <button class="btn-add-note" onclick="addFloatNote()">SAVE NOTE</button>
+    </div>
+  </div>
+</div>
 <div style="background:#111;border-top:2px solid #3d4a57;padding:12px 28px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(255,119,0,0.3);letter-spacing:2px;">
   // NSN MEDIA CAMPAIGN v1.0 // WEEK 1 // GENERATED BY HERMES AGENT // JULY 2026 //
 </div>
@@ -1251,6 +1823,132 @@ function copyPost(btn) {
     });
   }
 }
+
+// ===== NOTES SYSTEM =====
+let notes = JSON.parse(localStorage.getItem('nsn_campaign_notes') || '[]');
+
+function saveNotes() {
+  localStorage.setItem('nsn_campaign_notes', JSON.stringify(notes));
+  renderAllNotes();
+  renderFloatNotes();
+}
+
+function addFloatNote() {
+  const text = document.getElementById('floatNoteText').value.trim();
+  const section = document.getElementById('floatNoteSection').value;
+  if (!text) return;
+  notes.unshift({ id: Date.now(), section, text, ts: new Date().toLocaleDateString() });
+  document.getElementById('floatNoteText').value = '';
+  saveNotes();
+}
+
+function saveGeneralNote() {
+  const text = document.getElementById('general-note-input').value.trim();
+  const section = document.getElementById('general-note-section').value;
+  if (!text) return;
+  notes.unshift({ id: Date.now(), section, text, ts: new Date().toLocaleDateString() });
+  document.getElementById('general-note-input').value = '';
+  saveNotes();
+}
+
+function deleteNote(id) {
+  notes = notes.filter(n => n.id !== id);
+  saveNotes();
+}
+
+function renderAllNotes() {
+  const el = document.getElementById('all-notes-view');
+  if (!el) return;
+  if (!notes.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:12px;padding:20px;text-align:center;font-family:\'Share Tech Mono\',monospace;">No notes saved yet.</div>';
+    return;
+  }
+  el.innerHTML = notes.map(n => `
+    <div class="email-card" style="border-left:3px solid #fb7185;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:#fb7185;letter-spacing:1px;">${n.section.toUpperCase()} // ${n.ts}</span>
+        <button onclick="deleteNote(${n.id})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:10px;font-family:\'Share Tech Mono\',monospace;">DELETE</button>
+      </div>
+      <div style="font-size:12px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${n.text}</div>
+    </div>
+  `).join('');
+}
+
+function renderFloatNotes() {
+  const el = document.getElementById('floatNotesList');
+  if (!el) return;
+  if (!notes.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:10px;padding:10px;text-align:center;">No notes yet</div>';
+    return;
+  }
+  el.innerHTML = notes.slice(0, 8).map(n => `
+    <div class="note-item">
+      <div class="note-tag">${n.section} // ${n.ts} <button class="note-del" onclick="deleteNote(${n.id})">✕</button></div>
+      <div>${n.text.length > 120 ? n.text.slice(0,120)+'...' : n.text}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFloatNotes() {
+  const p = document.getElementById('floatNotesPanel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) renderFloatNotes();
+}
+
+// Inline section note toggle
+function toggleNote(btn) {
+  const area = btn.nextElementSibling;
+  area.classList.toggle('open');
+}
+
+function saveNote(btn) {
+  const area = btn.closest('.section-note-area');
+  const wrap = btn.closest('.section-note-wrap');
+  const textarea = area.querySelector('textarea');
+  const text = textarea.value.trim();
+  if (!text) return;
+  // Detect section from nearest section header or panel
+  const panel = btn.closest('.panel');
+  const section = panel ? panel.id.replace('panel-','').replace(/-/g,' ') : 'General';
+  notes.unshift({ id: Date.now(), section, text, ts: new Date().toLocaleDateString() });
+  saveNotes();
+  // Show saved confirmation inline
+  let saved = wrap.querySelector('.saved-note');
+  if (!saved) {
+    saved = document.createElement('div');
+    saved.className = 'saved-note';
+    wrap.appendChild(saved);
+  }
+  saved.innerHTML = text + ' <button class="note-edit" onclick="editInlineNote(this)">Edit</button>';
+  textarea.value = '';
+  area.classList.remove('open');
+}
+
+function editInlineNote(btn) {
+  const saved = btn.closest('.saved-note');
+  const wrap = btn.closest('.section-note-wrap');
+  const area = wrap.querySelector('.section-note-area');
+  const ta = area.querySelector('textarea');
+  ta.value = saved.textContent.trim();
+  area.classList.add('open');
+  saved.remove();
+}
+
+// Email copy function
+function copyEmail(btn) {
+  const body = btn.closest('.email-card').querySelector('.email-body-content');
+  if (body) {
+    navigator.clipboard.writeText(body.textContent.trim()).then(() => {
+      const o = btn.textContent; btn.textContent = 'Copied!';
+      btn.style.borderColor = 'var(--green)'; btn.style.color = 'var(--green)';
+      setTimeout(() => { btn.textContent = o; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
+    });
+  }
+}
+
+// Init notes on load
+window.addEventListener('load', () => { renderAllNotes(); renderFloatNotes(); });
+
 </script>
 </body>
 </html>
