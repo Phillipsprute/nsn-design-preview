@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSN Media Campaign — Week 1 Command Center</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+:root{
+  --bg:#0d1117;--card:#161b22;--card2:#1a2030;--border:#30363d;
+  --orange:#ff7700;--green:#4ade80;--blue:#60a5fa;--yellow:#facc15;
+  --red:#f87171;--purple:#c084fc;--text:#e6edf3;--muted:#7d8590;
+  --li:#0077b5;--fb:#1877f2;--x:#000;--yt:#ff0000;--google:#4285f4;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0d1117,#1a1a1a);border-bottom:3px solid var(--orange);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.logo-text{font-size:20px;font-weight:700;color:#fff;letter-spacing:1px;}
+.logo-text span{color:var(--orange);}
+.header-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;}
+.hbadge{padding:4px 12px;font-family:'Share Tech Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;}
+.hbadge-orange{background:rgba(255,119,0,0.15);color:var(--orange);border:1px solid rgba(255,119,0,0.4);}
+.hbadge-green{background:rgba(74,222,128,0.15);color:var(--green);border:1px solid rgba(74,222,128,0.4);}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);padding:0 28px;margin-top:12px;overflow-x:auto;}
+.tab{padding:12px 22px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;text-transform:uppercase;transition:all 0.2s;}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--orange);border-bottom-color:var(--orange);}
+.tab .plat-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
+
+/* PANELS */
+.content{padding:24px 28px;}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* PLATFORM CARDS */
+.plat-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.plat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.plat-title{font-size:18px;font-weight:700;color:#fff;}
+.plat-sub{font-size:12px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:1px;margin-top:2px;}
+.strategy-box{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--orange);padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.8;}
+.strategy-box strong{color:var(--text);}
+
+/* WEEK GRID */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:24px;}
+.day-col{background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.day-header{background:rgba(255,119,0,0.12);border-bottom:1px solid rgba(255,119,0,0.3);padding:6px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:1px;font-weight:700;}
+.day-body{padding:8px;}
+
+/* POST CARDS */
+.post-card{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;position:relative;}
+.post-card::before{content:'';position:absolute;top:0;left:0;width:14px;height:14px;border-top:2px solid rgba(255,119,0,0.4);border-left:2px solid rgba(255,119,0,0.4);}
+.post-type{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 8px;margin-bottom:10px;}
+.type-awareness{background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.3);color:var(--blue);}
+.type-vendor{background:rgba(255,119,0,0.12);border:1px solid rgba(255,119,0,0.3);color:var(--orange);}
+.type-client{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);color:var(--green);}
+.type-rfp{background:rgba(250,204,21,0.12);border:1px solid rgba(250,204,21,0.3);color:var(--yellow);}
+.type-stat{background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.3);color:var(--purple);}
+.post-label{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:1px;margin-bottom:5px;}
+.post-content{font-size:12px;color:var(--text);line-height:1.7;white-space:pre-wrap;margin-bottom:10px;}
+.post-tags{font-size:10px;color:var(--blue);font-family:'Share Tech Mono',monospace;line-height:1.8;}
+.post-visual{font-size:11px;color:var(--purple);padding:8px 10px;background:rgba(192,132,252,0.05);border:1px solid rgba(192,132,252,0.15);border-radius:4px;margin-bottom:8px;line-height:1.5;}
+.post-actions{display:flex;gap:6px;margin-top:10px;}
+.btn{padding:5px 12px;border:none;cursor:pointer;font-size:11px;font-weight:700;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;transition:all 0.2s;}
+.btn-copy{background:var(--card);border:1px solid var(--border);color:var(--muted);}
+.btn-copy:hover{border-color:var(--blue);color:var(--blue);}
+.btn-approve{background:var(--green);color:#000;}
+.btn-hold{background:var(--card);border:1px solid var(--yellow);color:var(--yellow);}
+
+/* AD CARDS */
+.ad-card{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:18px;margin-bottom:14px;}
+.ad-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:2px;margin-bottom:8px;}
+.ad-headline{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;}
+.ad-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:10px;}
+.ad-meta{display:flex;gap:12px;flex-wrap:wrap;}
+.ad-meta-item{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);padding:2px 8px;background:var(--card);border:1px solid var(--border);}
+.ad-url{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--green);}
+
+/* PROFILE SECTION */
+.profile-field{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.pf-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:2px;margin-bottom:6px;}
+.pf-content{font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;}
+.char-count{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);text-align:right;margin-top:4px;}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+.stat-box{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center;position:relative;}
+.stat-box::before{content:'';position:absolute;top:0;left:0;width:14px;height:14px;border-top:2px solid rgba(255,119,0,0.4);border-left:2px solid rgba(255,119,0,0.4);}
+.stat-val{font-family:'Share Tech Mono',monospace;font-size:24px;font-weight:900;color:var(--orange);display:block;}
+.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+
+/* SECTION HEADERS */
+.section-head{font-size:14px;font-weight:700;color:#fff;margin:20px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);letter-spacing:0.5px;display:flex;align-items:center;gap:8px;}
+.section-head::before{content:'';display:inline-block;width:3px;height:16px;background:var(--orange);}
+
+.tip-box{background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.2);border-left:3px solid var(--blue);padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--muted);line-height:1.7;}
+.tip-box strong{color:var(--blue);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr;}.week-grid{grid-template-columns:1fr 1fr;}.stats-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="logo-text">NSN <span>//</span> Media Campaign</div>
+    <div class="header-meta">// WEEK 1 — PRE-LAUNCH AWARENESS // JULY 2026 //</div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <span class="hbadge hbadge-orange">TWO AUDIENCES: VENDORS + CLIENTS</span>
+    <span class="hbadge hbadge-green">7-DAY CONTENT CALENDAR</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="show('overview')"><span class="plat-dot" style="background:#ff7700;"></span>Overview</div>
+  <div class="tab" onclick="show('linkedin')"><span class="plat-dot" style="background:#0077b5;"></span>LinkedIn</div>
+  <div class="tab" onclick="show('facebook')"><span class="plat-dot" style="background:#1877f2;"></span>Facebook</div>
+  <div class="tab" onclick="show('instagram')"><span class="plat-dot" style="background:#e1306c;"></span>Instagram</div>
+  <div class="tab" onclick="show('x')"><span class="plat-dot" style="background:#fff;"></span>X / Twitter</div>
+  <div class="tab" onclick="show('google-ads')"><span class="plat-dot" style="background:#4285f4;"></span>Google Ads</div>
+  <div class="tab" onclick="show('google-profile')"><span class="plat-dot" style="background:#34a853;"></span>Google Profile</div>
+  <div class="tab" onclick="show('week')"><span class="plat-dot" style="background:#facc15;"></span>Week 1 Calendar</div>
+</div>
+
+<div class="content">
+
+<!-- ═══ OVERVIEW ═══════════════════════════════════════════════════════════════ -->
+<div class="panel active" id="panel-overview">
+
+  <div class="stats-grid">
+    <div class="stat-box"><span class="stat-val">2</span><div class="stat-label">Target Audiences</div></div>
+    <div class="stat-box"><span class="stat-val">5</span><div class="stat-label">Platforms</div></div>
+    <div class="stat-box"><span class="stat-val">35</span><div class="stat-label">Posts This Week</div></div>
+    <div class="stat-box"><span class="stat-val">$0</span><div class="stat-label">Ad Spend (organic first)</div></div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Campaign Goal — Week 1:</strong> Brand awareness before launch. Get the NSN name in front of two audiences — security company owners (vendors) and corporate buyers (clients). No hard sell. Establish authority, show the platform exists, build curiosity.<br><br>
+    <strong>Two Message Tracks:</strong><br>
+    <strong>Vendor track:</strong> "You're invisible online. NSN fixes that. Free listing." — target security company owners, ops managers, business development contacts at guard companies.<br>
+    <strong>Client track:</strong> "Finding a security vendor takes weeks. NSN takes minutes." — target corporate security directors, facility managers, HR directors, risk managers at mid-to-large companies.<br><br>
+    <strong>Platform Priority:</strong> LinkedIn is #1 for both audiences. Facebook for vendors. Instagram for brand building. X for thought leadership. Google for search intent capture.
+  </div>
+
+  <div class="section-head">Brand Voice</div>
+  <div class="grid-2">
+    <div class="profile-field">
+      <div class="pf-label">TONE</div>
+      <div class="pf-content">Professional, confident, direct. Military precision without being cold. We know this industry — we speak the language. No fluff, no corporate jargon. Short sentences. Strong verbs. Always a point.</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">WHAT WE NEVER SAY</div>
+      <div class="pf-content">• "Disruptive" / "Game-changing" / "Revolutionary"
+• "AI-powered" (not yet live)
+• "Thousands of vendors" (we're building)
+• Anything that overstates current scale
+• Emojis beyond 1-2 max on LinkedIn</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">BRAND COLORS IN POSTS</div>
+      <div class="pf-content">Primary: #ff7700 orange
+Background: #1a1a1a dark
+Theme: Military HUD — tactical, precise, professional
+Logo: NSN shield mark + wordmark</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">HASHTAG STRATEGY</div>
+      <div class="pf-content">Core: #NSN #NationwideSecurityNetwork #SecurityVendors
+Vendor: #SecurityBusiness #GuardCompany #SecurityCompany #SecurityIndustry
+Client: #CorporateSecurity #SecurityManagement #FacilityManagement #RiskManagement
+Broad: #B2B #Marketplace #SecurityProfessionals</div>
+    </div>
+  </div>
+
+  <div class="section-head">Visual Direction — What Images to Use</div>
+  <div class="tip-box">
+    <strong>No stock photo people smiling at cameras.</strong> NSN's visual language matches the HUD theme — dark backgrounds, orange accents, professional/tactical feel. Use these image types:<br><br>
+    • City skylines at night (dark, dramatic) — represents nationwide coverage<br>
+    • Security professionals at work (not posed — candid, action shots)<br>
+    • Corporate buildings, entrances, access control points<br>
+    • Platform screenshots showing the actual NSN interface<br>
+    • Simple dark-background text graphics with orange headline text<br>
+    • Map visuals showing coverage across all 50 states<br><br>
+    <strong>Free image sources:</strong> Unsplash.com (search "security", "city night", "corporate building") — download 1200x628px for LinkedIn/Facebook, 1080x1080 for Instagram.
+  </div>
+</div>
+
+<!-- ═══ LINKEDIN ═══════════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-linkedin">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(0,119,181,0.15);border:2px solid rgba(0,119,181,0.4);">💼</div>
+    <div>
+      <div class="plat-title">LinkedIn — Primary Platform</div>
+      <div class="plat-sub">// COMPANY PAGE + PERSONAL OUTREACH // 1 POST/DAY //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Why LinkedIn is #1:</strong> Both your audiences (security company owners AND corporate security directors) are active here. LinkedIn posts from a company page + your personal profile working together will hit both. Post from the NSN company page daily. Also reshare from your personal Pinkerton-adjacent network for maximum reach.<br><br>
+    <strong>Setup needed:</strong> Create an NSN LinkedIn Company Page if not already done. Name: "Nationwide Security Network" Handle: @nationwide-security-network. Add logo, banner, description (use the profile text in the Google Profile tab).
+  </div>
+
+  <div class="section-head">7 LinkedIn Posts — Week 1</div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">AWARENESS — DAY 1 (MON)</span>
+    <div class="post-label">HEADLINE / HOOK</div>
+    <div class="post-content">The security industry has a $46 billion procurement problem.
+
+Corporate buyers spend 60-90 days finding, vetting, and hiring security vendors.
+Most of that time is wasted on Google searches, cold calls, and unanswered emails.
+
+We built the platform that changes this.
+
+Nationwide Security Network is a verified B2B marketplace connecting corporate buyers with security companies across all 50 states — by service type, location, and specialty.
+
+One search. Verified vendors. Direct connection.
+
+We're live. Explore the platform below.
+
+#SecurityIndustry #CorporateSecurity #NSN #NationwideSecurityNetwork #SecurityVendors #B2B</div>
+    <div class="post-visual">IMAGE: Dark city skyline at night with orange overlay text reading "The Security Industry's Marketplace — Now Open" — 1200x627px</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-vendor">VENDOR — DAY 2 (TUE)</span>
+    <div class="post-label">TARGET: SECURITY COMPANY OWNERS</div>
+    <div class="post-content">If a corporate buyer in your city searched for a security company today — would they find you?
+
+Most security companies rely on referrals and repeat clients. That's not a business strategy. That's hoping the phone rings.
+
+NSN gives your company a verified profile, visible to corporate buyers actively searching for security vendors in your state.
+
+Free to list. No contracts. No cold calls required on your end.
+
+Security companies in all 50 states are already on the platform.
+
+Claim your listing: [your domain]
+
+#SecurityCompany #GuardCompany #SecurityBusiness #NSN #SecurityIndustry #B2BMarketing</div>
+    <div class="post-visual">IMAGE: Screenshot of NSN vendor search page showing vendor cards — shows the actual platform in use</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-client">CLIENT — DAY 3 (WED)</span>
+    <div class="post-label">TARGET: CORPORATE SECURITY DIRECTORS / FACILITY MANAGERS</div>
+    <div class="post-content">Security RFPs shouldn't take 90 days.
+
+Here's how most corporate security directors source vendors today:
+→ Ask a colleague for a referral
+→ Google "security company [city]"
+→ Call 8-10 companies
+→ Wait for callbacks
+→ Schedule demos
+→ Build a spreadsheet
+→ Submit for approval
+
+The whole process takes 2-3 months. For something as critical as physical security.
+
+On NSN, you post your requirement once and qualified vendors come to you. Every vendor is verified. You compare profiles, credentials, and coverage areas in one place.
+
+First RFP is free. Always.
+
+#CorporateSecurity #FacilityManagement #SecurityRFP #RiskManagement #NSN #SecurityManagement</div>
+    <div class="post-visual">IMAGE: Simple dark graphic with orange text "90 days → 14 days. That's the NSN difference." on dark background</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-stat">STAT / CREDIBILITY — DAY 4 (THU)</span>
+    <div class="post-label">BUILDS AUTHORITY</div>
+    <div class="post-content">The U.S. private security market: $46 billion annually.
+
+Number of dedicated B2B marketplaces built specifically for security procurement: 0.
+
+Until now.
+
+NSN covers:
+✓ Armed & unarmed guard services
+✓ Executive protection
+✓ Mobile patrol
+✓ Event security
+✓ Investigations
+✓ Cybersecurity
+✓ Loss prevention
+✓ Emergency medical services
+✓ And 9 more service categories
+
+233+ verified vendors. All 50 states. One platform.
+
+#SecurityIndustry #PrivateSecurity #SecurityMarketplace #NSN #NationwideSecurityNetwork</div>
+    <div class="post-visual">IMAGE: Dark infographic-style graphic showing "17 Service Categories | 233+ Vendors | 50 States" with orange accents</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-rfp">RFP FOCUS — DAY 5 (FRI)</span>
+    <div class="post-label">DRIVES BUYER ACTION</div>
+    <div class="post-content">You already know what you need. You just don't know who to call.
+
+Armed security for a corporate campus.
+Mobile patrol for a warehouse complex.
+Executive protection for a traveling C-suite.
+Event security for 5,000 attendees.
+
+NSN's RFP system lets you describe your requirement once — and puts it in front of every qualified, verified vendor in your area.
+
+You don't chase vendors. They come to you.
+
+Post your first RFP free: [your domain]
+
+#SecurityRFP #CorporateSecurity #SecurityProcurement #NSN #SecurityVendors #FacilityManagement</div>
+    <div class="post-visual">IMAGE: NSN website screenshot of the Submit RFP page — real product screenshot</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-vendor">VENDOR — DAY 6 (SAT)</span>
+    <div class="post-label">FOUNDING MEMBER ANGLE</div>
+    <div class="post-content">The security companies that list on NSN now are the ones that will dominate search results when buyers start looking.
+
+Early positioning matters on any platform. The vendors that showed up on Yelp in 2005 owned their categories for years.
+
+NSN is the first B2B marketplace built specifically for the security industry. We're at the beginning.
+
+Your company's free listing includes:
+→ Full profile with services, coverage, and credentials
+→ Visibility in state and city searches
+→ Direct RFP access from corporate buyers
+→ Founding Member status — locked in before launch
+
+Free. No contracts. Takes 5 minutes to claim.
+
+[your domain]
+
+#SecurityBusiness #SecurityCompany #GuardCompany #NSN #SecurityIndustry #EarlyAdopter</div>
+    <div class="post-visual">IMAGE: Map of the United States with orange dots covering all 50 states — represents nationwide coverage</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">AWARENESS — DAY 7 (SUN)</span>
+    <div class="post-label">WEEK 1 CLOSE — BOTH AUDIENCES</div>
+    <div class="post-content">Two types of people are about to use NSN.
+
+Security company owners who are tired of chasing clients and competing on price without a way to show what makes them different.
+
+Corporate buyers who are tired of 90-day procurement cycles, cold calls, and hoping the vendor they hired is actually qualified.
+
+We built NSN for both.
+
+The platform is live. The vendors are verified. The RFP system is free to use.
+
+Start here: [your domain]
+
+#NSN #NationwideSecurityNetwork #SecurityIndustry #CorporateSecurity #SecurityVendors #B2BMarketplace</div>
+    <div class="post-visual">IMAGE: Split-image — left side guard/security officer, right side corporate office — orange line dividing them, NSN logo in center</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+      <button class="btn btn-hold">Hold</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FACEBOOK ═══════════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-facebook">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(24,119,242,0.15);border:2px solid rgba(24,119,242,0.4);">f</div>
+    <div>
+      <div class="plat-title">Facebook — Vendor-Focused</div>
+      <div class="plat-sub">// NSN COMPANY PAGE // 1 POST/DAY // VENDOR OWNER TARGETING //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Facebook strategy:</strong> Facebook skews older and is where security company OWNERS spend time personally — especially smaller regional guard companies. LinkedIn is their professional presence but Facebook is where they actually scroll. Target Facebook toward the vendor side. Also use Facebook Groups — search "security guard company owners", "private security business", "security company marketing" and post in those groups organically (no spam — add value first).<br><br>
+    <strong>Ad potential:</strong> Facebook/Instagram ads are highly targetable by job title and industry. When ready to spend, target: Job Title = "Owner" + Industry = "Security and Investigation Services" + Geography = your target states. Even $5/day reaches 500-1,000 of exactly the right people.
+  </div>
+
+  <div class="section-head">7 Facebook Posts — Week 1</div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 1 — LAUNCH ANNOUNCEMENT</span>
+    <div class="post-content">🛡️ Nationwide Security Network is now live.
+
+If you own or operate a security company — your free listing is waiting.
+
+NSN is the first B2B marketplace built specifically for the security industry. Corporate buyers use it to find, compare, and hire verified security vendors.
+
+Your profile takes 5 minutes to set up. Your listing is free. No contracts.
+
+Get listed before your competitors do: [your domain]</div>
+    <div class="post-visual">IMAGE: NSN homepage screenshot — shows the actual platform. Real is better than designed for Facebook.</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-vendor">DAY 2 — VENDOR PAIN POINT</span>
+    <div class="post-content">Security company owners — be honest.
+
+How do most of your new clients find you?
+
+A) Word of mouth / referral
+B) They called you out of the blue
+C) You found them through cold outreach
+D) Google search
+
+If your answer is A or B — you're leaving a lot of business on the table.
+
+NSN puts your company in front of corporate buyers who are actively searching for vendors in your state, in your service category, right now.
+
+Free listing. No monthly fees to get started.
+
+[your domain]</div>
+    <div class="post-visual">IMAGE: Poll-style graphic with the 4 answer choices — drives engagement and comments</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-client">DAY 3 — CLIENT FOCUS</span>
+    <div class="post-content">Looking for a security company in your area?
+
+Stop Googling. Stop asking around.
+
+NSN has 233+ verified security vendors searchable by state, city, and service type. Armed guard services. Executive protection. Mobile patrol. Event security. All vetted, all on one platform.
+
+Browse vendors free: [your domain]</div>
+    <div class="post-visual">IMAGE: NSN search page screenshot filtered to show vendor cards</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-rfp">DAY 4 — RFP FEATURE</span>
+    <div class="post-content">New feature for corporate buyers on NSN: the RFP system.
+
+Post your security requirement once. Every qualified vendor in your area sees it and can respond with a proposal.
+
+No back-and-forth. No chasing. Compare responses in one place.
+
+Corporate campus security. Warehouse patrol. Event coverage. Executive protection. Whatever you need — post it, and let qualified vendors come to you.
+
+Post your first RFP free: [your domain]</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-stat">DAY 5 — COVERAGE STAT</span>
+    <div class="post-content">NSN by the numbers:
+
+📍 All 50 states covered
+🛡️ 233+ verified vendors
+📋 17 service categories
+💼 Corporate, healthcare, retail, government, and more
+
+From armed guard services to cybersecurity to emergency medical services — if it's a security need, there's a verified vendor on NSN who covers it.
+
+Explore the full directory: [your domain]</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-vendor">DAY 6 — FOUNDING MEMBER</span>
+    <div class="post-content">To security company owners reading this:
+
+The businesses that get on a marketplace early always win the most ground.
+
+NSN is at the beginning. We're building the directory that corporate security buyers will use to find vendors. The companies listed now — with complete profiles, photos, and service details — are the ones that will show up first when searches go live.
+
+Your free listing is waiting. No credit card. No commitment.
+
+Claim it now: [your domain]</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 7 — WEEK CLOSE</span>
+    <div class="post-content">Week 1 on NSN is live.
+
+Security vendors — your free profile is waiting.
+Corporate buyers — your first RFP posts free.
+
+The platform is built. The vendors are verified. The search is live.
+
+Find out what NSN can do for your security business or your next hire: [your domain]
+
+Share this with anyone in the security industry. ⬇️</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INSTAGRAM ═══════════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-instagram">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(225,48,108,0.15);border:2px solid rgba(225,48,108,0.4);">📸</div>
+    <div>
+      <div class="plat-title">Instagram — Brand Building</div>
+      <div class="plat-sub">// @NATIONWIDESECURITYNETWORK // 1 POST/DAY + 2-3 STORIES //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Instagram strategy:</strong> Brand building and visual credibility. Instagram is not where deals close — it's where people decide if you're legit. Keep it clean, consistent, dark theme with orange accents matching the platform. Mix platform screenshots, industry stats graphics, and behind-the-scenes content. Stories daily — polls, question boxes, swipe-up to website.<br><br>
+    <strong>Account setup:</strong> Username: @nationwidesecuritynetwork or @nsn.security. Bio text is in the Google Profile tab — use a shortened version for Instagram. Add website link. Switch to Creator or Business account for analytics.
+  </div>
+
+  <div class="section-head">7 Instagram Posts — Week 1</div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 1 — LAUNCH</span>
+    <div class="post-label">CAPTION</div>
+    <div class="post-content">The security industry's marketplace is now live. 🛡️
+
+233+ verified security vendors. All 50 states. One platform.
+
+Whether you're a security company looking for clients or a business looking for protection — NSN was built for you.
+
+Link in bio to explore.
+
+——
+#SecurityIndustry #NSN #NationwideSecurityNetwork #SecurityVendors #CorporateSecurity #SecurityProfessionals #GuardCompany #SecurityBusiness #B2BMarketplace #SecurityServices #ArmedSecurity #ExecutiveProtection #EventSecurity #MobilePatrol #SecurityManagement</div>
+    <div class="post-visual">VISUAL: Dark HUD-themed graphic — "NOW LIVE" in large orange text on black background, NSN logo, tagline "Find Verified Security Providers Nationwide" — 1080x1080px</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-stat">DAY 2 — STAT GRAPHIC</span>
+    <div class="post-content">$46 billion. That's the U.S. private security market.
+
+And until now — zero dedicated B2B marketplaces existed for it.
+
+We changed that.
+
+NSN: The first verified security vendor marketplace. All 50 states. Every service category.
+
+Tap the link in bio to explore.
+
+——
+#SecurityIndustry #PrivateSecurity #SecurityMarket #NSN #SecurityTech #SecurityBusiness #GuardIndustry #SecurityProfessionals #SecurityServices #B2B #SecurityCompany #CorporateSecurity #SecurityManagement #SecuritySolutions #SecurityMarketplace</div>
+    <div class="post-visual">VISUAL: Dark infographic — "$46B" in huge orange text, "0 dedicated marketplaces existed. Until now." — simple, bold, dramatic — 1080x1080px</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-vendor">DAY 3 — PLATFORM SCREENSHOT</span>
+    <div class="post-content">This is what your company's profile looks like on NSN.
+
+Name. Location. Services. Coverage area. Contact.
+
+Everything a corporate buyer needs to find you, verify you, and reach out.
+
+Free to claim. Takes 5 minutes.
+
+Claim yours: link in bio.
+
+——
+#SecurityCompany #GuardCompany #SecurityBusiness #NSN #SecurityVendors #SecurityServices #GetListed #SecurityMarketing #SecurityIndustry #ArmedSecurity #UnarmedSecurity #MobilePatrol #EventSecurity #ExecutiveProtection #SecurityProfessionals</div>
+    <div class="post-visual">VISUAL: Actual NSN vendor profile page screenshot — clean, real product — 1080x1080 or 1080x1350px (portrait)</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-client">DAY 4 — BUYER FOCUS</span>
+    <div class="post-content">Finding the right security vendor shouldn't take 90 days.
+
+Search. Compare. Connect. On NSN.
+
+Filter by state, service type, and availability. Every vendor is verified. Every profile is real.
+
+Find vendors free: link in bio.
+
+——
+#CorporateSecurity #SecurityRFP #FacilityManagement #SecurityManagement #RiskManagement #NSN #SecurityVendors #NationwideSecurityNetwork #SecuritySolutions #SecurityServices #HireSecurityCompany #SecuritySearch #VendorManagement #SecurityDirectory #SecurityProcurement</div>
+    <div class="post-visual">VISUAL: NSN search results page screenshot showing vendor cards with orange accents visible — 1080x1350px portrait</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-rfp">DAY 5 — RFP FEATURE</span>
+    <div class="post-content">Post your security requirement. Qualified vendors respond.
+
+That's how NSN's RFP system works.
+
+No more chasing. No more cold calls. One post — multiple responses from verified vendors in your area.
+
+Post your first RFP free: link in bio.
+
+——
+#SecurityRFP #CorporateSecurity #SecurityProcurement #NSN #SecurityVendors #RFPManagement #SecurityServices #FacilityManagement #SecurityManagement #HireSecurityCompany #SecurityDirectory #SecuritySearch #SecurityBusiness #VendorSelection #SecuritySolutions</div>
+    <div class="post-visual">VISUAL: NSN Submit RFP page screenshot — shows the actual form — 1080x1080px</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 6 — 50 STATES MAP</span>
+    <div class="post-content">Nationwide means nationwide.
+
+NSN covers all 50 states. Search for security vendors in Texas. Compare providers in California. Post an RFP for New York. Connect with specialists in Florida.
+
+One platform. The entire country.
+
+Explore the map: link in bio.
+
+——
+#NationwideSecurity #SecurityIndustry #AllStates #NSN #NationwideSecurityNetwork #SecurityVendors #SecurityCompany #SecurityDirectory #GuardServices #SecurityServices #SecuritySearch #CorporateSecurity #USASecurity #SecurityNationwide #SecurityProfessionals</div>
+    <div class="post-visual">VISUAL: US map with orange dots in all 50 states — "All 50 States" text in orange, NSN logo — 1080x1080px</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 7 — WEEK CLOSE / CTA</span>
+    <div class="post-content">Week 1 is done. Here's where NSN stands:
+
+✓ 233+ verified vendors
+✓ All 50 states covered
+✓ 17 service categories
+✓ Free for buyers
+✓ Free listing for vendors
+
+The platform is live. The only thing missing is you.
+
+Security companies — claim your free profile.
+Security buyers — post your first RFP free.
+
+Link in bio. See you there.
+
+——
+#NSN #NationwideSecurityNetwork #SecurityIndustry #SecurityVendors #CorporateSecurity #SecurityBusiness #GuardCompany #SecurityServices #SecurityDirectory #B2BMarketplace #SecurityProfessionals #SecurityManagement #SecuritySearch #SecuritySolutions #NowLive</div>
+    <div class="post-visual">VISUAL: Clean dark graphic — "233+ Vendors. 50 States. 1 Platform." — NSN logo — orange and white on black — 1080x1080px</div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost(this)">Copy Post</button>
+      <button class="btn btn-approve">Approve</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ X / TWITTER ═══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-x">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.2);">𝕏</div>
+    <div>
+      <div class="plat-title">X / Twitter — Thought Leadership</div>
+      <div class="plat-sub">// @NSN_SECURITY OR @NATIONSECURITYNET // 1-2 POSTS/DAY //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>X strategy:</strong> Short, punchy, data-driven. X is where security industry conversations happen publicly. Quote industry stats, make observations, start conversations. Thread format works well for deeper topics. Keep it under 280 characters per tweet. 3-4 hashtags max — X penalizes heavy hashtag use in reach.
+  </div>
+
+  <div class="section-head">7 X Posts — Week 1 (280 char limit each)</div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 1</span>
+    <div class="post-content">The $46B U.S. private security industry had zero dedicated B2B marketplaces.
+
+We just changed that.
+
+Nationwide Security Network — verified vendors, RFP system, all 50 states.
+
+Now live. Free for buyers. Free to list.
+
+[your domain]
+
+#SecurityIndustry #NSN</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-stat">DAY 2</span>
+    <div class="post-content">Average time to complete a corporate security RFP process: 60-90 days.
+
+Most of that is:
+→ Finding vendors
+→ Vetting credentials
+→ Coordinating calls
+→ Building comparison spreadsheets
+
+NSN cuts that to under 14 days.
+
+#CorporateSecurity #SecurityRFP #NSN</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-vendor">DAY 3</span>
+    <div class="post-content">Security company owners:
+
+Your next client is searching Google for "security company [your city]" right now.
+
+Are you showing up?
+
+NSN puts your verified profile in front of corporate buyers actively searching.
+
+Free listing. No contracts.
+
+[your domain] #SecurityBusiness #GuardCompany</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-client">DAY 4</span>
+    <div class="post-content">Thread: Why security procurement is broken and what we built to fix it 🧵
+
+1/ The typical corporate security director sources vendors by asking colleagues, Googling, and cold calling. It takes months. There's no standard way to compare providers.
+
+2/ [continue thread in replies]
+
+#CorporateSecurity #SecurityManagement</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-rfp">DAY 5</span>
+    <div class="post-content">Post a security RFP on NSN:
+
+✓ Reaches every qualified vendor in your state
+✓ Vendors apply to you — not the other way around
+✓ Compare proposals in one place
+✓ Free to post
+
+Used to take 90 days. Now takes an afternoon.
+
+[your domain] #SecurityRFP #NSN</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-stat">DAY 6</span>
+    <div class="post-content">NSN currently covers:
+
+🛡️ Armed guard services
+🚗 Mobile patrol
+👔 Executive protection
+🎪 Event security
+🔍 Investigations
+💻 Cybersecurity
+🏥 Emergency medical
++ 10 more categories
+
+All 50 states. 233+ vendors.
+
+[your domain] #SecurityIndustry #NSN</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+
+  <div class="post-card">
+    <span class="post-type type-awareness">DAY 7</span>
+    <div class="post-content">Week 1 on @NationwideSecNet is live.
+
+Two types of people built this platform for:
+
+Security companies who want clients to find them — not the other way around.
+
+Buyers who want qualified vendors competing for their business — not a 90-day search.
+
+[your domain] #NSN #SecurityIndustry</div>
+    <div class="post-actions"><button class="btn btn-copy" onclick="copyPost(this)">Copy</button><button class="btn btn-approve">Approve</button></div>
+  </div>
+</div>
+
+<!-- ═══ GOOGLE ADS ═══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-google-ads">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(66,133,244,0.15);border:2px solid rgba(66,133,244,0.4);">G</div>
+    <div>
+      <div class="plat-title">Google Ads — Search Intent Capture</div>
+      <div class="plat-sub">// START WHEN DOMAIN IS LIVE // $10-20/DAY BUDGET //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Google Ads strategy:</strong> Unlike social media (push), Google Ads are pull — you capture people who are already searching for what you offer. The best ROI for NSN comes from two ad groups: (1) buyers searching for security vendors, (2) security companies searching for lead generation tools. Start with $10-20/day once the domain is live. Pause social ads entirely until Google Ads are proven — search intent beats social awareness for conversion every time.
+  </div>
+
+  <div class="section-head">Ad Group 1 — Buyer Keywords (Target: Corporate Security Buyers)</div>
+
+  <div class="tip-box">
+    <strong>Target keywords:</strong> "security company near me" | "hire security guard company" | "security vendor marketplace" | "find security companies" | "armed security services" | "corporate security vendors" | "security guard services [city]" | "security RFP" | "security company search"<br>
+    <strong>Match type:</strong> Phrase match for all. Broad match on "security company near me" only.<br>
+    <strong>Negative keywords:</strong> "job", "career", "employment", "training course", "certification", "guard license"
+  </div>
+
+  <div class="ad-card">
+    <div class="ad-label">RESPONSIVE SEARCH AD — BUYER GROUP — AD 1</div>
+    <div class="ad-headline">Find Verified Security Vendors</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Headline 2: Search 233+ Security Companies</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600;">Headline 3: All 50 States — Free to Search</div>
+    <div class="ad-desc">Browse verified security vendors by location, service type, and specialty. Compare armed guards, mobile patrol, executive protection, and more. Post your RFP free and receive competing bids from qualified providers.</div>
+    <div class="ad-url">yourdomain.com/search</div>
+    <div class="ad-meta" style="margin-top:10px;">
+      <span class="ad-meta-item">CPC EST: $2-5</span>
+      <span class="ad-meta-item">INTENT: HIGH</span>
+      <span class="ad-meta-item">LANDING: /search</span>
+    </div>
+  </div>
+
+  <div class="ad-card">
+    <div class="ad-label">RESPONSIVE SEARCH AD — BUYER GROUP — AD 2</div>
+    <div class="ad-headline">Security Vendor Search — Free</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Headline 2: Compare Security Companies by State</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600;">Headline 3: Post RFP — Vendors Come to You</div>
+    <div class="ad-desc">Stop searching. Start comparing. NSN's verified vendor directory covers all 50 states across 17 security service categories. Post one RFP and receive bids from qualified providers — completely free for buyers.</div>
+    <div class="ad-url">yourdomain.com/rfp/upload</div>
+    <div class="ad-meta" style="margin-top:10px;">
+      <span class="ad-meta-item">CPC EST: $2-5</span>
+      <span class="ad-meta-item">INTENT: HIGH</span>
+      <span class="ad-meta-item">LANDING: /rfp/upload</span>
+    </div>
+  </div>
+
+  <div class="section-head">Ad Group 2 — Vendor Keywords (Target: Security Company Owners)</div>
+
+  <div class="tip-box">
+    <strong>Target keywords:</strong> "how to get security contracts" | "security company marketing" | "security company leads" | "security business directory listing" | "security company lead generation" | "get security clients" | "security vendor directory" | "security company online listing"<br>
+    <strong>Match type:</strong> Phrase match for all.<br>
+    <strong>Negative keywords:</strong> "resume", "job posting", "hiring", "guard training"
+  </div>
+
+  <div class="ad-card">
+    <div class="ad-label">RESPONSIVE SEARCH AD — VENDOR GROUP — AD 1</div>
+    <div class="ad-headline">Get Found by Security Buyers</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Headline 2: Free Listing on NSN Marketplace</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600;">Headline 3: Corporate Buyers Search Here</div>
+    <div class="ad-desc">Nationwide Security Network connects corporate buyers with verified security vendors. List your company free — no contracts, no monthly fees to start. Get discovered by facility managers, HR directors, and security directors actively searching for providers in your area.</div>
+    <div class="ad-url">yourdomain.com/vendor-registration</div>
+    <div class="ad-meta" style="margin-top:10px;">
+      <span class="ad-meta-item">CPC EST: $1-3</span>
+      <span class="ad-meta-item">INTENT: HIGH</span>
+      <span class="ad-meta-item">LANDING: /vendor-registration</span>
+    </div>
+  </div>
+
+  <div class="ad-card">
+    <div class="ad-label">RESPONSIVE SEARCH AD — VENDOR GROUP — AD 2</div>
+    <div class="ad-headline">Security Company Directory — List Free</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;">Headline 2: Reach Corporate Security Buyers</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600;">Headline 3: 233+ Vendors — All 50 States</div>
+    <div class="ad-desc">Stop relying on referrals. NSN is the B2B marketplace where corporate buyers search for security vendors. Create your verified profile free and start receiving inquiries from qualified clients in your state.</div>
+    <div class="ad-url">yourdomain.com/vendor-registration</div>
+    <div class="ad-meta" style="margin-top:10px;">
+      <span class="ad-meta-item">CPC EST: $1-3</span>
+      <span class="ad-meta-item">INTENT: HIGH</span>
+      <span class="ad-meta-item">LANDING: /vendor-registration</span>
+    </div>
+  </div>
+
+  <div class="section-head">Ad Extensions (add these to all ads)</div>
+  <div class="grid-2">
+    <div class="profile-field">
+      <div class="pf-label">SITELINK EXTENSIONS</div>
+      <div class="pf-content">Find Security Vendors → /search
+Browse Active RFPs → /rfp/browse
+Post an RFP Free → /rfp/upload
+List Your Company → /vendor-registration
+Pricing → /pricing</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">CALLOUT EXTENSIONS</div>
+      <div class="pf-content">Free for Buyers
+233+ Verified Vendors
+All 50 States
+17 Service Categories
+No Contracts Required
+Verified Credentials</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GOOGLE PROFILE ═══════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-google-profile">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(52,168,83,0.15);border:2px solid rgba(52,168,83,0.4);">📍</div>
+    <div>
+      <div class="plat-title">Google Business Profile + Platform Profiles</div>
+      <div class="plat-sub">// COPY-PASTE READY FOR ALL PROFILES //</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <strong>Why this matters:</strong> Every platform — LinkedIn company page, Facebook page, Instagram bio, Google Business Profile, Crunchbase, AngelList — pulls from the same core description. Get this language right once and paste it everywhere. Consistent messaging builds trust and improves SEO across every platform.
+  </div>
+
+  <div class="section-head">Company Descriptions — All Lengths</div>
+
+  <div class="profile-field">
+    <div class="pf-label">TAGLINE (10 words max — used everywhere)</div>
+    <div class="pf-content">The B2B Marketplace for Verified Security Vendors.</div>
+    <div class="char-count">46 characters</div>
+  </div>
+
+  <div class="profile-field">
+    <div class="pf-label">SHORT BIO (Instagram, Twitter — 150 chars)</div>
+    <div class="pf-content">The security industry's marketplace. 233+ verified vendors. All 50 states. Free for buyers. Free to list. 🛡️ [your domain]</div>
+    <div class="char-count">~120 characters</div>
+  </div>
+
+  <div class="profile-field">
+    <div class="pf-label">MEDIUM DESCRIPTION (LinkedIn, Facebook — 300 chars)</div>
+    <div class="pf-content">Nationwide Security Network is the first B2B marketplace built specifically for the security industry. Corporate buyers search and compare 233+ verified security vendors across all 50 states. Security companies list free and receive qualified inquiries from buyers actively searching. Free for buyers. Free to list.</div>
+    <div class="char-count">~310 characters — trim slightly if needed</div>
+  </div>
+
+  <div class="profile-field">
+    <div class="pf-label">FULL DESCRIPTION (Google Business, Crunchbase, website About)</div>
+    <div class="pf-content">Nationwide Security Network (NSN) is the first dedicated B2B marketplace for the $46 billion U.S. private security industry. The platform connects corporate buyers — facility managers, corporate security directors, HR directors, and risk managers — with verified security vendors across all 50 states and 17 service categories.
+
+Buyers use NSN to search and compare armed guard services, mobile patrol, executive protection, event security, investigations, cybersecurity, emergency medical services, and more. Every vendor profile includes services offered, coverage area, credentials, and contact information. The RFP system lets buyers post a security requirement once and receive proposals from multiple qualified vendors — free for all buyers.
+
+Security vendors list their company on NSN to reach corporate buyers actively searching for providers in their state. Free listings include a full profile, service listing, and coverage area. Enhanced and Premium tiers provide priority placement, analytics, and unlimited RFP access.
+
+NSN is headquartered in the United States and serves clients and vendors nationwide.</div>
+    <div class="char-count">~900 characters</div>
+  </div>
+
+  <div class="section-head">Google Business Profile Setup</div>
+  <div class="tip-box">
+    <strong>Category:</strong> "Online Marketplace" or "Business to Business Service" — pick the closest available.<br>
+    <strong>Service area:</strong> United States (nationwide — do not list a specific address if you don't have a physical office)<br>
+    <strong>Phone:</strong> Get a Google Voice number for NSN if you don't have one — free, professional<br>
+    <strong>Hours:</strong> "Open 24 hours" or M-F 9AM-6PM depending on support availability<br>
+    <strong>Photos to upload:</strong> NSN logo, homepage screenshot, vendor search screenshot, RFP page screenshot<br>
+    <strong>First Google Post:</strong> "Nationwide Security Network is now live — the first B2B marketplace for verified security vendors across all 50 states. Free for buyers. Free to list. Visit [your domain]"
+  </div>
+
+  <div class="section-head">LinkedIn Company Page Setup</div>
+  <div class="grid-2">
+    <div class="profile-field">
+      <div class="pf-label">COMPANY NAME</div>
+      <div class="pf-content">Nationwide Security Network</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">INDUSTRY</div>
+      <div class="pf-content">Security and Investigations</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">COMPANY SIZE</div>
+      <div class="pf-content">2-10 employees (startup)</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">COMPANY TYPE</div>
+      <div class="pf-content">Privately Held</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">FOUNDED</div>
+      <div class="pf-content">2026</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">SPECIALTIES (LinkedIn keyword field)</div>
+      <div class="pf-content">Security Vendors, Corporate Security, RFP Management, Security Marketplace, Guard Services, Executive Protection, Security Procurement, B2B Marketplace</div>
+    </div>
+  </div>
+
+  <div class="section-head">Facebook Page Setup</div>
+  <div class="grid-2">
+    <div class="profile-field">
+      <div class="pf-label">PAGE CATEGORY</div>
+      <div class="pf-content">Security Company → or → Internet company / Marketplace</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">PAGE NAME</div>
+      <div class="pf-content">Nationwide Security Network — NSN</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">USERNAME / URL</div>
+      <div class="pf-content">facebook.com/nationwidesecuritynetwork</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">CTA BUTTON</div>
+      <div class="pf-content">Learn More → pointing to your domain homepage</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WEEK CALENDAR ═══════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-week">
+
+  <div class="plat-header">
+    <div class="plat-icon" style="background:rgba(250,204,21,0.15);border:2px solid rgba(250,204,21,0.4);">📅</div>
+    <div>
+      <div class="plat-title">Week 1 Master Calendar</div>
+      <div class="plat-sub">// WHAT POSTS WHERE EACH DAY //</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>Best posting times:</strong> LinkedIn: Tue-Thu 8-10am or 12pm. Facebook: Mon-Fri 1-3pm. Instagram: Mon/Wed/Fri 11am or 7pm. X: Mon-Fri 9am or 3-5pm. Post LinkedIn first — it has the highest organic reach for B2B and sets the tone for the week.
+  </div>
+
+  <div style="overflow-x:auto;">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead>
+      <tr style="background:rgba(255,119,0,0.12);border-bottom:2px solid rgba(255,119,0,0.3);">
+        <th style="padding:10px 14px;text-align:left;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">PLATFORM</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">MON</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">TUE</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">WED</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">THU</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">FRI</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">SAT</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:1px;">SUN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:10px 14px;font-weight:700;color:#0077b5;">LinkedIn</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Launch Announce</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Vendor Pain</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Client Pain</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Industry Stat</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">RFP Feature</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Founding Member</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Week Close</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02);">
+        <td style="padding:10px 14px;font-weight:700;color:#1877f2;">Facebook</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Launch Announce</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Vendor Poll</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Client Focus</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">RFP Feature</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Coverage Stats</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Founding Member</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Week Close</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:10px 14px;font-weight:700;color:#e1306c;">Instagram</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">NOW LIVE graphic</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">$46B stat</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Profile screenshot</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Buyer focus</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">RFP screenshot</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">50 States map</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Week close</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02);">
+        <td style="padding:10px 14px;font-weight:700;color:#fff;">X / Twitter</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Launch + stat</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">90-day stat</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Vendor question</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Thread</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">RFP feature</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Categories list</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Week close</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:10px 14px;font-weight:700;color:var(--blue);">LinkedIn (personal)</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Share company post</td>
+        <td style="padding:10px;text-align:center;color:var(--green);font-weight:600;">—</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Share company post</td>
+        <td style="padding:10px;text-align:center;color:var(--green);font-weight:600;">—</td>
+        <td style="padding:10px;text-align:center;color:var(--muted);">Share company post</td>
+        <td style="padding:10px;text-align:center;color:var(--green);font-weight:600;">—</td>
+        <td style="padding:10px;text-align:center;color:var(--green);font-weight:600;">—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="section-head" style="margin-top:24px;">Daily Checklist</div>
+  <div class="grid-2">
+    <div class="profile-field">
+      <div class="pf-label">EVERY MORNING (15 min)</div>
+      <div class="pf-content">□ Post LinkedIn company post (use content from LinkedIn tab)
+□ Share LinkedIn post from your personal profile
+□ Post X/Twitter (quick — copy from X tab)
+□ Check LinkedIn notifications — reply to any comments same day</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">EVERY AFTERNOON (10 min)</div>
+      <div class="pf-content">□ Post Facebook (copy from Facebook tab)
+□ Post Instagram (use visual directions to create image)
+□ Add Instagram Story (screenshot of today's post, poll "Are you a vendor or buyer?")
+□ Check all platforms for comments/DMs — reply within 2 hours</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">WEEK 1 ONE-TIME SETUP</div>
+      <div class="pf-content">□ Create NSN LinkedIn Company Page
+□ Create NSN Facebook Business Page
+□ Create NSN Instagram Business Account (@nationwidesecuritynetwork)
+□ Create NSN X/Twitter account
+□ Set up Google Business Profile
+□ Upload logo and banner to all platforms</div>
+    </div>
+    <div class="profile-field">
+      <div class="pf-label">IMAGES NEEDED (create once)</div>
+      <div class="pf-content">□ NSN logo (square, transparent bg) — for all profiles
+□ LinkedIn banner (1584x396px) — dark HUD theme
+□ "NOW LIVE" launch graphic (1080x1080)
+□ "$46B" stat graphic (1080x1080)
+□ 50-states map graphic (1080x1080)
+□ NSN screenshots — search page, vendor card, RFP page</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .content -->
+
+<div style="background:#111;border-top:2px solid #3d4a57;padding:12px 28px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(255,119,0,0.3);letter-spacing:2px;">
+  // NSN MEDIA CAMPAIGN v1.0 // WEEK 1 // GENERATED BY HERMES AGENT // JULY 2026 //
+</div>
+
+<script>
+function show(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyPost(btn) {
+  const content = btn.closest('.post-card').querySelector('.post-content');
+  if (content) {
+    navigator.clipboard.writeText(content.textContent.trim()).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.style.borderColor = 'var(--green)';
+      btn.style.color = 'var(--green)';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  }
+}
+</script>
+</body>
+</html>
