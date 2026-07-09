@@ -2504,104 +2504,6 @@ function exportSummary() {
 window.addEventListener('load', () => { renderContacts(); updateTrackerStats(); });
 
 
-// ===== IMAGE UPLOAD ZONES (IndexedDB) =====
-let imgDB = null;
-
-function openImgDB() {
-  return new Promise((resolve, reject) => {
-    if (imgDB) { resolve(imgDB); return; }
-    const req = indexedDB.open('nsn_campaign_images', 1);
-    req.onupgradeneeded = e => e.target.result.createObjectStore('images', { keyPath: 'id' });
-    req.onsuccess = e => { imgDB = e.target.result; resolve(imgDB); };
-    req.onerror = e => reject(e);
-  });
-}
-
-function imgSave(n, dataUrl, filename) {
-  openImgDB().then(db => {
-    const tx = db.transaction('images', 'readwrite');
-    tx.objectStore('images').put({ id: 'zone-' + n, dataUrl, filename });
-  });
-}
-
-function imgClear(n) {
-  openImgDB().then(db => {
-    const tx = db.transaction('images', 'readwrite');
-    tx.objectStore('images').delete('zone-' + n);
-  });
-  const prev = document.getElementById('img-preview-' + n);
-  const drop = document.getElementById('img-drop-' + n);
-  const el = document.getElementById('img-el-' + n);
-  const dl = document.getElementById('img-dl-' + n);
-  const fn = document.getElementById('img-fname-' + n);
-  if (prev) prev.style.display = 'none';
-  if (drop) drop.style.display = '';
-  if (el) el.src = '';
-  if (dl) { dl.href = '#'; dl.removeAttribute('download'); }
-  if (fn) fn.textContent = '';
-}
-
-function showImgPreview(n, dataUrl, filename) {
-  const prev = document.getElementById('img-preview-' + n);
-  const drop = document.getElementById('img-drop-' + n);
-  const el = document.getElementById('img-el-' + n);
-  const dl = document.getElementById('img-dl-' + n);
-  const fn = document.getElementById('img-fname-' + n);
-  if (el) el.src = dataUrl;
-  if (dl) { dl.href = dataUrl; dl.download = filename || 'nsn-image.png'; }
-  if (fn) fn.textContent = filename || '';
-  if (prev) prev.style.display = 'block';
-  if (drop) drop.style.display = 'none';
-}
-
-function imgSelected(input, n) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    imgSave(n, e.target.result, file.name);
-    showImgPreview(n, e.target.result, file.name);
-  };
-  reader.readAsDataURL(file);
-}
-
-function imgDragOver(e, n) {
-  e.preventDefault();
-  document.getElementById('img-drop-' + n)?.classList.add('drag-over');
-}
-function imgDragLeave(e, n) {
-  document.getElementById('img-drop-' + n)?.classList.remove('drag-over');
-}
-function imgDrop(e, n) {
-  e.preventDefault();
-  document.getElementById('img-drop-' + n)?.classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (!file || !file.type.startsWith('image/')) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    imgSave(n, ev.target.result, file.name);
-    showImgPreview(n, ev.target.result, file.name);
-  };
-  reader.readAsDataURL(file);
-}
-
-// Restore all saved images on page load
-window.addEventListener('load', () => {
-  openImgDB().then(db => {
-    const tx = db.transaction('images', 'readonly');
-    const req = tx.objectStore('images').getAll();
-    req.onsuccess = e => {
-      (e.target.result || []).forEach(item => {
-        const n = item.id.replace('zone-', '');
-        if (document.getElementById('img-zone-' + n)) {
-          showImgPreview(parseInt(n), item.dataUrl, item.filename);
-        }
-      });
-    };
-  }).catch(() => {});
-});
-
-
 // ===== IMAGE ZONES (IndexedDB) =====
 let _idb=null;
 function _openDB(){
@@ -2660,6 +2562,142 @@ window.addEventListener('load',()=>{
 });
 
 // ===== LOGO COPY =====
+function copyLogoURL(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    const o = btn.textContent; btn.textContent = 'Copied!';
+    btn.style.borderColor = 'var(--green)'; btn.style.color = 'var(--green)';
+    setTimeout(() => { btn.textContent = o; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
+  });
+}
+
+// ===== NOTES SYSTEM =====
+let notes = JSON.parse(localStorage.getItem('nsn_campaign_notes') || '[]');
+
+function saveNotes() {
+  localStorage.setItem('nsn_campaign_notes', JSON.stringify(notes));
+  renderAllNotes();
+  renderFloatNotes();
+}
+
+function addFloatNote() {
+  const text = document.getElementById('floatNoteText').value.trim();
+  const section = document.getElementById('floatNoteSection').value;
+  if (!text) return;
+  notes.unshift({ id: Date.now(), section, text, ts: new Date().toLocaleDateString() });
+  document.getElementById('floatNoteText').value = '';
+  saveNotes();
+}
+
+function saveGeneralNote() {
+  const text = document.getElementById('general-note-input').value.trim();
+  const section = document.getElementById('general-note-section').value;
+  if (!text) return;
+  notes.unshift({ id: Date.now(), section, text, ts: new Date().toLocaleDateString() });
+  document.getElementById('general-note-input').value = '';
+  saveNotes();
+}
+
+function deleteNote(id) {
+  notes = notes.filter(n => n.id !== id);
+  saveNotes();
+}
+
+function renderAllNotes() {
+  const el = document.getElementById('all-notes-view');
+  if (!el) return;
+  if (!notes.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:12px;padding:20px;text-align:center;font-family:\'Share Tech Mono\',monospace;">No notes saved yet.</div>';
+    return;
+  }
+  el.innerHTML = notes.map(n => `
+    <div class="email-card" style="border-left:3px solid #fb7185;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:#fb7185;letter-spacing:1px;">${n.section.toUpperCase()} // ${n.ts}</span>
+        <button onclick="deleteNote(${n.id})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:10px;font-family:\'Share Tech Mono\',monospace;">DELETE</button>
+      </div>
+      <div style="font-size:12px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${n.text}</div>
+    </div>
+  `).join('');
+}
+
+function renderFloatNotes() {
+  const el = document.getElementById('floatNotesList');
+  if (!el) return;
+  if (!notes.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:10px;padding:10px;text-align:center;">No notes yet</div>';
+    return;
+  }
+  el.innerHTML = notes.slice(0, 8).map(n => `
+    <div class="note-item">
+      <div class="note-tag">${n.section} // ${n.ts} <button class="note-del" onclick="deleteNote(${n.id})">✕</button></div>
+      <div>${n.text.length > 120 ? n.text.slice(0,120)+'...' : n.text}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFloatNotes() {
+  const p = document.getElementById('floatNotesPanel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) renderFloatNotes();
+}
+
+// Inline section note toggle
+function toggleNote(btn) {
+  const area = btn.nextElementSibling;
+  area.classList.toggle('open');
+}
+
+function saveNote(btn) {
+  const area = btn.closest('.section-note-area');
+  const wrap = btn.closest('.section-note-wrap');
+  const textarea = area.querySelector('textarea');
+  const text = textarea.value.trim();
+  if (!text) return;
+  // Detect section from nearest section header or panel
+  const panel = btn.closest('.panel');
+  const section = panel ? panel.id.replace('panel-','').replace(/-/g,' ') : 'General';
+  notes.unshift({ id: Date.now(), section, text, ts: new Date().toLocaleDateString() });
+  saveNotes();
+  // Show saved confirmation inline
+  let saved = wrap.querySelector('.saved-note');
+  if (!saved) {
+    saved = document.createElement('div');
+    saved.className = 'saved-note';
+    wrap.appendChild(saved);
+  }
+  saved.innerHTML = text + ' <button class="note-edit" onclick="editInlineNote(this)">Edit</button>';
+  textarea.value = '';
+  area.classList.remove('open');
+}
+
+function editInlineNote(btn) {
+  const saved = btn.closest('.saved-note');
+  const wrap = btn.closest('.section-note-wrap');
+  const area = wrap.querySelector('.section-note-area');
+  const ta = area.querySelector('textarea');
+  ta.value = saved.textContent.trim();
+  area.classList.add('open');
+  saved.remove();
+}
+
+// Email copy function
+function copyEmail(btn) {
+  const body = btn.closest('.email-card').querySelector('.email-body-content');
+  if (body) {
+    navigator.clipboard.writeText(body.textContent.trim()).then(() => {
+      const o = btn.textContent; btn.textContent = 'Copied!';
+      btn.style.borderColor = 'var(--green)'; btn.style.color = 'var(--green)';
+      setTimeout(() => { btn.textContent = o; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
+    });
+  }
+}
+
+// Init notes on load
+window.addEventListener('load', () => { renderAllNotes(); renderFloatNotes(); });
+
+</script>
+</body>
+</html>// ===== LOGO COPY =====
 function copyLogoURL(url, btn) {
   navigator.clipboard.writeText(url).then(() => {
     const o = btn.textContent; btn.textContent = 'Copied!';
