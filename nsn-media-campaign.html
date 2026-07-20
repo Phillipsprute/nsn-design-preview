@@ -304,6 +304,7 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
   <div class="tab" onclick="show('logo')"><span class="plat-dot" style="background:#e2e8f0;"></span>Logo Assets</div>
   <div class="tab" onclick="show('outreach-tracker')"><span class="plat-dot" style="background:#2dd4bf;"></span>Outreach Tracker</div>
   <div class="tab" onclick="show('notes')"><span class="plat-dot" style="background:#fb7185;"></span>Notes</div>
+  <div class="tab" onclick="show('cat-campaigns')"><span class="plat-dot" style="background:#f59e0b;"></span>Category Campaigns</div>
   <div class="tab" onclick="show('agent-hub')"><span class="plat-dot" style="background:#a78bfa;"></span>Agent Hub</div>
   <div class="tab" onclick="show('social-launch')"><span class="plat-dot" style="background:#34d399;"></span>Social Launch Kit</div>
 </div>
@@ -2223,6 +2224,694 @@ Happy to show you around the platform if that would be useful.</div>
     </div>
   </div>
 </div>
+
+<!-- CATEGORY CAMPAIGNS TAB -->
+<div class="panel" id="panel-cat-campaigns">
+<style>
+/* Category Campaign Styles */
+.cc-nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px; border-bottom:2px solid var(--border); padding-bottom:12px; }
+.cc-btn { padding:8px 16px; border-radius:6px 6px 0 0; border:1px solid transparent; cursor:pointer; font-size:11px; font-weight:700; color:var(--muted); background:var(--card2); transition:all 0.2s; white-space:nowrap; font-family:"Rajdhani",sans-serif; letter-spacing:1px; text-transform:uppercase; }
+.cc-btn:hover { color:var(--text); border-color:var(--border); }
+.cc-btn.cca { background:var(--card); border-color:var(--border); border-bottom-color:var(--card); color:#fff; }
+.cc-panel { display:none; }
+.cc-panel.cca { display:block; }
+.cc-header { border-radius:10px; padding:20px 24px; margin-bottom:20px; display:flex; align-items:center; gap:20px; border:1px solid; }
+.cc-icon { font-size:40px; }
+.cc-title { font-size:20px; font-weight:800; font-family:"Rajdhani",sans-serif; letter-spacing:1px; text-transform:uppercase; }
+.cc-market { font-size:11px; font-family:"Share Tech Mono",monospace; margin-top:4px; opacity:0.8; }
+.cc-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.cc-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:16px; }
+.cc-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; }
+.cc-card-label { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--orange); font-family:"Share Tech Mono",monospace; margin-bottom:10px; }
+.cc-text { font-size:12px; color:var(--muted); line-height:1.8; }
+.cc-text strong { color:var(--text); }
+.cc-hook { background:rgba(0,0,0,0.4); border-radius:6px; padding:14px 16px; font-size:12px; color:var(--text); line-height:1.75; white-space:pre-wrap; cursor:pointer; border:1px solid var(--border); font-family:"Share Tech Mono",monospace; transition:border-color 0.2s; margin-bottom:8px; }
+.cc-hook:hover { border-color:rgba(74,222,128,0.5); }
+.cc-hook-label { font-size:9px; color:var(--muted); font-family:"Share Tech Mono",monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; display:flex; justify-content:space-between; }
+.cc-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.cc-tag { background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.25); border-radius:4px; padding:3px 8px; font-size:10px; color:var(--blue); cursor:pointer; font-family:"Share Tech Mono",monospace; }
+.cc-tag:hover { background:rgba(96,165,250,0.2); }
+.cc-keywords { display:flex; flex-wrap:wrap; gap:5px; }
+.cc-kw { background:rgba(255,119,0,0.08); border:1px solid rgba(255,119,0,0.25); border-radius:4px; padding:3px 8px; font-size:10px; color:var(--orange); font-family:"Share Tech Mono",monospace; }
+.phase-label { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; font-family:"Share Tech Mono",monospace; padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:16px; }
+.phase-1 { background:rgba(74,222,128,0.15); color:var(--green); border:1px solid rgba(74,222,128,0.3); }
+.phase-2 { background:rgba(96,165,250,0.12); color:var(--blue); border:1px solid rgba(96,165,250,0.25); }
+.phase-3 { background:rgba(192,132,252,0.12); color:#c084fc; border:1px solid rgba(192,132,252,0.25); }
+.market-badge { display:inline-block; background:rgba(255,119,0,0.12); border:1px solid rgba(255,119,0,0.3); border-radius:6px; padding:4px 12px; font-size:10px; font-family:"Share Tech Mono",monospace; color:var(--orange); margin-right:8px; }
+</style>
+
+<div class="strategy-box" style="border-left-color:#a78bfa">
+  <strong>// TARGETED CATEGORY CAMPAIGNS //</strong> NSN is a one-stop shop across 17 categories. Each industry has different buyers, different pain points, different language. These campaigns speak directly to each category — vendor side and client side. Lead with the highest revenue categories first. Click any post or email block to copy.
+</div>
+
+<!-- Phase Overview -->
+<div class="ad-card" style="margin-bottom:20px">
+  <div class="ad-title" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--orange);letter-spacing:1.5px;margin-bottom:14px">// CAMPAIGN PHASE PLAN — BY REVENUE POTENTIAL //</div>
+  <div class="roadmap-bar">
+    <div class="roadmap-phase rp-done">
+      <div class="rp-num" style="color:var(--green)">1</div>
+      <div class="rp-name">PHASE 1</div>
+      <div class="rp-date">NOW — MONTH 1</div>
+      <div class="rp-note">Armed Guards · Cybersecurity · Cameras/CCTV · Unarmed Guards</div>
+    </div>
+    <div class="roadmap-phase rp-active">
+      <div class="rp-num" style="color:var(--orange)">2</div>
+      <div class="rp-name">PHASE 2</div>
+      <div class="rp-date">MONTH 2</div>
+      <div class="rp-note">Access Control · Mobile Patrol · Executive Protection · Fire Safety</div>
+    </div>
+    <div class="roadmap-phase rp-future">
+      <div class="rp-num" style="color:var(--muted)">3</div>
+      <div class="rp-name">PHASE 3</div>
+      <div class="rp-date">MONTH 3+</div>
+      <div class="rp-note">EMS · PI · Loss Prevention · Background Screening · Training</div>
+    </div>
+  </div>
+</div>
+
+<!-- Category Nav Tabs -->
+<div class="cc-nav">
+  <button class="cc-btn cca" onclick="ccTab('cyber',this)">🔒 Cybersecurity</button>
+  <button class="cc-btn" onclick="ccTab('cameras',this)">📹 Camera / CCTV</button>
+  <button class="cc-btn" onclick="ccTab('armed',this)">🛡️ Armed Guards</button>
+  <button class="cc-btn" onclick="ccTab('unarmed',this)">👮 Unarmed Guards</button>
+  <button class="cc-btn" onclick="ccTab('access',this)">🔑 Access Control</button>
+  <button class="cc-btn" onclick="ccTab('patrol',this)">🚔 Mobile Patrol</button>
+  <button class="cc-btn" onclick="ccTab('ep',this)">💼 Executive Protection</button>
+  <button class="cc-btn" onclick="ccTab('fire',this)">🔥 Fire &amp; Life Safety</button>
+</div>
+
+<!-- ==================== CYBERSECURITY ==================== -->
+<div class="cc-panel cca" id="ccp-cyber">
+  <div class="cc-header" style="background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.3)">
+    <div class="cc-icon">🔒</div>
+    <div>
+      <div class="phase-label phase-1">PHASE 1 — LAUNCH NOW</div>
+      <div class="cc-title" style="color:#60a5fa">Cybersecurity Services</div>
+      <div class="cc-market"><span class="market-badge">$82B US MARKET</span><span class="market-badge">13-15% CAGR</span><span class="market-badge">HIGHEST CONTRACT VALUES</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card">
+      <div class="cc-card-label">🎯 Who Buys (Client Side)</div>
+      <div class="cc-text">
+        <strong>Job titles:</strong> CTO, CISO, IT Director, IT Manager, VP IT, Operations Director<br>
+        <strong>Industries:</strong> Healthcare (HIPAA), Finance (SOX/PCI), Legal, Government contractors, SaaS companies, Any company handling sensitive data<br>
+        <strong>Company size:</strong> 25-2,500 employees — too big to ignore cyber, too small for internal SOC<br>
+        <strong>Pain:</strong> Don't know who to trust. Can't tell if a vendor is real or a reseller. Scared of compliance fines. Had a breach or near-miss and need to act fast.
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏢 Who Sells (Vendor Side)</div>
+      <div class="cc-text">
+        <strong>Vendor types:</strong> MSSPs, SOC-as-a-service firms, penetration testing companies, compliance consultants, vCISO providers, cyber insurance brokers<br>
+        <strong>Current client acquisition:</strong> Almost entirely referral-based. Cold outreach on LinkedIn. Rarely found via organic search.<br>
+        <strong>Vendor pain:</strong> Invisible online. No way to differentiate from 10,000 other "cybersecurity firms." Long sales cycles. Competing with resellers who don't actually do the work.
+      </div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-card-label" style="color:var(--orange);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">📣 BUYER CAMPAIGN POSTS — CLICK TO COPY</div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER PAIN</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Most small and mid-size businesses handle cybersecurity the same way:
+
+Pray nothing happens.
+
+Then something happens.
+
+Then they spend 3 weeks Googling "cybersecurity company near me" and end up hiring whoever shows up first — with no idea if they're qualified.
+
+NSN changes that.
+
+233+ vetted cybersecurity firms searchable by state, specialty, and compliance focus. HIPAA. SOC 2. PCI. vCISO. Pen testing. All in one place.
+
+Search free → nationwidesecuritynetwork.com
+
+#Cybersecurity #DataSecurity #SMBSecurity #CyberRisk #CISO #ITSecurity #NSN</div>
+      <div class="cc-hook-label" style="margin-top:12px">X/TWITTER — BUYER HOOK</div>
+      <div class="cc-hook" onclick="ccCopy(this)">The average SMB takes 277 days to detect a data breach.
+
+The average cost? $4.45 million.
+
+The average time spent finding a qualified cybersecurity vendor? Also way too long.
+
+NSN: search vetted cyber firms by specialty and location. Free.
+
+nationwidesecuritynetwork.com #Cybersecurity #CyberRisk</div>
+    </div>
+    <div>
+      <div class="cc-card-label" style="color:var(--green);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">📣 VENDOR CAMPAIGN POSTS — CLICK TO COPY</div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR PAIN</div>
+      <div class="cc-hook" onclick="ccCopy(this)">If you run a cybersecurity firm, you already know the problem:
+
+Your best clients came from referrals.
+Everyone else? You're invisible to them.
+
+LinkedIn posts get buried. Cold outreach gets ignored. And you're competing with resellers who haven't touched a firewall in years.
+
+NSN gives cyber firms a verified profile that buyers actually find — by specialty, compliance focus, and location.
+
+List your firm free → nationwidesecuritynetwork.com/signup
+
+#CybersecurityBusiness #MSSP #ManagedSecurity #CyberVendor #NSN #Cybersecurity</div>
+      <div class="cc-hook-label" style="margin-top:12px">EMAIL SUBJECT — VENDOR OUTREACH</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Subject: {{Company Name}} is listed on NSN — cybersecurity firms are claiming profiles now
+
+Hi {{First Name}},
+
+I wanted to give you a heads-up that {{Company Name}} has been listed on Nationwide Security Network — a new B2B marketplace where corporate buyers search for cybersecurity vendors by specialty, compliance focus, and location.
+
+Your profile is live but unclaimed. Claiming it takes 5 minutes and puts you in front of IT directors, CISOs, and operations managers actively searching for firms like yours.
+
+Claim your free profile → nationwidesecuritynetwork.com
+
+Best,
+NSN Team</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card">
+      <div class="cc-card-label">🔍 Buyer Google Keywords</div>
+      <div class="cc-keywords">
+        <span class="cc-kw">cybersecurity company near me</span><span class="cc-kw">managed security service provider</span><span class="cc-kw">MSSP for small business</span><span class="cc-kw">HIPAA cybersecurity vendor</span><span class="cc-kw">penetration testing company</span><span class="cc-kw">vCISO services</span><span class="cc-kw">SOC 2 compliance consultant</span><span class="cc-kw">cyber incident response firm</span>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏷️ Hashtags</div>
+      <div class="cc-tags">
+        <span class="cc-tag" onclick="ccCopy(this)">#Cybersecurity</span><span class="cc-tag" onclick="ccCopy(this)">#MSSP</span><span class="cc-tag" onclick="ccCopy(this)">#CyberRisk</span><span class="cc-tag" onclick="ccCopy(this)">#CISO</span><span class="cc-tag" onclick="ccCopy(this)">#InfoSec</span><span class="cc-tag" onclick="ccCopy(this)">#DataSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#CyberSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#ManagedSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#SMBSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">💡 Campaign Hook</div>
+      <div class="cc-text" style="font-size:13px;color:var(--text)">
+        <strong>Buyer:</strong> "Stop guessing who to trust with your data."<br><br>
+        <strong>Vendor:</strong> "Your next client can't find you on Google. Fix that for free."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CAMERAS / CCTV ==================== -->
+<div class="cc-panel" id="ccp-cameras">
+  <div class="cc-header" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.3)">
+    <div class="cc-icon">📹</div>
+    <div>
+      <div class="phase-label phase-1">PHASE 1 — LAUNCH NOW</div>
+      <div class="cc-title" style="color:#34d399">Security Camera / CCTV Installation</div>
+      <div class="cc-market"><span class="market-badge">$9.2B US MARKET</span><span class="market-badge">10% CAGR</span><span class="market-badge">UNIVERSAL DEMAND</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card">
+      <div class="cc-card-label">🎯 Who Buys (Client Side)</div>
+      <div class="cc-text">
+        <strong>Job titles:</strong> Facility Manager, Property Manager, Operations Director, Business Owner, Loss Prevention Manager, HR Director<br>
+        <strong>Industries:</strong> Retail, warehousing, multi-family housing, restaurants, schools, offices, construction sites, healthcare<br>
+        <strong>Company size:</strong> 10 employees to enterprise — cameras are universal<br>
+        <strong>Pain:</strong> Got burned by a fly-by-night installer. Don't know if vendor is licensed. Can't compare pricing. Don't understand IP vs analog vs cloud.
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏢 Who Sells (Vendor Side)</div>
+      <div class="cc-text">
+        <strong>Vendor types:</strong> CCTV installation companies, security integrators, alarm + camera combo companies, IT-turned-physical-security shops<br>
+        <strong>Current client acquisition:</strong> Google Ads (expensive), word of mouth, door-to-door for commercial<br>
+        <strong>Vendor pain:</strong> Competing with Amazon DIY kits. Buyers don't know why to pay for professional installation. Google Ads cost $15-40 per click. No place to showcase credentials and past work.
+      </div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-card-label" style="color:var(--orange);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">📣 BUYER POSTS — CLICK TO COPY</div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Before you buy another security camera off Amazon:
+
+✗ No licensing verification
+✗ No professional placement assessment
+✗ No monitoring integration
+✗ No warranty on installation
+✗ No one to call when it stops working at 2am
+
+NSN connects you with licensed, vetted camera and CCTV installation companies in your area.
+
+Compare providers. Check credentials. Post your project as an RFP.
+
+Free for buyers → nationwidesecuritynetwork.com
+
+#SecurityCamera #CCTV #FacilityManagement #PropertySecurity #BusinessSecurity #NSN</div>
+      <div class="cc-hook-label" style="margin-top:12px">X/TWITTER — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">A $200 camera from Amazon won't stop a theft.
+
+A licensed installer who assessed your blind spots might.
+
+Find vetted camera & CCTV companies near you on NSN. Free.
+
+nationwidesecuritynetwork.com #SecurityCamera #CCTV #BusinessSecurity</div>
+    </div>
+    <div>
+      <div class="cc-card-label" style="color:var(--green);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">📣 VENDOR POSTS — CLICK TO COPY</div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">If you install commercial camera systems, you're fighting two enemies:
+
+1. Amazon and DIY kits your prospects think are "good enough"
+2. Google Ads that cost $25+ per click to generate a single lead
+
+NSN gives camera installation companies a verified profile where commercial buyers come to you — already educated, already past the DIY question.
+
+List your company free → nationwidesecuritynetwork.com/signup
+
+#CCTVInstallation #SecurityIntegrator #SecurityCamera #CommercialSecurity #NSN</div>
+      <div class="cc-hook-label" style="margin-top:12px">EMAIL SUBJECT — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Subject: {{Company Name}}'s camera installation profile is live on NSN
+
+Hi {{First Name}},
+
+{{Company Name}} now has a vendor profile on Nationwide Security Network — where facility managers and property managers search for licensed camera and CCTV installers by state and specialty.
+
+Your profile is unclaimed. Claiming it is free and puts you in front of buyers who are already past the "should I use Amazon?" stage.
+
+Claim it free → nationwidesecuritynetwork.com
+
+NSN Team</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card">
+      <div class="cc-card-label">🔍 Buyer Google Keywords</div>
+      <div class="cc-keywords">
+        <span class="cc-kw">security camera installation near me</span><span class="cc-kw">commercial CCTV installer</span><span class="cc-kw">business security camera system</span><span class="cc-kw">IP camera installation company</span><span class="cc-kw">CCTV company near me</span><span class="cc-kw">security camera for warehouse</span><span class="cc-kw">video surveillance installation</span>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏷️ Hashtags</div>
+      <div class="cc-tags">
+        <span class="cc-tag" onclick="ccCopy(this)">#SecurityCamera</span><span class="cc-tag" onclick="ccCopy(this)">#CCTV</span><span class="cc-tag" onclick="ccCopy(this)">#VideoSurveillance</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityIntegrator</span><span class="cc-tag" onclick="ccCopy(this)">#FacilityManagement</span><span class="cc-tag" onclick="ccCopy(this)">#CommercialSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#BusinessSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">💡 Campaign Hook</div>
+      <div class="cc-text" style="font-size:13px;color:var(--text)">
+        <strong>Buyer:</strong> "Amazon can't assess your blind spots. A licensed installer can."<br><br>
+        <strong>Vendor:</strong> "Stop paying $25/click for leads. Buyers come to you on NSN."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ARMED GUARDS ==================== -->
+<div class="cc-panel" id="ccp-armed">
+  <div class="cc-header" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.3)">
+    <div class="cc-icon">🛡️</div>
+    <div>
+      <div class="phase-label phase-1">PHASE 1 — LAUNCH NOW</div>
+      <div class="cc-title" style="color:#f87171">Armed Security Guards</div>
+      <div class="cc-market"><span class="market-badge">$46B US MARKET</span><span class="market-badge">HIGHEST URGENCY</span><span class="market-badge">LIABILITY-DRIVEN DECISIONS</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card">
+      <div class="cc-card-label">🎯 Who Buys (Client Side)</div>
+      <div class="cc-text">
+        <strong>Job titles:</strong> Corporate Security Director, Facilities Director, COO, Site Manager, HR Director, Event Coordinator<br>
+        <strong>Industries:</strong> Banks, jewelry stores, cannabis dispensaries, hospitals, government buildings, high-value retail, construction sites, events<br>
+        <strong>Pain:</strong> Scared of liability if vendor isn't licensed or insured. Need fast deployment — often 24-48 hours. Don't know how to vet guard companies. Prior bad experience with unreliable guards.
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏢 Who Sells (Vendor Side)</div>
+      <div class="cc-text">
+        <strong>Vendor types:</strong> Regional guard companies, national firms with local offices, off-duty police programs, specialized venue security<br>
+        <strong>Current client acquisition:</strong> RFPs, government contracts, direct sales to facility managers, word of mouth<br>
+        <strong>Vendor pain:</strong> Competing against Allied Universal and G4S with unlimited marketing budgets. Can't showcase credentials online. Buyers don't know they exist beyond a Google search.
+      </div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-card-label" style="color:var(--orange);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">📣 BUYER POSTS — CLICK TO COPY</div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Hiring an armed security company without verifying their licensing is how organizations end up with serious liability exposure.
+
+Most buyers don't know what to check:
+
+✗ State guard license
+✗ Firearms permit for every officer deployed
+✗ Liability insurance minimum
+✗ Background check policy for officers
+✗ Use of force training documentation
+
+NSN vendor profiles include credentials, licensing, and coverage area — so you can verify before you hire.
+
+Search vetted armed security companies → nationwidesecuritynetwork.com
+
+#ArmedSecurity #CorporateSecurity #SecurityDirector #FacilityManagement #RiskManagement #NSN</div>
+      <div class="cc-hook-label" style="margin-top:12px">X/TWITTER — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">If an armed guard is deployed at your facility and something goes wrong — do you know if they're licensed in your state?
+
+Most buyers don't check.
+
+NSN profiles show credentials upfront.
+
+Find vetted armed security companies near you: nationwidesecuritynetwork.com #ArmedSecurity #CorporateSecurity</div>
+    </div>
+    <div>
+      <div class="cc-card-label" style="color:var(--green);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">📣 VENDOR POSTS — CLICK TO COPY</div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Allied Universal has a $20M marketing budget.
+
+You have a great team, a solid reputation, and zero visibility online.
+
+That's the problem NSN was built to solve.
+
+Regional armed security companies get a verified profile on NSN — searchable by state, license type, and specialty — so the buyers who need you can actually find you.
+
+Stop losing contracts to bigger names just because they have better Google rankings.
+
+List free → nationwidesecuritynetwork.com/signup
+
+#ArmedSecurity #SecurityCompany #GuardCompany #NSN #SecurityBusiness #SecurityIndustry</div>
+      <div class="cc-hook-label" style="margin-top:12px">EMAIL SUBJECT — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Subject: {{Company Name}} — your NSN profile is live. Claim it free.
+
+Hi {{First Name}},
+
+{{Company Name}} is now listed on Nationwide Security Network — a B2B marketplace where corporate buyers search for licensed armed security companies by state, license, and specialty.
+
+Right now, buyers in {{State}} can find your profile. But they can't contact you until you claim it.
+
+Takes 5 minutes. No contracts. No monthly fees to start.
+
+Claim your profile → nationwidesecuritynetwork.com
+
+NSN Team</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card">
+      <div class="cc-card-label">🔍 Buyer Google Keywords</div>
+      <div class="cc-keywords">
+        <span class="cc-kw">armed security company near me</span><span class="cc-kw">hire armed security guards</span><span class="cc-kw">licensed armed security firm</span><span class="cc-kw">armed guard services for business</span><span class="cc-kw">armed security for events</span><span class="cc-kw">security guard company [city]</span><span class="cc-kw">armed patrol services</span>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏷️ Hashtags</div>
+      <div class="cc-tags">
+        <span class="cc-tag" onclick="ccCopy(this)">#ArmedSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityGuards</span><span class="cc-tag" onclick="ccCopy(this)">#CorporateSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityDirector</span><span class="cc-tag" onclick="ccCopy(this)">#GuardCompany</span><span class="cc-tag" onclick="ccCopy(this)">#FacilityManagement</span><span class="cc-tag" onclick="ccCopy(this)">#RiskManagement</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">💡 Campaign Hook</div>
+      <div class="cc-text" style="font-size:13px;color:var(--text)">
+        <strong>Buyer:</strong> "Verify credentials before you deploy. NSN shows licensing upfront."<br><br>
+        <strong>Vendor:</strong> "Stop losing to Allied Universal's marketing budget. Own your local market on NSN."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== UNARMED GUARDS ==================== -->
+<div class="cc-panel" id="ccp-unarmed">
+  <div class="cc-header" style="background:rgba(250,204,21,0.07);border-color:rgba(250,204,21,0.25)">
+    <div class="cc-icon">👮</div>
+    <div>
+      <div class="phase-label phase-1">PHASE 1 — LAUNCH NOW</div>
+      <div class="cc-title" style="color:#facc15">Unarmed Security Guards</div>
+      <div class="cc-market"><span class="market-badge">LARGEST VOLUME CATEGORY</span><span class="market-badge">HIGH REPEAT CONTRACTS</span><span class="market-badge">RECURRING REVENUE</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card">
+      <div class="cc-card-label">🎯 Who Buys (Client Side)</div>
+      <div class="cc-text">
+        <strong>Job titles:</strong> Property Manager, Facility Manager, Retail Operations Director, Office Manager, Event Coordinator, HR Director<br>
+        <strong>Industries:</strong> Shopping centers, office buildings, apartment complexes, retail chains, warehouses, hospitals, schools, hotels<br>
+        <strong>Pain:</strong> High turnover from current vendor. Guards don't show up. No-show replacement guards. Slow response to incidents. Can't get references from vendor easily.
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏢 Who Sells (Vendor Side)</div>
+      <div class="cc-text">
+        <strong>Vendor types:</strong> Regional guard companies, national staffing-style guard firms, specialized retail loss prevention guards<br>
+        <strong>Current client acquisition:</strong> Referrals, property management relationships, bid on government/commercial RFPs<br>
+        <strong>Vendor pain:</strong> Price competition drives margins to zero. Hard to prove quality vs competitor on paper. Stuck competing on hourly rate alone. No platform to showcase reliability record.
+      </div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">The most common security complaint from property managers isn't crime.
+
+It's no-shows.
+
+Guards who don't show up for their shift. Vendors who can't staff last-minute. Contracts that promise reliability and deliver chaos.
+
+NSN lets you compare unarmed security vendors by location, reliability ratings, and specialty — before you sign a contract.
+
+Search free → nationwidesecuritynetwork.com
+
+#PropertyManagement #FacilityManagement #SecurityGuards #UnarmedSecurity #NSN</div>
+    </div>
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">In the unarmed security business, everyone competes on price.
+
+The companies that win compete on proof.
+
+NSN gives unarmed security companies a verified profile where you can show your coverage area, client types, specialties, and availability — so buyers stop comparing you purely on hourly rate.
+
+List free → nationwidesecuritynetwork.com/signup
+
+#UnarmedSecurity #SecurityCompany #GuardServices #PropertySecurity #NSN</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card">
+      <div class="cc-card-label">🔍 Buyer Keywords</div>
+      <div class="cc-keywords"><span class="cc-kw">unarmed security guards for hire</span><span class="cc-kw">security guard company near me</span><span class="cc-kw">office building security guards</span><span class="cc-kw">retail security guards</span><span class="cc-kw">apartment complex security</span></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏷️ Hashtags</div>
+      <div class="cc-tags"><span class="cc-tag" onclick="ccCopy(this)">#UnarmedSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityGuards</span><span class="cc-tag" onclick="ccCopy(this)">#PropertyManagement</span><span class="cc-tag" onclick="ccCopy(this)">#FacilityManagement</span><span class="cc-tag" onclick="ccCopy(this)">#RetailSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">💡 Hook</div>
+      <div class="cc-text" style="font-size:13px;color:var(--text)"><strong>Buyer:</strong> "Stop paying for no-shows. Find reliable guard companies on NSN."<br><br><strong>Vendor:</strong> "Win on proof, not price. Show your credentials on NSN."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ACCESS CONTROL ==================== -->
+<div class="cc-panel" id="ccp-access">
+  <div class="cc-header" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.3)">
+    <div class="cc-icon">🔑</div>
+    <div>
+      <div class="phase-label phase-2">PHASE 2 — MONTH 2</div>
+      <div class="cc-title" style="color:#a78bfa">Access Control Systems</div>
+      <div class="cc-market"><span class="market-badge">$12.8B US MARKET</span><span class="market-badge">HIGH INTEGRATION COMPLEXITY</span><span class="market-badge">RECURRING MAINTENANCE REVENUE</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card">
+      <div class="cc-card-label">🎯 Who Buys</div>
+      <div class="cc-text"><strong>Job titles:</strong> IT Director, Facilities Manager, COO, Office Manager, Security Director<br><strong>Industries:</strong> Corporate offices, data centers, healthcare, government, multi-tenant commercial buildings, schools<br><strong>Pain:</strong> Don't understand the technology. Scared of buying a system that becomes obsolete. Need integration with existing IT systems. Can't evaluate vendors' technical claims.</div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">🏢 Who Sells</div>
+      <div class="cc-text"><strong>Vendor types:</strong> Security integrators, IT/physical security crossover firms, Lenel/Genetec/Honeywell dealers<br><strong>Vendor pain:</strong> Buyers can't tell good integrators from bad. Project scope creep. Competing on spec sheets no one understands. Long sales cycles with no qualified lead pipeline.</div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Access control is the most under-evaluated security purchase most companies make.
+
+They pick a vendor based on price.
+Find out 6 months later it doesn't integrate with their HR system.
+Or their IT team can't support it.
+Or there's no local tech when something breaks.
+
+NSN profiles show integration specialties, certifications, and coverage area — so you know what you're actually buying before you sign.
+
+Find vetted access control companies → nationwidesecuritynetwork.com
+
+#AccessControl #PhysicalSecurity #FacilityManagement #SecurityIntegration #NSN</div>
+    </div>
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">The buyers who need access control systems most are also the least equipped to evaluate vendors.
+
+That means the company that educates them wins the contract.
+
+NSN lets access control integrators showcase their certifications, platform specialties, and integration capabilities — before the buyer even picks up the phone.
+
+List your company free → nationwidesecuritynetwork.com/signup
+
+#AccessControl #SecurityIntegrator #PhysicalSecurity #NSN #SecurityTechnology</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card"><div class="cc-card-label">🔍 Buyer Keywords</div><div class="cc-keywords"><span class="cc-kw">access control system installation</span><span class="cc-kw">commercial door access control</span><span class="cc-kw">keycard entry system company</span><span class="cc-kw">biometric access control installer</span><span class="cc-kw">Lenel integrator near me</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">🏷️ Hashtags</div><div class="cc-tags"><span class="cc-tag" onclick="ccCopy(this)">#AccessControl</span><span class="cc-tag" onclick="ccCopy(this)">#PhysicalSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityIntegrator</span><span class="cc-tag" onclick="ccCopy(this)">#BuildingSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityTechnology</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">💡 Hook</div><div class="cc-text" style="font-size:13px;color:var(--text)"><strong>Buyer:</strong> "Know what you're buying before you sign. Check integrator certs on NSN."<br><br><strong>Vendor:</strong> "Educate buyers before your competition does."</div></div>
+  </div>
+</div>
+
+<!-- ==================== MOBILE PATROL ==================== -->
+<div class="cc-panel" id="ccp-patrol">
+  <div class="cc-header" style="background:rgba(251,146,60,0.08);border-color:rgba(251,146,60,0.3)">
+    <div class="cc-icon">🚔</div>
+    <div>
+      <div class="phase-label phase-2">PHASE 2 — MONTH 2</div>
+      <div class="cc-title" style="color:#fb923c">Mobile Patrol Services</div>
+      <div class="cc-market"><span class="market-badge">FAST GROWING SEGMENT</span><span class="market-badge">PROPERTY MANAGERS = IDEAL BUYER</span><span class="market-badge">RECURRING CONTRACTS</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card"><div class="cc-card-label">🎯 Who Buys</div><div class="cc-text"><strong>Job titles:</strong> Property Manager, HOA Manager, Warehouse Operations Manager, Construction Site Manager<br><strong>Industries:</strong> Multi-family housing, commercial real estate, construction, industrial facilities, retail shopping centers<br><strong>Pain:</strong> Can't afford a full-time on-site guard. Need visible deterrence after hours. Had vandalism, trespassing, or theft at off-hours. Can't find patrol companies that cover their specific area.</div></div>
+    <div class="cc-card"><div class="cc-card-label">🏢 Who Sells</div><div class="cc-text"><strong>Vendor types:</strong> Regional patrol companies, guard + patrol combos, alarm response patrol firms<br><strong>Vendor pain:</strong> Coverage area is hyper-local but buyers search nationally. Hard to show exactly where they patrol. No platform to list patrol routes or coverage zones. Competing on price with no way to demonstrate reliability.</div></div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">A full-time on-site guard costs $60-80K per year.
+
+Mobile patrol visits the same property 3-5 times per night for a fraction of the cost.
+
+It's the most under-utilized security solution in commercial real estate — and the hardest to find locally because most patrol companies barely have a website.
+
+NSN lists mobile patrol services by city and coverage zone — so property managers can find and compare local providers fast.
+
+Find patrol services in your area → nationwidesecuritynetwork.com
+
+#MobilePatrol #PropertyManagement #CommercialRealEstate #SecurityPatrol #NSN</div>
+    </div>
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Mobile patrol companies have the most local, area-specific businesses in the entire security industry.
+
+Which is exactly why most of you are invisible to property managers three zip codes away.
+
+NSN lets patrol companies define their exact coverage area and get found by property managers, HOAs, and construction sites actively searching for local patrol services.
+
+List your coverage zone free → nationwidesecuritynetwork.com/signup
+
+#MobilePatrol #SecurityPatrol #PropertySecurity #NSN #SecurityBusiness</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card"><div class="cc-card-label">🔍 Buyer Keywords</div><div class="cc-keywords"><span class="cc-kw">mobile security patrol near me</span><span class="cc-kw">patrol services for apartment complex</span><span class="cc-kw">overnight security patrol</span><span class="cc-kw">construction site patrol</span><span class="cc-kw">HOA patrol services</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">🏷️ Hashtags</div><div class="cc-tags"><span class="cc-tag" onclick="ccCopy(this)">#MobilePatrol</span><span class="cc-tag" onclick="ccCopy(this)">#SecurityPatrol</span><span class="cc-tag" onclick="ccCopy(this)">#PropertyManagement</span><span class="cc-tag" onclick="ccCopy(this)">#CommercialRealEstate</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">💡 Hook</div><div class="cc-text" style="font-size:13px;color:var(--text)"><strong>Buyer:</strong> "Can't afford a full-time guard? Mobile patrol covers you for less."<br><br><strong>Vendor:</strong> "Property managers 3 zip codes away can't find you. Fix that on NSN."</div></div>
+  </div>
+</div>
+
+<!-- ==================== EXECUTIVE PROTECTION ==================== -->
+<div class="cc-panel" id="ccp-ep">
+  <div class="cc-header" style="background:rgba(244,63,94,0.08);border-color:rgba(244,63,94,0.3)">
+    <div class="cc-icon">💼</div>
+    <div>
+      <div class="phase-label phase-2">PHASE 2 — MONTH 2</div>
+      <div class="cc-title" style="color:#f43f5e">Executive Protection</div>
+      <div class="cc-market"><span class="market-badge">$7.8B US MARKET</span><span class="market-badge">HIGHEST PER-ENGAGEMENT BILLING</span><span class="market-badge">NO EXISTING DIGITAL MARKETPLACE</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card"><div class="cc-card-label">🎯 Who Buys</div><div class="cc-text"><strong>Job titles:</strong> CEO/Board assistant, Chief of Staff, Corporate Security Director, General Counsel, UHNW family office<br><strong>Industries:</strong> Public companies, PE-backed firms, celebrity management, entertainment, high-net-worth individuals<br><strong>Pain:</strong> This is a referral-only category right now. Buyers don't know where to look. Huge trust barrier — you're putting someone's life in a stranger's hands. No way to verify EP team credentials online.</div></div>
+    <div class="cc-card"><div class="cc-card-label">🏢 Who Sells</div><div class="cc-text"><strong>Vendor types:</strong> Boutique EP firms, former Secret Service/military operators, full-service security firms with EP division<br><strong>Vendor pain:</strong> 100% referral-based. No digital presence. Category has zero B2B marketplace — NSN can own this niche entirely. Hard to prove credentials to skeptical buyers without an introduction.<br><strong style="color:var(--orange)">NSN OPPORTUNITY: First mover advantage. No competitor in this digital space.</strong></div></div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Executive protection is the only security service where most corporate buyers don't even know where to start looking.
+
+It's still a 100% referral-only industry in 2026.
+
+Which means if your contact doesn't know a good EP firm — you're Googling, and hoping.
+
+NSN is the first platform where vetted executive protection teams build verified profiles, list their credentials, and get found by corporate security directors and chief of staff teams.
+
+Search EP firms → nationwidesecuritynetwork.com
+
+#ExecutiveProtection #CorporateSecurity #CISO #BodyguardServices #NSN</div>
+    </div>
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">The executive protection industry has a secret it doesn't like to admit:
+
+There is no marketplace. There is no directory. There is no platform.
+
+You get clients from referrals or you don't get them.
+
+NSN is changing that. EP firms get a verified profile where corporate buyers can see your team's backgrounds, training credentials, geographic coverage, and past client types — without you having to get a referral first.
+
+Be the first EP firm in your market to claim a profile.
+
+List free → nationwidesecuritynetwork.com/signup
+
+#ExecutiveProtection #EPProfessional #BodyguardIndustry #CorporateSecurity #NSN</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card"><div class="cc-card-label">🔍 Buyer Keywords</div><div class="cc-keywords"><span class="cc-kw">executive protection company</span><span class="cc-kw">corporate bodyguard services</span><span class="cc-kw">EP firm near me</span><span class="cc-kw">close protection services</span><span class="cc-kw">executive security detail</span><span class="cc-kw">travel security for executives</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">🏷️ Hashtags</div><div class="cc-tags"><span class="cc-tag" onclick="ccCopy(this)">#ExecutiveProtection</span><span class="cc-tag" onclick="ccCopy(this)">#EPProfessional</span><span class="cc-tag" onclick="ccCopy(this)">#CloseProtection</span><span class="cc-tag" onclick="ccCopy(this)">#CorporateSecurity</span><span class="cc-tag" onclick="ccCopy(this)">#BodyguardServices</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">💡 Hook</div><div class="cc-text" style="font-size:13px;color:var(--text)"><strong>Buyer:</strong> "The first platform where you can find and verify EP firms without a referral."<br><br><strong>Vendor:</strong> "NSN is the first EP marketplace. Be first in your market."</div></div>
+  </div>
+</div>
+
+<!-- ==================== FIRE & LIFE SAFETY ==================== -->
+<div class="cc-panel" id="ccp-fire">
+  <div class="cc-header" style="background:rgba(249,115,22,0.08);border-color:rgba(249,115,22,0.3)">
+    <div class="cc-icon">🔥</div>
+    <div>
+      <div class="phase-label phase-2">PHASE 2 — MONTH 2</div>
+      <div class="cc-title" style="color:#f97316">Fire &amp; Life Safety</div>
+      <div class="cc-market"><span class="market-badge">$48B US MARKET</span><span class="market-badge">COMPLIANCE-DRIVEN</span><span class="market-badge">HIGH RECURRING INSPECTION REVENUE</span></div>
+    </div>
+  </div>
+  <div class="cc-grid">
+    <div class="cc-card"><div class="cc-card-label">🎯 Who Buys</div><div class="cc-text"><strong>Job titles:</strong> Facilities Manager, Property Manager, Building Owner, COO, HSE Manager<br><strong>Industries:</strong> Commercial real estate, hospitality, manufacturing, healthcare, retail, multi-family housing<br><strong>Pain:</strong> Compliance deadlines they don't understand. Don't know if their current vendor is doing inspections correctly. Looking for a second opinion after a failed inspection. Need to find local fire safety companies fast before a code deadline.</div></div>
+    <div class="cc-card"><div class="cc-card-label">🏢 Who Sells</div><div class="cc-text"><strong>Vendor types:</strong> Fire suppression companies, sprinkler inspection firms, fire alarm installers, life safety integrators<br><strong>Vendor pain:</strong> Buyers only call when there's a deadline or a problem. No way to build recurring client relationships online. Local market dominated by whoever has the most yard signs. No platform to showcase compliance expertise and certifications.</div></div>
+  </div>
+  <div class="cc-grid">
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — BUYER</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Your fire safety inspection is due.
+
+Your current vendor hasn't called.
+
+You Google "fire inspection company near me" — and you have no idea which result to trust.
+
+NSN lists fire & life safety companies by state, certification, and specialty — sprinkler systems, fire alarms, suppression systems, life safety compliance — so you can find the right vendor before your deadline, not after.
+
+Search fire safety companies → nationwidesecuritynetwork.com
+
+#FireSafety #LifeSafety #FireProtection #FacilityManagement #FireInspection #NSN</div>
+    </div>
+    <div>
+      <div class="cc-hook-label">LINKEDIN POST — VENDOR</div>
+      <div class="cc-hook" onclick="ccCopy(this)">Fire and life safety companies have some of the most loyal recurring clients in the security industry.
+
+The problem: most of those clients came from one referral, five years ago.
+
+NSN gives fire safety companies a verified profile where facility managers and property owners can find you, see your certifications, and contact you before they're in deadline panic mode.
+
+List free → nationwidesecuritynetwork.com/signup
+
+#FireSafety #LifeSafety #FireProtection #FireInspection #NSN #SecurityBusiness</div>
+    </div>
+  </div>
+  <div class="cc-grid-3">
+    <div class="cc-card"><div class="cc-card-label">🔍 Buyer Keywords</div><div class="cc-keywords"><span class="cc-kw">fire safety inspection company near me</span><span class="cc-kw">fire sprinkler inspection service</span><span class="cc-kw">fire alarm installation company</span><span class="cc-kw">life safety compliance consultant</span><span class="cc-kw">fire suppression system company</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">🏷️ Hashtags</div><div class="cc-tags"><span class="cc-tag" onclick="ccCopy(this)">#FireSafety</span><span class="cc-tag" onclick="ccCopy(this)">#LifeSafety</span><span class="cc-tag" onclick="ccCopy(this)">#FireProtection</span><span class="cc-tag" onclick="ccCopy(this)">#FireInspection</span><span class="cc-tag" onclick="ccCopy(this)">#FacilityManagement</span><span class="cc-tag" onclick="ccCopy(this)">#FireAlarm</span><span class="cc-tag" onclick="ccCopy(this)">#NSN</span></div></div>
+    <div class="cc-card"><div class="cc-card-label">💡 Hook</div><div class="cc-text" style="font-size:13px;color:var(--text)"><strong>Buyer:</strong> "Find certified fire safety companies before your deadline, not after."<br><br><strong>Vendor:</strong> "Get found before the panic call. List on NSN."</div></div>
+  </div>
+</div>
+
+</div><!-- end panel-cat-campaigns -->
+
 <div style="background:#111;border-top:2px solid #3d4a57;padding:12px 28px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(255,119,0,0.3);letter-spacing:2px;">
   // NSN MEDIA CAMPAIGN v1.0 // WEEK 1 // GENERATED BY HERMES AGENT // JULY 2026 //
 </div>
@@ -3245,6 +3934,22 @@ function slCopyText(el) {
     el.style.background = 'rgba(74,222,128,0.2)';
     el.style.color = 'var(--green)';
     setTimeout(() => { el.style.background = ob; el.style.color = oc; }, 1200);
+  });
+}
+
+function ccTab(name, btn) {
+  document.querySelectorAll('.cc-btn').forEach(b => b.classList.remove('cca'));
+  document.querySelectorAll('.cc-panel').forEach(p => p.classList.remove('cca'));
+  btn.classList.add('cca');
+  const el = document.getElementById('ccp-' + name);
+  if(el) el.classList.add('cca');
+}
+
+function ccCopy(el) {
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    const orig = el.style.borderColor;
+    el.style.borderColor = 'var(--green)';
+    setTimeout(() => { el.style.borderColor = orig; }, 1400);
   });
 }
 
